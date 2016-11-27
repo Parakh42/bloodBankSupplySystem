@@ -38,16 +38,16 @@ public class EcoSystem {
         return network;
     }
 
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList = new ArrayList<>();
-        roleList.add(new SystemAdminRole());
-        return roleList;
-    }
+//    @Override
+//    public ArrayList<Role> getSupportedRole() {
+//        ArrayList<Role> roleList = new ArrayList<>();
+//        roleList.add(new SystemAdminRole());
+//        return roleList;
+//    }
 
     public boolean checkIfUsernameIsUnique(String username) {
 
-        if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        if (!this.getUserAccountDirectory.checkIfUsernameIsUnique(username)) {
             return false;
         }
         return true;
