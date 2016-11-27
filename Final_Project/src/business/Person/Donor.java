@@ -9,6 +9,24 @@ package business.Person;
  *
  * @author Kaustubh Chaudhari
  */
-public class Donor {
+public class Donor extends Person{
+    private static int count;
+    private int donorId;
+    private String bloodGroup;
+
+    public Donor() {
+        donorId=count;
+        count++;
+    }
+
+    public int getDonorId() {
+        return donorId;
+    }
+
+    public void setDonorId(int donorId) {
+        this.donorId = donorId;
+    }
+    
+    
     
 }

@@ -5,6 +5,9 @@
  */
 package business;
 
+import business.Person.Employee;
+import business.Person.Person;
+
 /**
  *
  * @author Kaustubh Chaudhari
@@ -21,7 +24,7 @@ public class ConfigureASystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
+        Person person = system.g
         
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
