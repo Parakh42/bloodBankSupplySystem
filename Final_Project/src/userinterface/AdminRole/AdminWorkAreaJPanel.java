@@ -36,19 +36,88 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        EnterPriseJLabel = new javax.swing.JLabel();
+        valueJLabel = new javax.swing.JLabel();
+        BtnManageOrganization = new javax.swing.JButton();
+        BtnManageDonor = new javax.swing.JButton();
+        BtnManageEmployee = new javax.swing.JButton();
+        BtnManageUser = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("My Work Area - Administrative Role");
+
+        EnterPriseJLabel.setFont(new java.awt.Font("Calibri", 1, 21)); // NOI18N
+        EnterPriseJLabel.setText("EnterPrise :");
+
+        valueJLabel.setFont(new java.awt.Font("Calibri", 1, 21)); // NOI18N
+        valueJLabel.setText("<value>");
+
+        BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageOrganization.setText("Manage Organization");
+
+        BtnManageDonor.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageDonor.setText("Manage Donor");
+
+        BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageEmployee.setText("Manage Employee");
+
+        BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageUser.setText("Manage User");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(EnterPriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(317, 317, 317)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnManageEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnManageDonor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnManageUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EnterPriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(BtnManageOrganization)
+                .addGap(28, 28, 28)
+                .addComponent(BtnManageEmployee)
+                .addGap(27, 27, 27)
+                .addComponent(BtnManageDonor)
+                .addGap(26, 26, 26)
+                .addComponent(BtnManageUser)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnManageDonor;
+    private javax.swing.JButton BtnManageEmployee;
+    private javax.swing.JButton BtnManageOrganization;
+    private javax.swing.JButton BtnManageUser;
+    private javax.swing.JLabel EnterPriseJLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel valueJLabel;
     // End of variables declaration//GEN-END:variables
 }

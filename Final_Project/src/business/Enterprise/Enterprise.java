@@ -5,24 +5,25 @@
  */
 package business.Enterprise;
 
+import business.Organization.Organization;
 import business.Organization.OrganizationDirectory;
 
 /**
  *
  * @author PARAKH MAHAJAN
  */
-public class Enterprise {
+public abstract class Enterprise extends Organization {
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
     
     public Enterprise(String name, EnterpriseType type) {
-        //super(name);
+        super(name);
         this.enterpriseType = type;
         organizationDirectory = new OrganizationDirectory();
     }
     
     public enum EnterpriseType{
-        Hospital("Hospital");
+        BloodBank("BloodBank");
         
         private String value;
 
@@ -47,4 +48,5 @@ public class Enterprise {
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
+
 }

@@ -12,22 +12,33 @@ import java.util.ArrayList;
  * @author Kaustubh Chaudhari
  */
 public class PersonDirectory {
-    ArrayList<Person> personList;
+    ArrayList<Employee> employeeList;   
+    ArrayList<Donor> donorList;
 
     public PersonDirectory() {
-        personList=new ArrayList<>();
+        employeeList=new ArrayList<>();
+        donorList = new ArrayList<>();
     }
 
-    public ArrayList<Person> getPersonList() {
-        return personList;
+    public ArrayList<Donor> getDonorList() {
+        return donorList;
+    }
+    
+    public ArrayList<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    
-    
-    public Person createPerson(String name){
-        Person person=new Person();
-        person.setFirstName(name);
-        personList.add(person);
-        return person;
+     public Employee createEmployee(String name){
+        Employee employee=new Employee();
+        employee.setFirstName(name);
+        employeeList.add(employee);
+        return employee;
+    }
+     
+     public Donor createDonor(String name){
+        Donor donor=new Donor();
+        donor.setFirstName(name);
+        donorList.add(donor);
+        return donor;
     }
 }

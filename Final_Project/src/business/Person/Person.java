@@ -5,6 +5,8 @@
  */
 package business.Person;
 
+import java.util.Date;
+
 /**
  *
  * @author Kaustubh Chaudhari
@@ -13,10 +15,10 @@ public class Person {
     private String firstName;
     private String lastName;
     private String emailId;
-    private String streetAddress;
-    private String buildingNoAddress;
-    private String dateOfBirth;
+    private int age;
     private String phoneNumber;
+    private String streetAddress;
+    private String address;
     private String city;
     private String state;
     private String country;
@@ -53,20 +55,20 @@ public class Person {
         this.streetAddress = streetAddress;
     }
 
-    public String getBuildingNoAddress() {
-        return buildingNoAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setBuildingNoAddress(String buildingNoAddress) {
-        this.buildingNoAddress = buildingNoAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public int getAge() {
+        return age;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getPhoneNumber() {
