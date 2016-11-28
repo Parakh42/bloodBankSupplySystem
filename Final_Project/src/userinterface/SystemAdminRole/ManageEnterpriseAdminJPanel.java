@@ -145,10 +145,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
 
-        Network network = (Network) networkJComboBox.getSelectedItem();
-        if (network != null){
-            populateEnterpriseComboBox(network);
-        }
+//        Network network = (Network) networkJComboBox.getSelectedItem();
+//        if (network != null){
+//            populateEnterpriseComboBox(network);
+//        }
 
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 

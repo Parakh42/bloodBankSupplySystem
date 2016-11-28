@@ -101,36 +101,36 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
-        String message = messageJTextField.getText();
-
-        LabTestWorkRequest request = new LabTestWorkRequest();
-        request.setMessage(message);
-        request.setSender(userAccount);
-        request.setStatus("Sent");
-
-        Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof LabOrganization){
-                org = organization;
-                break;
-            }
-        }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-        }
-
+//        String message = messageJTextField.getText();
+//
+//        LabTestWorkRequest request = new LabTestWorkRequest();
+//        request.setMessage(message);
+//        request.setSender(userAccount);
+//        request.setStatus("Sent");
+//
+//        Organization org = null;
+//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof LabOrganization){
+//                org = organization;
+//                break;
+//            }
+//        }
+//        if (org!=null){
+//            org.getWorkQueue().getWorkRequestList().add(request);
+//            userAccount.getWorkQueue().getWorkRequestList().add(request);
+//        }
+//
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+//        userProcessContainer.remove(this);
+//        Component[] componentArray = userProcessContainer.getComponents();
+//        Component component = componentArray[componentArray.length - 1];
+//        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
+//        dwjp.populateRequestTable();
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.previous(userProcessContainer);
 
     }//GEN-LAST:event_backJButtonActionPerformed
 

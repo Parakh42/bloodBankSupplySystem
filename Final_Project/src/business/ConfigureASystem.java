@@ -7,6 +7,8 @@ package business;
 
 import business.Person.Employee;
 import business.Person.Person;
+import business.Role.SystemAdminRole;
+import business.UserAccount.UserAccount;
 
 /**
  *
@@ -24,11 +26,11 @@ public class ConfigureASystem {
         //create user account
         
         
-//        Person person = system.g
-//        
-//        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
-//        
-        return system;
+        Person person = system.getPersonDirectory().createEmployee("Parakh");
+        
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", person, new SystemAdminRole());
+        
+        return system;    
     }
     
 }
