@@ -24,10 +24,10 @@ public class ConfigureASystem {
         //create user account
         
         
-        Person person = system.g
-        
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
-        
+//        Person person = system.g
+//        
+//        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
+//        
         return system;
     }
     

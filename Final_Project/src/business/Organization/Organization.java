@@ -5,6 +5,10 @@
  */
 package business.Organization;
 
+import business.Person.PersonDirectory;
+import business.Role.Role;
+import business.UserAccount.UserAccountDirectory;
+import business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -15,19 +19,23 @@ public abstract class Organization {
     private String name;
     private int organizationID;
     private static int counter;
+    private WorkQueue workQueue;
+    private UserAccountDirectory userAccountDirectory;
+    private PersonDirectory personDirectory;
 
     public Organization(String name) {
         this.name = name;
         organizationID = counter;
         ++counter;
-        
-        
-        
+        workQueue = new WorkQueue();
+        userAccountDirectory = new UserAccountDirectory();
+        personDirectory = new PersonDirectory();
     }
     
     public enum Type
     {
-        Donor("Donor Organization"), Receptionist("Reception Organization"), Lab("Lab Organization"), Nurse("Nurse Organization"), Inventory("Inventory Organization"), Admin("Admin Organization");
+        Donor("Donor Organization"), Receptionist("Reception Organization"), Lab("Lab Organization"), Nurse("Nurse Organization"),
+        Inventory("Inventory Organization"), Admin("Admin Organization");
         private String value;
         private Type(String value) {
             this.value = value;
@@ -38,7 +46,7 @@ public abstract class Organization {
 
     }
     
-    //public abstract ArrayList<Role> getSupportedRole();
+    public abstract ArrayList<Role> getSupportedRole();
 
     public String getName() {
         return name;
@@ -47,7 +55,31 @@ public abstract class Organization {
     public void setName(String name) {
         this.name = name;
     }
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
+
+    public int getOrganizationID() {
+        return organizationID;
+    }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public PersonDirectory getPersonDirectory() {
+        return personDirectory;
+    }
     
-    
+    @Override
+    public String toString()
+    {
+        return name;
+    }
     
 }

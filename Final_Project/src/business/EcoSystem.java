@@ -6,13 +6,16 @@
 package business;
 
 import business.Network.Network;
+import business.Organization.Organization;
+import business.Role.Role;
+import business.Role.SystemAdminRole;
 import java.util.ArrayList;
 
 /**
  *
  * @author PARAKH MAHAJAN
  */
-public class EcoSystem {
+public class EcoSystem extends Organization {
     private static EcoSystem business;
     private ArrayList<Network> networkList;
 
@@ -24,7 +27,7 @@ public class EcoSystem {
     }
 
     private EcoSystem() {
-        //super(null);
+        super(null);
         networkList = new ArrayList<>();
     }
 
@@ -38,18 +41,23 @@ public class EcoSystem {
         return network;
     }
 
-//    @Override
-//    public ArrayList<Role> getSupportedRole() {
-//        ArrayList<Role> roleList = new ArrayList<>();
-//        roleList.add(new SystemAdminRole());
-//        return roleList;
-//    }
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roleList = new ArrayList<>();
+        roleList.add(new SystemAdminRole());
+        return roleList;
+    }
 
     public boolean checkIfUsernameIsUnique(String username) {
 
-        if (!this.getUserAccountDirectory.checkIfUsernameIsUnique(username)) {
+        if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
             return false;
         }
         return true;
     }
+
+//    @Override
+//    public ArrayList<Role> getSupportedRole() {
+//   
+//    }
 }
