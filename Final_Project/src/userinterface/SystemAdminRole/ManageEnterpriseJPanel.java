@@ -5,6 +5,13 @@
  */
 package userinterface.SystemAdminRole;
 
+import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Kaustubh Chaudhari
@@ -14,8 +21,43 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    public ManageEnterpriseJPanel(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;
+        populateTable();
+        populateComboBox();
+    }
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) enterpriseTable.getModel();
+
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                Object[] row = new Object[3];
+                row[0] = enterprise.getName();
+                row[1] = network.getName();
+                row[2] = enterprise.getEnterpriseType().getValue();
+
+                model.addRow(row);
+            }
+        }
+    }
+    
+    private void populateComboBox() {
+        networkComboBox.removeAllItems();
+        enterpriseTypeComboBox.removeAllItems();
+
+        for (Network network : system.getNetworkList()) {
+            networkComboBox.addItem(network);
+        }
+
+        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            enterpriseTypeComboBox.addItem(type);
+        }
     }
 
     /**
@@ -32,11 +74,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        networkComboBox = new javax.swing.JComboBox<>();
-        enterpriseTypeComboBox = new javax.swing.JComboBox<>();
-        nameextField = new javax.swing.JTextField();
+        networkComboBox = new javax.swing.JComboBox();
+        enterpriseTypeComboBox = new javax.swing.JComboBox();
+        nameTextField = new javax.swing.JTextField();
         submitButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -48,34 +91,42 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(enterpriseTable);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Enterprise type:");
         jLabel1.setVerifyInputWhenFocusTarget(false);
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Network:");
         jLabel2.setVerifyInputWhenFocusTarget(false);
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel3.setText("Name:");
         jLabel3.setVerifyInputWhenFocusTarget(false);
 
-        networkComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        enterpriseTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        submitButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        submitButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
-        backButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        backButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backButton.setText("<<Back");
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel4.setText("Manage enterprises:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,22 +139,26 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(networkComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(enterpriseTypeComboBox, 0, 170, Short.MAX_VALUE))
-                                        .addComponent(nameextField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(backButton)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                        .addComponent(enterpriseTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(networkComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(backButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(312, 312, 312)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,26 +169,44 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitButton)
-                    .addComponent(backButton))
-                .addGap(124, 124, 124))
+                    .addComponent(backButton)
+                    .addComponent(submitButton))
+                .addGap(182, 182, 182))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+        Network network = (Network) networkComboBox.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeComboBox.getSelectedItem();
+
+        if (network == null || type == null) {
+            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            return;
+        }
+
+        String name = nameTextField.getText();
+
+        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        populateTable();
+    }//GEN-LAST:event_submitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JTable enterpriseTable;
-    private javax.swing.JComboBox<String> enterpriseTypeComboBox;
+    private javax.swing.JComboBox enterpriseTypeComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameextField;
-    private javax.swing.JComboBox<String> networkComboBox;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JComboBox networkComboBox;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,9 +6,15 @@
 package userinterface.SystemAdminRole;
 
 import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -19,11 +25,57 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SystemAdminWorkAreaJPanel
      */
-
+    JPanel userProcessContainer;
+    EcoSystem system;
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
     initComponents();
+    this.userProcessContainer = userProcessContainer;
+        this.system = system;
+
+        populateTree();
     }
 
+    public void populateTree(){
+        DefaultTreeModel model = (DefaultTreeModel) jTree.getModel();
+
+        ArrayList<Network> networkList = system.getNetworkList();
+        ArrayList<Enterprise> enterpriseList;
+        ArrayList<Organization> organizationList;
+        Network network;
+        Enterprise enterprise;
+        Organization organization;
+
+        DefaultMutableTreeNode networks = new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        root.removeAllChildren();
+        root.insert(networks, 0);
+
+        DefaultMutableTreeNode networkNode;
+        DefaultMutableTreeNode enterpriseNode;
+        DefaultMutableTreeNode organizationNode;
+        for (int i = 0; i < networkList.size(); i++) {
+            network = networkList.get(i);
+            networkNode = new DefaultMutableTreeNode(network.getName());
+            networks.insert(networkNode, i);
+
+            enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+
+            for (int j = 0; j < enterpriseList.size(); j++) {
+                enterprise = enterpriseList.get(j);
+                enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                networkNode.insert(enterpriseNode, j);
+
+                organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                for (int k = 0; k < organizationList.size(); k++) {
+                    organization = organizationList.get(k);
+                    organizationNode = new DefaultMutableTreeNode(organization.getName());
+                    enterpriseNode.insert(organizationNode, k);
+                }
+            }
+        }
+
+        model.reload();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,12 +124,27 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageNetworkButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageNetworkButton.setText("Manage network");
+        manageNetworkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageNetworkButtonActionPerformed(evt);
+            }
+        });
 
         manageEnterpriseButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageEnterpriseButton.setText("Manage enterprise");
+        manageEnterpriseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEnterpriseButtonActionPerformed(evt);
+            }
+        });
 
         manageEnterpriseAdminButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageEnterpriseAdminButton.setText("Manage enterprise admin");
+        manageEnterpriseAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEnterpriseAdminButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,6 +192,31 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void manageNetworkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkButtonActionPerformed
+        // TODO add your handling code here:
+        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer, system);
+        userProcessContainer.add("manageNetworkJPanel", manageNetworkJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_manageNetworkButtonActionPerformed
+
+    private void manageEnterpriseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseButtonActionPerformed
+        // TODO add your handling code here:
+        ManageEnterpriseJPanel manageEnterpriseJPanel = new ManageEnterpriseJPanel(userProcessContainer, system);
+        userProcessContainer.add("manageEnterpriseJPanel", manageEnterpriseJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageEnterpriseButtonActionPerformed
+
+    private void manageEnterpriseAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseAdminButtonActionPerformed
+        // TODO add your handling code here:
+        ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
+        userProcessContainer.add("manageEnterpriseAdminJPanel", manageEnterpriseAdminJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageEnterpriseAdminButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

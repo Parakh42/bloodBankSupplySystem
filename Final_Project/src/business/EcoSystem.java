@@ -55,9 +55,4 @@ public class EcoSystem extends Organization {
         }
         return true;
     }
-
-//    @Override
-//    public ArrayList<Role> getSupportedRole() {
-//   
-//    }
 }

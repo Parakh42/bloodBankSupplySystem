@@ -5,6 +5,11 @@
  */
 package userinterface.SystemAdminRole;
 
+import business.EcoSystem;
+import business.Network.Network;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Kaustubh Chaudhari
@@ -14,8 +19,26 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageNetworkJPanel
      */
-    public ManageNetworkJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+
+    public ManageNetworkJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
+        populateNetworkTable();
+
+    }
+
+    public void populateNetworkTable() {
+        DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
+
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            Object[] row = new Object[1];
+            row[0] = network.getName();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -28,7 +51,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        NetworkJTable = new javax.swing.JTable();
+        networkJTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
@@ -38,7 +61,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        NetworkJTable.setModel(new javax.swing.table.DefaultTableModel(
+        networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -46,21 +69,21 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 "Name"
             }
         ));
-        jScrollPane1.setViewportView(NetworkJTable);
+        jScrollPane1.setViewportView(networkJTable);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Manage networks:");
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Name:");
 
-        createNetworkButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        createNetworkButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         createNetworkButton.setText("Submit");
 
-        backButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        backButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backButton.setText("<<Back");
 
-        jButton1.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton1.setText("Delete network");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -72,7 +95,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,7 +108,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(createNetworkButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(132, 132, 132))
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,13 +127,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                     .addComponent(backButton))
                 .addGap(49, 49, 49)
                 .addComponent(jButton1)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable NetworkJTable;
     private javax.swing.JButton backButton;
     private javax.swing.JButton createNetworkButton;
     private javax.swing.JButton jButton1;
@@ -118,5 +140,6 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JTable networkJTable;
     // End of variables declaration//GEN-END:variables
 }

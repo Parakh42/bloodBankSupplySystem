@@ -80,18 +80,18 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        LabAssistantWorkAreaJPanel dwjp = (LabAssistantWorkAreaJPanel) component;
-        dwjp.populateTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+//        userProcessContainer.remove(this);
+//        Component[] componentArray = userProcessContainer.getComponents();
+//        Component component = componentArray[componentArray.length - 1];
+//        LabAssistantWorkAreaJPanel dwjp = (LabAssistantWorkAreaJPanel) component;
+//        dwjp.populateTable();
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        request.setTestResult(resultJTextField.getText());
-        request.setStatus("Completed");
+//        request.setTestResult(resultJTextField.getText());
+//        request.setStatus("Completed");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 
