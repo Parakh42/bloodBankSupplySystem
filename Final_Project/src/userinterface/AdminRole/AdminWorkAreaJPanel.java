@@ -56,6 +56,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnManageOrganization.setText("Manage Organization");
+        BtnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageOrganizationActionPerformed(evt);
+            }
+        });
 
         BtnManageDonor.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnManageDonor.setText("Manage Donor");
@@ -109,6 +114,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(128, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageOrganizationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnManageOrganizationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -34,7 +34,8 @@ public abstract class Organization {
     
     public enum Type
     {
-        Donor("Donor Organization"), Receptionist("Reception Organization"), Lab("Lab Organization"), Nurse("Nurse Organization"),
+        Donor("Donor Organization"), Receptionist("Reception Organization"), Lab("Lab Organization"), 
+        Nurse("Nurse Organization"),
         Inventory("Inventory Organization"), Admin("Admin Organization");
         private String value;
         private Type(String value) {
