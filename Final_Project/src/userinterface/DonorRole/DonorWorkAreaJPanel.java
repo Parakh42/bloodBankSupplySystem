@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.AdminRole;
+package userinterface.DonorRole;
 
 import business.EcoSystem;
 import business.Organization.Organization;
@@ -14,16 +14,16 @@ import javax.swing.JPanel;
  *
  * @author PARAKH MAHAJAN
  */
-public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+public class DonorWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminWorkAreaJPanel
+     * Creates new form DonorWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
+    public DonorWorkAreaJPanel() {
         initComponents();
     }
 
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public DonorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -50,7 +50,5 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnManageOrganization;
-    private javax.swing.JButton BtnManageOrganization1;
     // End of variables declaration//GEN-END:variables
 }

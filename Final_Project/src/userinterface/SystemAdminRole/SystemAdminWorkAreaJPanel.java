@@ -195,11 +195,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageNetworkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkButtonActionPerformed
         // TODO add your handling code here:
-        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer, system);
-        userProcessContainer.add("manageNetworkJPanel", manageNetworkJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        
+//        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer, system);
+//        userProcessContainer.add("manageNetworkJPanel", manageNetworkJPanel);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+//        
     }//GEN-LAST:event_manageNetworkButtonActionPerformed
 
     private void manageEnterpriseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseButtonActionPerformed
