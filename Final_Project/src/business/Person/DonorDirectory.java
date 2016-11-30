@@ -22,10 +22,14 @@ public class DonorDirectory {
         donorList=new ArrayList<>();
     }
     
-    private Donor createDonor(String name){
+    public Donor createDonor(String name){
         Donor donor = new Donor();
         donor.setFirstName(name);
         donorList.add(donor);
         return donor;
+    }
+    
+     public void deleteDonor(Donor donor) {
+        donorList.remove(donor);
     }
 }

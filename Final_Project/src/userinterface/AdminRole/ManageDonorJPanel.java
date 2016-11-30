@@ -7,6 +7,8 @@ package userinterface.AdminRole;
 
 import business.Organization.Organization;
 import business.Organization.OrganizationDirectory;
+import business.Person.Donor;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class ManageDonorJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private OrganizationDirectory organizationDirectory;
+    private Organization organization;
     /**
      * Creates new form ManageDonorJPanel
      */
@@ -25,8 +28,11 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
+        this.organization = organization;
         populateDonorComboBox();
+        populateTable();
     }
+
     
     public void populateDonorComboBox()
     {
@@ -38,13 +44,13 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         }
     }
     
-     private void populateTable(Organization organization){
+     private void populateTable(){
         DefaultTableModel model = (DefaultTableModel) manageDonorTable.getModel();
         model.setRowCount(0);
         
         for (Donor donor : organization.getDonorDirectory().getDonorList()){
             Object[] row = new Object[2];
-            row[0] = donor.getId();
+            row[0] = donor.getDonorId();
             row[1] = donor.getFirstName();
             model.addRow(row);
         }
@@ -267,6 +273,18 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
 
     private void BtnRemoveDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveDonorActionPerformed
         // TODO add your handling code here:
+        int selectedRow = manageDonorTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete donor detail", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Donor donor = (Donor) manageDonorTable.getValueAt(selectedRow, 0);
+                organization.getDonorDirectory().deleteDonor(donor);
+                populateTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_BtnRemoveDonorActionPerformed
 
     private void BtnAddDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddDonorActionPerformed
@@ -279,7 +297,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         String contactNumber = contactNumberTextField.getText();
         String bloodGroup = bloodGroupTextField.getText();
         String address = addressTextArea.getText();
-        organization.getEmployeeDirectory.createEmployee(firstName);
+        organization.getDonorDirectory().createDonor(firstName);
     }//GEN-LAST:event_BtnAddDonorActionPerformed
 
 
