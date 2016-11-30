@@ -5,6 +5,7 @@
  */
 package userinterface.AdminRole;
 
+<<<<<<< HEAD
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.Person.Employee;
@@ -12,6 +13,10 @@ import business.Role.Role;
 import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+=======
+import business.Organization.OrganizationDirectory;
+import javax.swing.JPanel;
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
 
 /**
  *
@@ -74,6 +79,12 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         }
     }
     
+=======
+    ManageUserAccountJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,7 +156,16 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         personComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+<<<<<<< HEAD
         roleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+=======
+        roleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleComboBoxActionPerformed(evt);
+            }
+        });
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
 
         BtnCreate.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnCreate.setText("Create");
@@ -176,6 +196,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(userNameTextField))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -188,6 +209,21 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+=======
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(organizationComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(personComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
                 .addGap(216, 216, 216))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,6 +270,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void BtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateActionPerformed
         // TODO add your handling code here:
         String userName = userNameTextField.getText();
@@ -246,6 +283,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_organizationComboBoxActionPerformed
+=======
+    private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleComboBoxActionPerformed
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

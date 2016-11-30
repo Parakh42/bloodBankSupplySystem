@@ -5,17 +5,49 @@
  */
 package userinterface.AdminRole;
 
+import business.Organization.Organization;
+import business.Organization.OrganizationDirectory;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PARAKH MAHAJAN
  */
 public class ManageDonorJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private OrganizationDirectory organizationDirectory;
     /**
      * Creates new form ManageDonorJPanel
      */
-    public ManageDonorJPanel() {
+    
+    ManageDonorJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organizationDirectory = organizationDirectory;
+        populateDonorComboBox();
+    }
+    
+    public void populateDonorComboBox()
+    {
+        donorComboBox.removeAllItems();
+        for(Organization organization : organizationDirectory.getOrganizationList())
+        if(organization.equals("Donor"))
+        {
+            donorComboBox.addItem(organization);
+        }
+    }
+    
+     private void populateTable(Organization organization){
+        DefaultTableModel model = (DefaultTableModel) manageDonorTable.getModel();
+        model.setRowCount(0);
+        
+        for (Donor donor : organization.getDonorDirectory().getDonorList()){
+            Object[] row = new Object[2];
+            row[0] = donor.getId();
+            row[1] = donor.getFirstName();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -46,7 +78,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         bloodGroupTextField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         addressTextArea = new javax.swing.JTextArea();
-        donorComboBox = new javax.swing.JComboBox<>();
+        donorComboBox = new javax.swing.JComboBox();
         BtnAddDonor = new javax.swing.JButton();
         BtnRemoveDonor = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
@@ -101,10 +133,15 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         addressTextArea.setRows(5);
         jScrollPane2.setViewportView(addressTextArea);
 
-        donorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        donorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BtnAddDonor.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnAddDonor.setText("Add Donor");
+        BtnAddDonor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddDonorActionPerformed(evt);
+            }
+        });
 
         BtnRemoveDonor.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnRemoveDonor.setText("Remove Donor");
@@ -232,6 +269,19 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnRemoveDonorActionPerformed
 
+    private void BtnAddDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddDonorActionPerformed
+        // TODO add your handling code here:
+        Organization organization = (Organization)donorComboBox.getSelectedItem();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String email = emailTextField.getText();
+        Integer age = Integer.parseInt(ageTextField.getText());
+        String contactNumber = contactNumberTextField.getText();
+        String bloodGroup = bloodGroupTextField.getText();
+        String address = addressTextArea.getText();
+        organization.getEmployeeDirectory.createEmployee(firstName);
+    }//GEN-LAST:event_BtnAddDonorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddDonor;
@@ -242,7 +292,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField ageTextField;
     private javax.swing.JTextField bloodGroupTextField;
     private javax.swing.JTextField contactNumberTextField;
-    private javax.swing.JComboBox<String> donorComboBox;
+    private javax.swing.JComboBox donorComboBox;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JLabel jLabel1;

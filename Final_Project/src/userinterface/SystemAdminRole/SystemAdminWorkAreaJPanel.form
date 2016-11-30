@@ -139,6 +139,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manage network"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageNetworkButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="manageEnterpriseButton">
               <Properties>
@@ -147,6 +150,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manage enterprise"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageEnterpriseButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="manageEnterpriseAdminButton">
               <Properties>
@@ -155,6 +161,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manage enterprise admin"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageEnterpriseAdminButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

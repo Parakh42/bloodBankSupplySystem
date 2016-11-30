@@ -110,6 +110,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Manage Donor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManageDonorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnManageEmployee">
       <Properties>
@@ -118,6 +121,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Manage Employee"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManageEmployeeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnManageUser">
       <Properties>
@@ -126,6 +132,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Manage User"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManageUserActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

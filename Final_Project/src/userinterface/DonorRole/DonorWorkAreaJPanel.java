@@ -33,6 +33,8 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        utilCalendarModel1 = new org.jdatepicker.impl.UtilCalendarModel();
+        utilDateModel1 = new org.jdatepicker.impl.UtilDateModel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -69,6 +71,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
@@ -86,6 +89,16 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(408, 408, 408)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(439, Short.MAX_VALUE))
+=======
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .addComponent(jTextField2))))
+                .addContainerGap(676, Short.MAX_VALUE))
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +117,11 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addComponent(jButton1)
+<<<<<<< HEAD
                 .addContainerGap(482, Short.MAX_VALUE))
+=======
+                .addContainerGap(595, Short.MAX_VALUE))
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,7 +143,12 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+<<<<<<< HEAD
     private javax.swing.JTextField jTextField3;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+=======
+    private org.jdatepicker.impl.UtilCalendarModel utilCalendarModel1;
+    private org.jdatepicker.impl.UtilDateModel utilDateModel1;
+>>>>>>> f2df91c487b835fda824693b5bfcaac6c7680810
     // End of variables declaration//GEN-END:variables
 }
