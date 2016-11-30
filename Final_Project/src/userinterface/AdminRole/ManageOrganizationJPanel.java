@@ -5,6 +5,9 @@
  */
 package userinterface.AdminRole;
 
+import business.Organization.OrganizationDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author PARAKH MAHAJAN
@@ -16,6 +19,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
      */
     public ManageOrganizationJPanel() {
         initComponents();
+    }
+
+    ManageOrganizationJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

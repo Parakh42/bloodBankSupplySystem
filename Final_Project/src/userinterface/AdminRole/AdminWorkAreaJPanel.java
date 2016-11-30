@@ -6,8 +6,10 @@
 package userinterface.AdminRole;
 
 import business.EcoSystem;
+import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -15,16 +17,17 @@ import javax.swing.JPanel;
  * @author piyush sharma
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
-
+    
+    private JPanel userProcessContainer;
+    private Enterprise enterprise;
     /**
      * Creates new form AdminRoleWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
-    }
-
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        valueJLabel.setText(enterprise.getName());
     }
 
     /**
@@ -56,15 +59,35 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnManageOrganization.setText("Manage Organization");
+        BtnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageOrganizationActionPerformed(evt);
+            }
+        });
 
         BtnManageDonor.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnManageDonor.setText("Manage Donor");
+        BtnManageDonor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageDonorActionPerformed(evt);
+            }
+        });
 
         BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnManageEmployee.setText("Manage Employee");
+        BtnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageEmployeeActionPerformed(evt);
+            }
+        });
 
         BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnManageUser.setText("Manage User");
+        BtnManageUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,6 +132,38 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(128, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageOrganizationActionPerformed
+        // TODO add your handling code here:
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_BtnManageOrganizationActionPerformed
+
+    private void BtnManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageEmployeeActionPerformed
+        // TODO add your handling code here:
+        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_BtnManageEmployeeActionPerformed
+
+    private void BtnManageDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageDonorActionPerformed
+        // TODO add your handling code here:
+        ManageDonorJPanel manageDonorJPanel = new ManageDonorJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageDonorJPanel", manageDonorJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_BtnManageDonorActionPerformed
+
+    private void BtnManageUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageUserActionPerformed
+        // TODO add your handling code here:
+        ManageUserAccountJPanel manageUserAccountJPanel = new ManageUserAccountJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageUserAccountJPanel", manageUserAccountJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_BtnManageUserActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
