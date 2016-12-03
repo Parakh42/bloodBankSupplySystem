@@ -24,10 +24,10 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form ReceptionWorkAreaJPanel
      */
     
-    JPanel userProcessContainer;
-    UserAccount account;
-    Organization organization;
-    EcoSystem business;
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private Organization organization;
+    private EcoSystem business;
     
     public ReceptionWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
