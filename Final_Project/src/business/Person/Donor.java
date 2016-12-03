@@ -62,4 +62,5 @@ public class Donor extends Person{
         this.hemoglobinLevel = hemoglobinLevel;
     }
     
+    
 }
