@@ -30,14 +30,22 @@ public class OrganizationDirectory {
             organization = new DonorOrganization();
             organizationList.add(organization);
         }
-//        else if (type.getValue().equals(Type.Reception.getValue())){
-//            organization = new ReceptionOrganization();
-//            organizationList.add(organization);
-//        }
-//        else if (type.getValue().equals(Type.Reception.getValue())){
-//            organization = new ReceptionOrganization();
-//            organizationList.add(organization);
-//        }
+        else if (type.getValue().equals(Type.Admin.getValue())){
+            organization = new AdminOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Inventory.getValue())){
+            organization = new InventoryOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Lab.getValue())){
+            organization = new LabOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Nurse.getValue())){
+            organization = new NurseOrganization();
+            organizationList.add(organization);
+        }
         
         return organization;
     }

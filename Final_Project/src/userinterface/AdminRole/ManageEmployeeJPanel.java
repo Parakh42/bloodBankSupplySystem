@@ -5,24 +5,75 @@
  */
 package userinterface.AdminRole;
 
+import business.Organization.Organization;
 import business.Organization.OrganizationDirectory;
+import business.Person.Donor;
+import business.Person.Employee;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author PARAKH MAHAJAN
  */
 public class ManageEmployeeJPanel extends javax.swing.JPanel {
-
+    
+    private JPanel userProcessContainer;
+    private OrganizationDirectory organizationDirectory;
+    private Organization organization;
     /**
      * Creates new form ManageEmployeeJPanel
      */
-    public ManageEmployeeJPanel() {
-        initComponents();
-    }
 
-    ManageEmployeeJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    ManageEmployeeJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory, Organization organization) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organizationDirectory = organizationDirectory;
+        //this.organization = organization;
+        populateOrganizationTypeComboBox();
+        populateEmployeeTypeComboBox();
+        populateTable();
+    }
+    
+    public void populateOrganizationTypeComboBox()
+    {
+        organizationTypeComboBox.removeAllItems();
+        for(Organization organization : organizationDirectory.getOrganizationList())
+        {
+            if(!organization.equals("Donor"))
+            {
+            organizationTypeComboBox.addItem(organization);
+            }
+        }
+    }
+    
+    public void populateEmployeeTypeComboBox()
+    {
+        employeeTypeComboBox1.removeAllItems();
+        for(Organization organization : organizationDirectory.getOrganizationList())
+        {
+            if(!organization.equals("Donor"))
+            {
+            employeeTypeComboBox1.addItem(organization);
+            }
+        }
+    }
+    
+    public void populateTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) manageEmployeeTable.getModel();
+        model.setRowCount(0);
+        
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList())
+        {
+            Object[] row = new Object[2];
+            row[0] = employee.getEmployeeId();
+            row[1] = employee.getFirstName();
+            model.addRow(row);
+        }
+        
     }
 
     /**
@@ -45,8 +96,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        organizationTypeComboBox = new javax.swing.JComboBox<>();
-        employeeTypeComboBox1 = new javax.swing.JComboBox<>();
+        organizationTypeComboBox = new javax.swing.JComboBox();
+        employeeTypeComboBox1 = new javax.swing.JComboBox();
         firstNameTextField = new javax.swing.JTextField();
         lastNameTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
@@ -112,9 +163,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel9.setText("Address :");
 
-        organizationTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        employeeTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        employeeTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         addressTextArea.setColumns(20);
         addressTextArea.setRows(5);
@@ -122,12 +173,27 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         BtnAddEmployee.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnAddEmployee.setText("Add Employee");
+        BtnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddEmployeeActionPerformed(evt);
+            }
+        });
 
         BtnRemoveEmployee.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnRemoveEmployee.setText("Remove Employee");
+        BtnRemoveEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRemoveEmployeeActionPerformed(evt);
+            }
+        });
 
         BtnBack.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnBack.setText("<< Back");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBackActionPerformed(evt);
+            }
+        });
 
         BtnUpdate1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnUpdate1.setText("Update Details");
@@ -229,6 +295,41 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddEmployeeActionPerformed
+        // TODO add your handling code here:
+        Organization organization = (Organization)employeeTypeComboBox1.getSelectedItem();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String email = emailTextField.getText();
+        Integer age = Integer.parseInt(ageTextField.getText());
+        String contactNumber = contactTextField.getText();
+        String address = addressTextArea.getText();
+        organization.getEmployeeDirectory().createEmployee(firstName);
+    }//GEN-LAST:event_BtnAddEmployeeActionPerformed
+
+    private void BtnRemoveEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveEmployeeActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = manageEmployeeTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete employee detail", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Employee employee = (Employee) manageEmployeeTable.getValueAt(selectedRow, 0);
+                organization.getEmployeeDirectory().deleteEmployee(employee);
+                populateTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnRemoveEmployeeActionPerformed
+
+    private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BtnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddEmployee;
@@ -239,7 +340,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField ageTextField;
     private javax.swing.JTextField contactTextField;
     private javax.swing.JTextField emailTextField;
-    private javax.swing.JComboBox<String> employeeTypeComboBox1;
+    private javax.swing.JComboBox employeeTypeComboBox1;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -254,6 +355,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JTable manageEmployeeTable;
-    private javax.swing.JComboBox<String> organizationTypeComboBox;
+    private javax.swing.JComboBox organizationTypeComboBox;
     // End of variables declaration//GEN-END:variables
 }

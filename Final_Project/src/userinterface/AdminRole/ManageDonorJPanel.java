@@ -8,6 +8,7 @@ package userinterface.AdminRole;
 import business.Organization.Organization;
 import business.Organization.OrganizationDirectory;
 import business.Person.Donor;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
      * Creates new form ManageDonorJPanel
      */
     
-    ManageDonorJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+    ManageDonorJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
@@ -159,6 +160,11 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
 
         BtnBack.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnBack.setText("<< Back");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBackActionPerformed(evt);
+            }
+        });
 
         BtnUpdate.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnUpdate.setText("Update Details");
@@ -299,6 +305,13 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         String address = addressTextArea.getText();
         organization.getDonorDirectory().createDonor(firstName);
     }//GEN-LAST:event_BtnAddDonorActionPerformed
+
+    private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BtnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

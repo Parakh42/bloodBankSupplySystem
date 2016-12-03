@@ -25,7 +25,7 @@ public class AdminRole extends Role {
             Enterprise enterprise,
             EcoSystem business){
         
-        return new AdminWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new AdminWorkAreaJPanel(userProcessContainer, account, organization, business, enterprise);
     }
     
 }
