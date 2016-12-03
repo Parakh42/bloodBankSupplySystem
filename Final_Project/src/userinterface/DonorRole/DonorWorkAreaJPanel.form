@@ -26,7 +26,6 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="timeComboBox" alignment="0" max="32767" attributes="0"/>
                   <Component id="scheduleButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="datePicker" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="505" max="32767" attributes="0"/>
           </Group>
@@ -41,13 +40,10 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="datePicker" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="scheduleButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="414" max="32767" attributes="0"/>
+              <EmptySpace pref="418" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,8 +85,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scheduleButtonActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="org.jdesktop.swingx.JXDatePicker" name="datePicker">
     </Component>
   </SubComponents>
 </Form>

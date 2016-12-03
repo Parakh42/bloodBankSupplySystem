@@ -49,7 +49,6 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         scheduleButton = new javax.swing.JButton();
-        datePicker = new org.jdesktop.swingx.JXDatePicker();
 
         timeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10AM to 11AM", "11AM to 12PM", "12PM to 1PM", "1PM to 2PM", "4PM to 5PM", "5PM to 6PM", " ", " " }));
 
@@ -76,8 +75,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(timeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(505, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,12 +86,10 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addGap(39, 39, 39)
                 .addComponent(scheduleButton)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,7 +110,6 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXDatePicker datePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton scheduleButton;
