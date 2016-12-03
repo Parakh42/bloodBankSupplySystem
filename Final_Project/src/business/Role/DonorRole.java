@@ -9,6 +9,8 @@ import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
 import userinterface.DonorRole.DonorWorkAreaJPanel;
 
@@ -18,14 +20,13 @@ import userinterface.DonorRole.DonorWorkAreaJPanel;
  */
 public class DonorRole extends Role {
     
+    
+
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer,
-            UserAccount account,
-            Organization organization,
-            Enterprise enterprise,
-            EcoSystem business){
-        
-        return new DonorWorkAreaJPanel(userProcessContainer, account, organization, business);
-    }
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, 
+            Enterprise enterprise, 
+            EcoSystem business) {
+      return new DonorWorkAreaJPanel(userProcessContainer, account, organization, business);
+     }
     
 }
