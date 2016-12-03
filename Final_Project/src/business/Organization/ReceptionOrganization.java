@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class ReceptionOrganization extends Organization {
 
-    public ReceptionOrganization(String name) {
-        super(Organization.Type.Donor.getValue());
+    public ReceptionOrganization() {
+        super(Organization.Type.Receptionist.getValue());
     }
     
     @Override

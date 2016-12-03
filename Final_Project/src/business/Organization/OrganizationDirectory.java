@@ -46,6 +46,14 @@ public class OrganizationDirectory {
             organization = new NurseOrganization();
             organizationList.add(organization);
         }
+        else if(type.getValue().equals(Type.Receptionist.getValue())){
+            organization = new ReceptionOrganization();
+            organizationList.add(organization);
+        }
+        else if(type.getValue().equals(Type.Nutritionist.getValue())){
+            organization = new NutritionistOrganization();
+            organizationList.add(organization);
+        }
         
         return organization;
     }

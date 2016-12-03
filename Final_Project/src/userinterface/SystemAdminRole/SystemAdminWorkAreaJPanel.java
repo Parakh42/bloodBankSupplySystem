@@ -27,15 +27,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-    initComponents();
-    this.userProcessContainer = userProcessContainer;
-        this.system = system;
+
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = business;
 
         populateTree();
     }
 
-    public void populateTree(){
+    public void populateTree() {
         DefaultTreeModel model = (DefaultTreeModel) jTree.getModel();
 
         ArrayList<Network> networkList = system.getNetworkList();
@@ -76,6 +77,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         model.reload();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,10 +201,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageNetworkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkButtonActionPerformed
         // TODO add your handling code here:
-//        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer, system);
-//        userProcessContainer.add("manageNetworkJPanel", manageNetworkJPanel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer, system);
+        userProcessContainer.add("manageNetworkJPanel", manageNetworkJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
 //        
     }//GEN-LAST:event_manageNetworkButtonActionPerformed
 

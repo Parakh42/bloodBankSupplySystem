@@ -8,6 +8,8 @@ package userinterface.SystemAdminRole;
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Network.Network;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -119,6 +121,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         backButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backButton.setText("<<Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setText("Manage enterprises:");
@@ -196,6 +203,17 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         populateTable();
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

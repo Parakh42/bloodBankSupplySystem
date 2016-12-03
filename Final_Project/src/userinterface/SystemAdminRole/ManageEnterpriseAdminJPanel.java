@@ -8,7 +8,11 @@ package userinterface.SystemAdminRole;
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Network.Network;
+import business.Person.Employee;
+import business.Role.AdminRole;
 import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +32,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.system=system;
         populateTable();
+        populateNetworkComboBox();
     }
     
     private void populateTable() {
@@ -45,6 +50,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     model.addRow(row);
                 }
             }
+        }
+    }
+    
+    private void populateNetworkComboBox(){
+        networkJComboBox.removeAllItems();
+        
+        for (Network network : system.getNetworkList()){
+            networkJComboBox.addItem(network);
         }
     }
     
@@ -111,7 +124,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setText("Name");
 
-        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 networkJComboBoxActionPerformed(evt);
@@ -122,9 +135,19 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         backButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backButton.setText("<<Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         submitButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -211,6 +234,31 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_networkJComboBoxActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+        
+        String username = usernameJTextField.getText();
+        String password = String.valueOf(passwordJPasswordField.getPassword());
+        String name = nameJTextField.getText();
+        
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        
+        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+        populateTable();
+    }//GEN-LAST:event_submitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
