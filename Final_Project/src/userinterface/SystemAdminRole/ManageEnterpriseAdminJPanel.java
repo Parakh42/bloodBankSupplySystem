@@ -81,6 +81,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Manage enterprise admin");
 

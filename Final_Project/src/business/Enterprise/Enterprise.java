@@ -13,18 +13,19 @@ import business.Organization.OrganizationDirectory;
  * @author PARAKH MAHAJAN
  */
 public abstract class Enterprise extends Organization {
+
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
-    
+
     public Enterprise(String name, EnterpriseType type) {
         super(name);
         this.enterpriseType = type;
         organizationDirectory = new OrganizationDirectory();
     }
-    
-    public enum EnterpriseType{
-        BloodBank("BloodBank");
-        
+
+    public enum EnterpriseType {
+        BloodBank("BloodBank"), Hospital("Hospital");
+
         private String value;
 
         private EnterpriseType(String value) {

@@ -5,25 +5,23 @@
  */
 package business.Organization;
 
-import business.Role.LabAssistantRole;
+import business.Role.NutritionistRole;
 import business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author piyush sharma
+ * @author Kaustubh Chaudhari
  */
-public class LabOrganization extends Organization {
-    
-    public LabOrganization() {
-        super(Organization.Type.Lab.getValue());
+public class NutritionistOrganization extends Organization{
+    public NutritionistOrganization() {
+        super(Organization.Type.Nutritionist.getValue());
     }
     
     @Override
     public ArrayList<Role> getSupportedRole(){
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new LabAssistantRole());
+        roles.add(new NutritionistRole());
         return roles;
     }
-    
 }
