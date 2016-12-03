@@ -3,28 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.InventoryRole;
+package userinterface.NutritionistRole;
 
 import business.EcoSystem;
+import business.Organization.NutritionistOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
  *
- * @author piyush sharma
+ * @author Kaustubh Chaudhari
  */
-public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
+public class NutritionistWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form InventoryWorkAreaJPanel
+     * Creates new form NutritionistWorkAreaJPanel
      */
-    public InventoryWorkAreaJPanel() {
+    
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private NutritionistOrganization nutritionistOrganization;
+    
+    public NutritionistWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
-    }
-
-    public InventoryWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.userProcessContainer=userProcessContainer;
+        this.business=business;
+        this.userAccount=userAccount;
+        this.nutritionistOrganization=nutritionistOrganization;
     }
 
     /**
@@ -40,11 +47,11 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 927, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
+            .addGap(0, 780, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

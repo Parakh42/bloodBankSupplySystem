@@ -81,6 +81,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
