@@ -12,17 +12,37 @@ import java.util.Date;
  * @author Kaustubh Chaudhari
  */
 public class Person {
+    private static int count;
+    private int personId;
     private String firstName;
     private String lastName;
     private String emailId;
     private int age;
+    private String gender;
     private String phoneNumber;
-    private String streetAddress;
     private String address;
-    private String city;
-    private String state;
-    private String country;
 
+    public Person() {
+        personId = count;
+        count++;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
@@ -45,14 +65,6 @@ public class Person {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
-    }
-
-    public String getStreetAddress() {
-        return streetAddress;
-    }
-
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
     }
 
     public String getAddress() {
@@ -79,29 +91,11 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
     
+    @Override
+    public String toString()
+    {
+        return firstName;
+    }
     
 }

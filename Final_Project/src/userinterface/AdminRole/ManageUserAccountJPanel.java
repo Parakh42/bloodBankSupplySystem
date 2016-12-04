@@ -7,8 +7,7 @@ package userinterface.AdminRole;
 
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
-import business.Person.Donor;
-import business.Person.Employee;
+import business.Person.Person;
 import business.Role.Role;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -46,12 +45,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public void populatePersonComboBox(Organization organization){
         personComboBox.removeAllItems();
         
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
-            personComboBox.addItem(employee);
-        }
-        for(Donor donor : organization.getDonorDirectory().getDonorList())
-        {
-            personComboBox.addItem(donor);
+        for (Person person : organization.getPersonDirectory().getPersonList()){
+            personComboBox.addItem(person);
         }
     }
     
@@ -248,10 +243,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         String userName = userNameTextField.getText();
         String password = passwordField.getText();
         Organization organization = (Organization) organizationComboBox.getSelectedItem();
-        Employee employee = (Employee) personComboBox.getSelectedItem();
-        Donor donor = (Donor) personComboBox.getSelectedItem();
+        Person person = (Person) personComboBox.getSelectedItem();
         Role role = (Role) roleComboBox.getSelectedItem();
-        organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role); 
+        organization.getUserAccountDirectory().createUserAccount(userName, password, person, role); 
         populateTable();
     }//GEN-LAST:event_BtnCreateActionPerformed
 

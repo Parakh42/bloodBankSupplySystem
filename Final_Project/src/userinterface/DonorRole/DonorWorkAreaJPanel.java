@@ -6,6 +6,7 @@
 package userinterface.DonorRole;
 
 import business.EcoSystem;
+import business.Organization.DonorOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     DonorWorkRequest request;
     JPanel userProcessContainer;
     UserAccount account;
-    Organization organization;
+    DonorOrganization organization;
     EcoSystem business;
     /**
      * Creates new form DonorWorkAreaJPanel
@@ -32,8 +33,9 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.organization = organization;
+        this.organization = (DonorOrganization) organization;
         this.business = business;
+        
     }
 
     /**
@@ -105,14 +107,14 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void datePickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datePickerActionPerformed
         // TODO add your handling code here:
-        Date date = datePicker.getDate();
-        request.setDate(date);
     }//GEN-LAST:event_datePickerActionPerformed
 
     private void scheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleButtonActionPerformed
         // TODO add your handling code here:
+        request = new DonorWorkRequest();
         String time = (String)timeComboBox.getSelectedItem();
-        
+       Date date = datePicker.getDate();
+        request.setRequestDate(date);
         request.setTime(time);
         request.setSender(account);
         

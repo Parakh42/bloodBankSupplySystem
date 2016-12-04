@@ -9,27 +9,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Kaustubh Chaudhari
+ * @author PARAKH MAHAJAN
  */
 public class DonorDirectory {
     private ArrayList<Donor> donorList;
 
-    public ArrayList<Donor> getDonorList() {
-        return donorList;
-    }
-
     public DonorDirectory() {
-        donorList=new ArrayList<>();
+        this.donorList = new ArrayList<>();
     }
     
-    public Donor createDonor(String name){
-        Donor donor = new Donor();
-        donor.setFirstName(name);
-        donorList.add(donor);
-        return donor;
-    }
     
-     public void deleteDonor(Donor donor) {
-        donorList.remove(donor);
-    }
 }

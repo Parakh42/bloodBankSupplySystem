@@ -31,9 +31,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BtnManageEmployee" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="BtnManagePerson" min="-2" pref="173" max="-2" attributes="0"/>
                           <Component id="BtnManageOrganization" min="-2" pref="173" max="-2" attributes="0"/>
-                          <Component id="BtnManageDonor" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
                           <Component id="BtnManageUser" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -54,11 +53,9 @@
               </Group>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Component id="BtnManageOrganization" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="BtnManageEmployee" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="BtnManageDonor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="BtnManagePerson" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="BtnManageUser" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="202" max="32767" attributes="0"/>
           </Group>
@@ -102,26 +99,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManageOrganizationActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnManageEmployee">
+    <Component class="javax.swing.JButton" name="BtnManagePerson">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Manage Employee"/>
+        <Property name="text" type="java.lang.String" value="Manage Person"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManageEmployeeActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnManageDonor">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Manage Donor"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManageDonorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnManagePersonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnManageUser">

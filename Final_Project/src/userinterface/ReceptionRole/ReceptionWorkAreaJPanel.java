@@ -7,10 +7,13 @@ package userinterface.ReceptionRole;
 
 import business.EcoSystem;
 import business.Organization.Organization;
+import business.Organization.ReceptionOrganization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.ReceptionWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,14 +29,14 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private UserAccount account;
-    private Organization organization;
+    private ReceptionOrganization organization;
     private EcoSystem business;
     
     public ReceptionWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.organization = organization;
+        this.organization = (ReceptionOrganization) organization;
         this.business = business;
         populateRequestTable();
     }
@@ -42,10 +45,10 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[3];
             String result = ((DonorWorkRequest) request).getTime();
-            Date result1 = ((DonorWorkRequest) request).getDate();
+            Date result1 = request.getRequestDate();
             row[0] = request.getSender();
             row[1] = result == null ? "Waiting" : result;
             row[2] = result1 == null ? "Waiting" : result1;
@@ -65,7 +68,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        assignBtn = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,7 +95,12 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        jButton2.setText("Assign Nurse");
+        assignBtn.setText("Assign Nurse");
+        assignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,7 +110,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
@@ -114,14 +122,31 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jButton2)
+                .addComponent(assignBtn)
                 .addContainerGap(433, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
+        // TODO add your handling code here:
+        ReceptionWorkRequest request = new ReceptionWorkRequest();
+        
+        
+        int selectedRow = workRequestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        else{
+        request.setSender(account);
+        request.setStatus("waiting");
+        }
+    }//GEN-LAST:event_assignBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton assignBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

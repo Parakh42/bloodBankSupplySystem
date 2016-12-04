@@ -5,8 +5,7 @@
  */
 package business.Organization;
 
-import business.Person.DonorDirectory;
-import business.Person.EmployeeDirectory;
+import business.Person.PersonDirectory;
 import business.Role.Role;
 import business.UserAccount.UserAccountDirectory;
 import business.WorkQueue.WorkQueue;
@@ -22,8 +21,7 @@ public abstract class Organization {
     private static int counter;
     private WorkQueue workQueue;
     private UserAccountDirectory userAccountDirectory;
-    private EmployeeDirectory employeeDirectory;
-    private DonorDirectory donorDirectory;
+    private PersonDirectory personDirectory;
 
     public Organization(String name) {
         this.name = name;
@@ -31,8 +29,7 @@ public abstract class Organization {
         ++counter;
         workQueue = new WorkQueue();
         userAccountDirectory = new UserAccountDirectory();
-        employeeDirectory=new EmployeeDirectory();
-        donorDirectory=new DonorDirectory();
+        personDirectory=new PersonDirectory();
     }
     
     public enum Type
@@ -76,14 +73,9 @@ public abstract class Organization {
         return userAccountDirectory;
     }
 
-    public EmployeeDirectory getEmployeeDirectory() {
-        return employeeDirectory;
+    public PersonDirectory getPersonDirectory() {
+        return personDirectory;
     }
-
-    public DonorDirectory getDonorDirectory() {
-        return donorDirectory;
-    }
-
     
     
     @Override
