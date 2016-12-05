@@ -6,12 +6,16 @@
 package userinterface.DonorRole;
 
 import business.EcoSystem;
+import business.Enterprise.Enterprise;
 import business.Organization.DonorOrganization;
 import business.Organization.Organization;
+import business.Organization.ReceptionOrganization;
 import business.UserAccount.UserAccount;
 import java.util.Date;
 import javax.swing.JPanel;
 import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.WorkRequest;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,21 +25,38 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
 
     DonorWorkRequest request;
     JPanel userProcessContainer;
-    UserAccount account;
+    UserAccount userAccount;
     DonorOrganization organization;
-    EcoSystem business;
+    Enterprise enterprise;
+
     /**
      * Creates new form DonorWorkAreaJPanel
      */
     
-    public DonorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public DonorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
+        this.userAccount = account;
         this.organization = (DonorOrganization) organization;
-        this.business = business;
+        this.enterprise = enterprise;
         
+        populateRequestTable();
+    }
+    
+    public void populateRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[2];
+            UserAccount receiver = request.getReceiver();
+            row[0] = receiver == null ? "not assigned" : receiver;
+            String status = request.getStatus();
+            row[1] = status == null ? "waiting" : status;
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -50,20 +71,16 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         timeComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        datePicker = new org.jdesktop.swingx.JXDatePicker();
         scheduleButton = new javax.swing.JButton();
+        datePicker = new org.jdesktop.swingx.JXDatePicker();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        workRequestJTable = new javax.swing.JTable();
 
         timeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10AM to 11AM", "11AM to 12PM", "12PM to 1PM", "1PM to 2PM", "4PM to 5PM", "5PM to 6PM", " ", " " }));
 
         jLabel1.setText("Time Slot:");
 
         jLabel2.setText(" Date:");
-
-        datePicker.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                datePickerActionPerformed(evt);
-            }
-        });
 
         scheduleButton.setText("Schedule Appointment");
         scheduleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -72,26 +89,52 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Receiver", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(workRequestJTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(114, 114, 114)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(timeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1))
+                        .addGap(114, 114, 114)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(timeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -99,9 +142,9 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(35, 35, 35)
                 .addComponent(scheduleButton)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,7 +159,20 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
        Date date = datePicker.getDate();
         request.setRequestDate(date);
         request.setTime(time);
-        request.setSender(account);
+        request.setSender(userAccount);
+        
+        Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof ReceptionOrganization){
+                org = organization;
+                break;
+            }
+        }
+        if (org!=null){
+            org.getWorkQueue().getWorkRequestList().add(request);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+        }
+        
         
     }//GEN-LAST:event_scheduleButtonActionPerformed
 
@@ -125,7 +181,9 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXDatePicker datePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton scheduleButton;
     private javax.swing.JComboBox<String> timeComboBox;
+    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,6 +25,6 @@ public class ReceptionRole extends Role {
             Enterprise enterprise,
             EcoSystem business){
         
-        return new ReceptionWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new ReceptionWorkAreaJPanel(userProcessContainer, account, organization, enterprise, business);
     }
 }

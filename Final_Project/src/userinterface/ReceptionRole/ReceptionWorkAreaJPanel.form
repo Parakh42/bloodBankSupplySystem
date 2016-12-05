@@ -18,16 +18,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="536" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="assignBtn" min="-2" pref="181" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" pref="658" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                      <Component id="forwardNurse" min="-2" pref="185" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="354" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,7 +36,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="97" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="assignBtn" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="assignBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="forwardNurse" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="433" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -54,15 +56,21 @@
         <Component class="javax.swing.JTable" name="workRequestJTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Donor Name" type="java.lang.String"/>
-                <Column editable="true" title="Time" type="java.lang.String"/>
-                <Column editable="true" title="Date" type="java.lang.String"/>
+                <Column editable="false" title="Time" type="java.lang.String"/>
+                <Column editable="false" title="Date" type="java.lang.String"/>
+                <Column editable="false" title="Status" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -88,10 +96,18 @@
     </Container>
     <Component class="javax.swing.JButton" name="assignBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Assign Nurse"/>
+        <Property name="text" type="java.lang.String" value="Assign to me"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="forwardNurse">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Forward to nurse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="forwardNurseActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

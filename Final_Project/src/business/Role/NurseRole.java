@@ -25,6 +25,6 @@ public class NurseRole extends Role {
             Enterprise enterprise,
             EcoSystem business){
         
-        return new NurseWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new NurseWorkAreaJPanel(userProcessContainer, account, organization, enterprise, business);
     }
 }

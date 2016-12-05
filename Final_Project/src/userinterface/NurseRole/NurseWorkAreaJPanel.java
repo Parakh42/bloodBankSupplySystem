@@ -6,9 +6,14 @@
 package userinterface.NurseRole;
 
 import business.EcoSystem;
+import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.WorkRequest;
+import java.util.Date;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,14 +24,39 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NurseWorkAreaJPanel
      */
-    public NurseWorkAreaJPanel() {
+    JPanel userProcessContainer;
+    UserAccount userAccount;
+    Organization organization;
+    Enterprise enterprise;
+    EcoSystem business;
+    
+    public NurseWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.business = business;
+        populateRequestTable();
     }
 
-    public NurseWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     public void populateRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[3];
+        
+            Date result1 = request.getRequestDate();
+            
+            
+            row[0] = request.getSender();
+            //row[1] = ((DonorWorkRequest) request);
+            
+            
+            model.addRow(row);
+        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,14 +76,14 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Message", "Sender", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

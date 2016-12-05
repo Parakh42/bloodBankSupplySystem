@@ -14,7 +14,7 @@ import java.util.Date;
 public class DonorWorkRequest extends WorkRequest {
     
     private String time;
-    private Date date;
+   // private Date date;
 
     public String getTime() {
         return time;
@@ -24,13 +24,12 @@ public class DonorWorkRequest extends WorkRequest {
         this.time = time;
     }
 
-    public Date getDate() {
-        return date;
+    @Override
+    public String toString(){
+        return time;
     }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    
+    
 
    
 }
