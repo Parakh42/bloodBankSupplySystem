@@ -12,18 +12,28 @@ package business.Person;
 public class Donor extends Person {
     private static int count;
     private int donorId;
+    private VitalSignsHistory vsh;
 
     public Donor() {
         donorId = count;
         count++;
+        this.vsh = new VitalSignsHistory();
     }
-
+     
     public int getDonorId() {
         return donorId;
     }
 
     public void setDonorId(int donorId) {
         this.donorId = donorId;
+    }
+
+    public VitalSignsHistory getVsh() {
+        return vsh;
+    }
+
+    public void setVsh(VitalSignsHistory vsh) {
+        this.vsh = vsh;
     }
     
     

@@ -7,8 +7,8 @@ package userinterface.AdminRole;
 
 import business.Organization.DonorOrganization;
 import business.Organization.Organization;
-import business.Organization.Organization.Type;
 import business.Organization.OrganizationDirectory;
+import business.Person.Employee;
 import business.Person.Person;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PARAKH MAHAJAN
  */
-public class ManagePersonJPanel extends javax.swing.JPanel {
+public class ManageEmployeeJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private OrganizationDirectory organizationDirectory;
@@ -27,7 +27,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
      * Creates new form ManageEmployeeJPanel
      */
 
-    ManagePersonJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+    ManageEmployeeJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
@@ -40,7 +40,13 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         organizationTypeComboBox.removeAllItems();
         for(Organization organization : organizationDirectory.getOrganizationList())
         {
+            if(organization instanceof DonorOrganization)
+            {
+                
+            }
+            else{
             organizationTypeComboBox.addItem(organization);
+        }
         }
     }
     
@@ -49,7 +55,13 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         employeeTypeComboBox1.removeAllItems();
         for(Organization organization : organizationDirectory.getOrganizationList())
         {
-                employeeTypeComboBox1.addItem(organization);
+             if(organization instanceof DonorOrganization)
+            {
+                
+            }
+            else{
+            employeeTypeComboBox1.addItem(organization);
+        }
         }
     }
     
@@ -58,11 +70,11 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) manageEmployeeTable.getModel();
         model.setRowCount(0);
         
-        for (Person person : organization.getPersonDirectory().getPersonList())
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList())
         {
             Object[] row = new Object[2];
-            row[0] = person.getPersonId();
-            row[1] = person.getFirstName();
+            row[0] = employee.getEmployeeId();
+            row[1] = employee.getFirstName();
             model.addRow(row);
         }
         
@@ -101,8 +113,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         BtnRemoveEmployee = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
         BtnUpdate1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        bloodGroupComboBox = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         genderComboBox = new javax.swing.JComboBox();
 
@@ -199,11 +209,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         BtnUpdate1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnUpdate1.setText("Update Details");
 
-        jLabel10.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        jLabel10.setText("Blood Group :");
-
-        bloodGroupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }));
-
         jLabel11.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel11.setText("Gender :");
 
@@ -256,18 +261,14 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                                                 .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGap(0, 0, Short.MAX_VALUE))))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(contactTextField))
-                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(37, 37, 37)
-                                            .addComponent(bloodGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(37, 37, 37)
+                                    .addComponent(contactTextField))))))
                 .addContainerGap(263, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -305,19 +306,15 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(contactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(bloodGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnBack, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -333,15 +330,18 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
     private void BtnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddEmployeeActionPerformed
         // TODO add your handling code here:
         Organization organization = (Organization)employeeTypeComboBox1.getSelectedItem();
-        String firstName = firstNameTextField.getText();
-        String lastName = lastNameTextField.getText();
-        String email = emailTextField.getText();
-        Integer age = Integer.parseInt(ageTextField.getText());
-        String contactNumber = contactTextField.getText();
-        String address = addressTextArea.getText();
-        String gender = (String)genderComboBox.getSelectedItem();
-        String bloodGroup = (String) bloodGroupComboBox.getSelectedItem();
-        organization.getPersonDirectory().createPerson( firstName, lastName, email, age, bloodGroup, gender, contactNumber, address);
+        Employee employee = organization.getEmployeeDirectory().addEmployee();
+        employee.setFirstName(firstNameTextField.getText());
+        employee.setLastName(lastNameTextField.getText());
+        employee.setEmailId(emailTextField.getText());
+        employee.setAge(Integer.parseInt(ageTextField.getText()));
+        employee.setPhoneNumber(contactTextField.getText());
+        employee.setAddress(addressTextArea.getText());
+        employee.setGender((String)genderComboBox.getSelectedItem());
+        JOptionPane.showMessageDialog(this, "Employee is added successfully","Information", JOptionPane.INFORMATION_MESSAGE);
+        
+        firstNameTextField.setText("");
+        
     }//GEN-LAST:event_BtnAddEmployeeActionPerformed
 
     private void BtnRemoveEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveEmployeeActionPerformed
@@ -351,8 +351,9 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete employee detail", "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
-                Person person = (Person) manageEmployeeTable.getValueAt(selectedRow, 0);
-                organization.getPersonDirectory().deletePerson(person);
+                Employee employee = (Employee) manageEmployeeTable.getValueAt(selectedRow, 0);
+                Organization organization = (Organization)employeeTypeComboBox1.getSelectedItem();
+                organization.getEmployeeDirectory().removeEmployee(employee);
                 populateTable(organization);
             }
         } else {
@@ -384,14 +385,12 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
     private javax.swing.JButton BtnUpdate1;
     private javax.swing.JTextArea addressTextArea;
     private javax.swing.JTextField ageTextField;
-    private javax.swing.JComboBox bloodGroupComboBox;
     private javax.swing.JTextField contactTextField;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JComboBox employeeTypeComboBox1;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JComboBox genderComboBox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

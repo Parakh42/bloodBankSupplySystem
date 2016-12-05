@@ -17,6 +17,20 @@ public class DonorDirectory {
     public DonorDirectory() {
         this.donorList = new ArrayList<>();
     }
+
+    public ArrayList<Donor> getDonorList() {
+        return donorList;
+    }
     
+    public Donor addDonor()
+    {
+        Donor donor = new Donor();
+        donorList.add(donor);
+        return donor;
+    }
     
+    public void removeDonor(Donor donor)
+    {
+        donorList.remove(donor);
+    }
 }

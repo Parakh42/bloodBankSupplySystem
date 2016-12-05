@@ -7,6 +7,8 @@ package userinterface.AdminRole;
 
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
+import business.Person.Donor;
+import business.Person.Employee;
 import business.Person.Person;
 import business.Role.Role;
 import business.UserAccount.UserAccount;
@@ -45,8 +47,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public void populatePersonComboBox(Organization organization){
         personComboBox.removeAllItems();
         
-        for (Person person : organization.getPersonDirectory().getPersonList()){
-            personComboBox.addItem(person);
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            personComboBox.addItem(employee);
+        }
+        for (Donor donor : organization.getDonorDirectory().getDonorList()){
+            personComboBox.addItem(donor);
         }
     }
     
@@ -241,7 +246,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void BtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateActionPerformed
         // TODO add your handling code here:
         String userName = userNameTextField.getText();
-        String password = passwordField.getText();
+        char[] passwordCharArray = passwordField.getPassword();
+        String password = String.valueOf(passwordCharArray);
         Organization organization = (Organization) organizationComboBox.getSelectedItem();
         Person person = (Person) personComboBox.getSelectedItem();
         Role role = (Role) roleComboBox.getSelectedItem();

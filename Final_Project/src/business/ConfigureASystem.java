@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.Person.Employee;
 import business.Person.Person;
 import business.Role.SystemAdminRole;
 import business.UserAccount.UserAccount;
@@ -25,9 +26,9 @@ public class ConfigureASystem {
         //create user account
         
         
-        Person person = system.getPersonDirectory().createPerson("Parakh", "Mahajan", "p@p.com", 23, "A+","Male", "12345", "CityView");
+        Employee employee = system.getEmployeeDirectory().addEmployee();
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("kaustubh", "kaustubh", person, new SystemAdminRole());
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("kaustubh", "kaustubh", (Person)employee, new SystemAdminRole());
         
         return system;    
     }
