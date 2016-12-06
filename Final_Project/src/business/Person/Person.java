@@ -12,8 +12,7 @@ import java.util.Date;
  * @author Kaustubh Chaudhari
  */
 public class Person {
-    private static int count;
-    private int personId;
+    
     private String firstName;
     private String lastName;
     private String emailId;
@@ -23,16 +22,7 @@ public class Person {
     private String address;
 
     public Person() {
-        personId = count;
-        count++;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
+      
     }
 
     public String getGender() {

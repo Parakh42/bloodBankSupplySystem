@@ -19,7 +19,7 @@ import com.db4o.ta.TransparentPersistenceSupport;
  * @author Kaustubh Chaudhari
  */
 public class DB4OUtil {
-    private static final String FILENAME = "F:\\New folder (2)\\DataBank1.db4o"; // path to the data store
+    private static final String FILENAME = "C:\\Users\\k1u2t\\AED_LAB\\aed_fall_2016_project_parakh_mahajan_001236045\\DataBank.db4o"; // path to the data store
     private static DB4OUtil dB4OUtil;
 
     public synchronized static DB4OUtil getInstance() {

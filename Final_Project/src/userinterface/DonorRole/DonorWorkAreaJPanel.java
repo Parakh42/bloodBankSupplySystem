@@ -54,7 +54,6 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = receiver == null ? "not assigned" : receiver;
             String status = request.getStatus();
             row[1] = status == null ? "waiting" : status;
-            
             model.addRow(row);
         }
     }
@@ -156,10 +155,11 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         request = new DonorWorkRequest();
         String time = (String)timeComboBox.getSelectedItem();
-       Date date = datePicker.getDate();
+        Date date = datePicker.getDate();
         request.setRequestDate(date);
         request.setTime(time);
         request.setSender(userAccount);
+        request.setStatus("Waiting");
         
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){

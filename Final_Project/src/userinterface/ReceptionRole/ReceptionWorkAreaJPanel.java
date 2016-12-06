@@ -15,6 +15,8 @@ import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.ReceptionWorkRequest;
 import business.WorkQueue.WorkRequest;
+import com.db4o.collections.ActivatableArrayList;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,11 +32,13 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form ReceptionWorkAreaJPanel
      */
     
+    private ArrayList<WorkRequest> requestList;
     private JPanel userProcessContainer;
     private UserAccount userAccount;
     private ReceptionOrganization organization;
     private Enterprise enterprise;
     private EcoSystem business;
+    private WorkRequest request;
     
     public ReceptionWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
@@ -43,6 +47,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = (ReceptionOrganization) organization;
         this.business = business;
         this.enterprise = enterprise;
+        requestList= new ArrayList<>();
         populateRequestTable();
     }
     
@@ -51,14 +56,14 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
         
             Date result1 = request.getRequestDate();
          
             row[0] = request.getSender();
             row[1] = ((DonorWorkRequest) request);
             row[2] = result1;
-            
+            row[3] = request.getStatus();
             model.addRow(row);
         }
     }
@@ -125,24 +130,24 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(forwardNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(709, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(forwardNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignBtn)
                     .addComponent(forwardNurse))
-                .addContainerGap(433, Short.MAX_VALUE))
+                .addContainerGap(517, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,12 +163,15 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         else{
+            
             DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 1);
-        request.setReceiver(userAccount);
-        request.setStatus("processing");
+            request.setReceiver(userAccount);
+            request.setStatus("assigned");
+            populateRequestTable();
         }
     }//GEN-LAST:event_assignBtnActionPerformed
 
+    
     private void forwardNurseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardNurseActionPerformed
         // TODO add your handling code here:
           int selectedRow = workRequestJTable.getSelectedRow();

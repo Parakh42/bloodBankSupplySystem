@@ -24,9 +24,6 @@ public class Donor extends Person {
         return donorId;
     }
 
-    public void setDonorId(int donorId) {
-        this.donorId = donorId;
-    }
 
     public VitalSignsHistory getVsh() {
         return vsh;
