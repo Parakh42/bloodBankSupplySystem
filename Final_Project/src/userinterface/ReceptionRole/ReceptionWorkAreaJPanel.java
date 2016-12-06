@@ -13,9 +13,7 @@ import business.Organization.Organization;
 import business.Organization.ReceptionOrganization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
-import business.WorkQueue.ReceptionWorkRequest;
 import business.WorkQueue.WorkRequest;
-import com.db4o.collections.ActivatableArrayList;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -31,7 +29,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ReceptionWorkAreaJPanel
      */
-    
     private ArrayList<WorkRequest> requestList;
     private JPanel userProcessContainer;
     private UserAccount userAccount;
@@ -39,7 +36,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private EcoSystem business;
     private WorkRequest request;
-    
+
     public ReceptionWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -47,19 +44,19 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = (ReceptionOrganization) organization;
         this.business = business;
         this.enterprise = enterprise;
-        requestList= new ArrayList<>();
+        requestList = new ArrayList<>();
         populateRequestTable();
     }
-    
-    public void populateRequestTable(){
+
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
+
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
-        
+
             Date result1 = request.getRequestDate();
-         
+
             row[0] = request.getSender();
             row[1] = ((DonorWorkRequest) request);
             row[2] = result1;
@@ -79,7 +76,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        assignBtn = new javax.swing.JButton();
         forwardNurse = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,13 +106,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        assignBtn.setText("Assign to me");
-        assignBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignBtnActionPerformed(evt);
-            }
-        });
-
         forwardNurse.setText("Forward to nurse");
         forwardNurse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,14 +118,10 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(709, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(forwardNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 369, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,62 +129,48 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignBtn)
-                    .addComponent(forwardNurse))
+                .addComponent(forwardNurse)
                 .addContainerGap(517, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
-        // TODO add your handling code here:
-       // WorkRequest request = new WorkRequest();
-        
-        
-        int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        else{
-            
-            DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 1);
-            request.setReceiver(userAccount);
-            request.setStatus("assigned");
-            populateRequestTable();
-        }
-    }//GEN-LAST:event_assignBtnActionPerformed
 
-    
     private void forwardNurseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardNurseActionPerformed
         // TODO add your handling code here:
-          int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
+        int selectedRow = workRequestJTable.getSelectedRow();
+
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
-        }
-        else{
-        DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 1);
-           
-        Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof NurseOrganization){
-                org = organization;
-                break;
+        } else {
+            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 1);
+
+            if (request.getStatus().equalsIgnoreCase("Waiting")) {
+                request.setReceiver(userAccount);
+                request.setStatus("assigned");
+                populateRequestTable();
+                Organization org = null;
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization instanceof NurseOrganization) {
+                        org = organization;
+                        break;
+
+                    }
+                }
+                if (org != null) {
+                    org.getWorkQueue().getWorkRequestList().add(request);
+                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "The selected donor requesr is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-        }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-        }
+
         }
     }//GEN-LAST:event_forwardNurseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton assignBtn;
     private javax.swing.JButton forwardNurse;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;

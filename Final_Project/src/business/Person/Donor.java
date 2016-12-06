@@ -5,6 +5,8 @@
  */
 package business.Person;
 
+import business.UserAccount.UserAccount;
+
 /**
  *
  * @author PARAKH MAHAJAN
@@ -15,11 +17,12 @@ public class Donor extends Person {
     private VitalSignsHistory vsh;
 
     public Donor() {
+        super();
         donorId = count;
         count++;
         this.vsh = new VitalSignsHistory();
     }
-     
+
     public int getDonorId() {
         return donorId;
     }

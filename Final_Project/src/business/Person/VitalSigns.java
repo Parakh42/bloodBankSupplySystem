@@ -10,18 +10,18 @@ package business.Person;
  * @author PARAKH MAHAJAN
  */
 public class VitalSigns {
-    private Float hemoglobinLevel;
+    private Float haemoglobinLevel;
     private Float temperature;
     private Float bloodPressure;
     private String bloodGroup;
     private Float weight;
 
-    public Float getHemoglobinLevel() {
-        return hemoglobinLevel;
+    public Float getHaemoglobinLevel() {
+        return haemoglobinLevel;
     }
 
-    public void setHemoglobinLevel(Float hemoglobinLevel) {
-        this.hemoglobinLevel = hemoglobinLevel;
+    public void setHaemoglobinLevel(Float haemoglobinLevel) {
+        this.haemoglobinLevel = haemoglobinLevel;
     }
 
     public Float getTemperature() {

@@ -13,6 +13,7 @@ import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,12 +48,11 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[3];
-        
-            Date result1 = request.getRequestDate();
-            
+                    
             
             row[0] = request.getSender();
-            //row[1] = ((DonorWorkRequest) request);
+            row[1] = ((DonorWorkRequest) request);
+            row[2]= request.getStatus();
             
             
             model.addRow(row);
@@ -69,16 +69,16 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        assignButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        getVitalsButton = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Message", "Sender", "Status"
+                "Sender", "Time", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -98,14 +98,19 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        jButton1.setText("Assign to me");
+        assignButton.setText("Assign to me");
+        assignButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignButtonActionPerformed(evt);
+            }
+        });
 
         jButton2.setText(" Send sample");
 
-        jButton3.setText("Get Vital Signs");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        getVitalsButton.setText("Get Vital Signs");
+        getVitalsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                getVitalsButtonActionPerformed(evt);
             }
         });
 
@@ -119,8 +124,8 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                            .addComponent(getVitalsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(assignButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -130,37 +135,41 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(assignButton)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addComponent(getVitalsButton)
+                .addContainerGap(471, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void getVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getVitalsButtonActionPerformed
         // TODO add your handling code here:
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 1);
-
+        DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 1);        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("VitalSignsAddJPanel", new VitalSignsAddJPanel(userProcessContainer, userAccount, request));
+        userProcessContainer.add("VitalSignsAddJPanel", new VitalSignsAddJPanel(userProcessContainer, userAccount, request, organization));
         layout.next(userProcessContainer);
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_getVitalsButtonActionPerformed
+
+    private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assignButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton assignButton;
+    private javax.swing.JButton getVitalsButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
