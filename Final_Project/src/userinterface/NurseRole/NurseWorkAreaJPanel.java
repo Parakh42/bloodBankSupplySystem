@@ -7,6 +7,8 @@ package userinterface.NurseRole;
 
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
+import business.Organization.LabOrganization;
+import business.Organization.NurseOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
@@ -69,7 +71,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        assignButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         getVitalsButton = new javax.swing.JButton();
 
@@ -98,14 +99,12 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        assignButton.setText("Assign to me");
-        assignButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText(" Send sample");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignButtonActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-
-        jButton2.setText(" Send sample");
 
         getVitalsButton.setText("Get Vital Signs");
         getVitalsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -123,11 +122,10 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(getVitalsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(assignButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                        .addComponent(getVitalsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,11 +135,9 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignButton)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(getVitalsButton)
-                .addContainerGap(471, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(getVitalsButton))
+                .addContainerGap(505, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -156,18 +152,48 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
         DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 1);        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("VitalSignsAddJPanel", new VitalSignsAddJPanel(userProcessContainer, userAccount, request, organization));
+        userProcessContainer.add("VitalSignsAddJPanel", new VitalSignsAddJPanel(userProcessContainer, userAccount, request, enterprise, organization));
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_getVitalsButtonActionPerformed
 
-    private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_assignButtonActionPerformed
+        int selectedRow = workRequestJTable.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 1);
+
+            if (request.getStatus().equalsIgnoreCase("VitalSigns Taken")) {
+                request.setReceiver(userAccount);
+                request.setStatus("Sent to Lab");
+                populateRequestTable();
+                Organization org = null;
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization instanceof LabOrganization) {
+                        org = organization;
+                        break;
+
+                    }
+                }
+                if (org != null) {
+                    org.getWorkQueue().getWorkRequestList().add(request);
+                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "The selected donor requesr is already send", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton assignButton;
     private javax.swing.JButton getVitalsButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;

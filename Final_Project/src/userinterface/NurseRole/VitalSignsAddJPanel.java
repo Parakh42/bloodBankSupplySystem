@@ -5,6 +5,8 @@
  */
 package userinterface.NurseRole;
 
+import business.Enterprise.Enterprise;
+import business.Organization.NurseOrganization;
 import business.Organization.Organization;
 import business.Person.Donor;
 import business.Person.VitalSigns;
@@ -25,18 +27,45 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     UserAccount userAccount;
+    Enterprise enterprise;
     
     DonorWorkRequest request;
     Organization organization;
 
-    VitalSignsAddJPanel(JPanel userProcessContainer, UserAccount userAccount, DonorWorkRequest request, Organization organization) {
+    VitalSignsAddJPanel(JPanel userProcessContainer, UserAccount userAccount, DonorWorkRequest request, Enterprise enterprise, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.organization=organization;
         this.request = request;
+        this.enterprise = enterprise;
     }
 
+    public void checkVital(){
+        float bp = Float.parseFloat(bloodPressJTxt.getText());
+        float temp = Float.parseFloat(tempJTxt.getText()); 
+        float weight = Float.parseFloat(weightJTxt.getText()); 
+        float haemo = Float.parseFloat(haemoJTxt.getText());
+        if(bp>80|| bp<120)
+        {
+           if(temp<98.6)
+           {
+               if(weight >150)
+               {
+                   if(haemo>13)
+                   {
+                       request.setStatus("VitalSigns Taken");
+                       
+                   }
+                   else{request.setStatus("Assign Nutrisionist");}
+               }
+               else{request.setStatus("Assign Nutrisionist");}
+           }
+           else{request.setStatus("Assign Nutrisionist");}
+        }
+        else{request.setStatus("Assign Nutrisionist");}
+       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +87,6 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         tempJTxt = new javax.swing.JTextField();
         bloodGrpComboBx = new javax.swing.JComboBox<>();
-        fNameTxtField = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
 
         jLabel3.setText("bloodPressure");
@@ -104,62 +132,34 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(bloodPressJTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(weightJTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(bloodGrpComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(haemoJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(tempJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(240, 240, 240)
-                                .addComponent(addVitalsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(339, 339, 339)
+                        .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(339, 339, 339)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(331, 331, 331)
-                                .addComponent(fNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(backBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addVitalsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                            .addComponent(haemoJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tempJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloodPressJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloodGrpComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(weightJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(473, 473, 473))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel6)
-                .addGap(67, 67, 67)
-                .addComponent(fNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(haemoJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,35 +179,32 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(weightJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addVitalsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backBtn)
-                .addGap(86, 86, 86))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(addVitalsBtn))
+                .addGap(75, 75, 75))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addVitalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsBtnActionPerformed
         // TODO add your handling code here:
-        String userName=request.getSender().getUserName();
         
-        for(Donor donor: organization.getDonorDirectory().getDonorList()){
-            //if(donor.getUserAccount().getUserName().equalsIgnoreCase(userName)){
-                for(VitalSigns vs: donor.getVsh().getVitalSignHistory()){
-                    fNameTxtField.setText(donor.getFirstName());
+        String userName=request.getSender().getUserName();
+
+                Donor donor = (Donor)request.getSender().getPerson();
+                VitalSigns vs = donor.getVs();
                     vs.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
                     vs.setBloodPressure(Float.parseFloat(bloodPressJTxt.getText()));
                     vs.setHaemoglobinLevel(Float.parseFloat(haemoJTxt.getText()));
                     vs.setTemperature(Float.parseFloat(tempJTxt.getText()));
                     vs.setWeight(Float.parseFloat(weightJTxt.getText()));
-                }
             
-        }
+                    checkVital();;
     }//GEN-LAST:event_addVitalsBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        request.setStatus("VitalSigns Taken");
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -223,7 +220,6 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox<String> bloodGrpComboBx;
     private javax.swing.JTextField bloodPressJTxt;
-    private javax.swing.JTextField fNameTxtField;
     private javax.swing.JTextField haemoJTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

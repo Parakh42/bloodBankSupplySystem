@@ -8,25 +8,50 @@ package userinterface.LabAssistantRole;
 import business.EcoSystem;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author piyush sharma
  */
 public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private Organization organization;
+    private EcoSystem business;
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public LabAssistantWorkAreaJPanel() {
-        initComponents();
-    }
 
     public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.organization = organization;
+        this.business = business;
+        populateTable();
     }
 
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[3];
+                    
+            
+            row[0] = request.getSender();
+            row[1] = ((DonorWorkRequest) request);
+            row[2]= request.getStatus();
+            
+            
+            model.addRow(row);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

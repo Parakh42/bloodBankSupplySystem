@@ -14,27 +14,28 @@ import business.UserAccount.UserAccount;
 public class Donor extends Person {
     private static int count;
     private int donorId;
-    private VitalSignsHistory vsh;
+    private VitalSigns vs;
 
     public Donor() {
         super();
         donorId = count;
         count++;
-        this.vsh = new VitalSignsHistory();
+        this.vs = new VitalSigns();
     }
 
     public int getDonorId() {
         return donorId;
     }
 
-
-    public VitalSignsHistory getVsh() {
-        return vsh;
+    public VitalSigns getVs() {
+        return vs;
     }
 
-    public void setVsh(VitalSignsHistory vsh) {
-        this.vsh = vsh;
+    public void setVs(VitalSigns vs) {
+        this.vs = vs;
     }
+     
+
     
     
 }
