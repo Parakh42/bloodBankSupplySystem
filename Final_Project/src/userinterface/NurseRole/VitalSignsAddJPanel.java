@@ -193,14 +193,13 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         String userName=request.getSender().getUserName();
 
                 Donor donor = (Donor)request.getSender().getPerson();
-                VitalSigns vs = donor.getVs();
+                VitalSigns vs = donor.getVsh().addVital();
                     vs.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
                     vs.setBloodPressure(Float.parseFloat(bloodPressJTxt.getText()));
                     vs.setHaemoglobinLevel(Float.parseFloat(haemoJTxt.getText()));
                     vs.setTemperature(Float.parseFloat(tempJTxt.getText()));
                     vs.setWeight(Float.parseFloat(weightJTxt.getText()));
-            
-                    checkVital();;
+                    checkVital();
     }//GEN-LAST:event_addVitalsBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

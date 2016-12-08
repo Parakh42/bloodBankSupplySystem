@@ -20,9 +20,18 @@ public class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private String time;
 
     public WorkRequest() {
         requestDate = new Date();
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getMessage() {

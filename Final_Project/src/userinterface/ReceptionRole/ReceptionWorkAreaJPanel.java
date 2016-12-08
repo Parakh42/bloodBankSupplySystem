@@ -56,11 +56,10 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[4];
 
             Date result1 = request.getRequestDate();
-
             row[0] = request.getSender();
-            row[1] = ((DonorWorkRequest) request);
+            row[1] = request.getTime();
             row[2] = result1;
-            row[3] = request.getStatus();
+            row[3] = ((DonorWorkRequest) request);
             model.addRow(row);
         }
     }
@@ -143,7 +142,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
-            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 1);
+            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 3);
 
             if (request.getStatus().equalsIgnoreCase("Waiting")) {
                 request.setReceiver(userAccount);
@@ -163,7 +162,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "The selected donor requesr is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The selected donor request is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 
         }

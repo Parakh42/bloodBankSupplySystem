@@ -5,17 +5,31 @@
  */
 package userinterface.LabAssistantRole;
 
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.DonorWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author piyush sharma
  */
 public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private DonorWorkRequest request;
+    private Organization organization;
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-    public ProcessWorkRequestJPanel() {
+    ProcessWorkRequestJPanel(JPanel userProcessContainer, UserAccount account, DonorWorkRequest request, Organization organization) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.request = request;
+        this.organization = organization;
     }
 
     /**
@@ -80,18 +94,19 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-//        userProcessContainer.remove(this);
-//        Component[] componentArray = userProcessContainer.getComponents();
-//        Component component = componentArray[componentArray.length - 1];
-//        LabAssistantWorkAreaJPanel dwjp = (LabAssistantWorkAreaJPanel) component;
-//        dwjp.populateTable();
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        LabAssistantWorkAreaJPanel dwjp = (LabAssistantWorkAreaJPanel) component;
+        dwjp.populateRequestTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-//        request.setTestResult(resultJTextField.getText());
-//        request.setStatus("Completed");
+
+        request.setStatus("Completed");
+        request.setMessage(resultJTextField.getText());
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 

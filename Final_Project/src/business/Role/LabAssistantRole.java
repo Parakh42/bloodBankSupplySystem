@@ -25,7 +25,7 @@ public class LabAssistantRole extends Role {
             Enterprise enterprise,
             EcoSystem business){
         
-        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);       
+        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business, enterprise);       
     }
     
 }

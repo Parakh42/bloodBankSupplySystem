@@ -13,20 +13,10 @@ import java.util.Date;
  */
 public class DonorWorkRequest extends WorkRequest {
     
-    private String time;
-   // private Date date;
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     @Override
     public String toString(){
-        return time;
+        return this.getStatus();
     }
     
     

@@ -11,17 +11,8 @@ import business.UserAccount.UserAccount;
  *
  * @author piyush sharma
  */
-public class ReceptionWorkRequest extends WorkRequest {
-    
-    private UserAccount donor;
+public class NutritionistWorkRequest extends WorkRequest {
 
-    public UserAccount getDonor() {
-        return donor;
-    }
-
-    public void setDonor(UserAccount donor) {
-        this.donor = donor;
-    }
-    
+        
     
 }

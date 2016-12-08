@@ -172,7 +172,8 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
             org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
-        
+        scheduleButton.setEnabled(false);
+        populateRequestTable();
         
     }//GEN-LAST:event_scheduleButtonActionPerformed
 

@@ -341,7 +341,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Employee is added successfully","Information", JOptionPane.INFORMATION_MESSAGE);
         
         firstNameTextField.setText("");
-        
+        lastNameTextField.setText("");
+        emailTextField.setText("");
+        ageTextField.setText("");
+        contactTextField.setText("");
+        addressTextArea.setText("");
     }//GEN-LAST:event_BtnAddEmployeeActionPerformed
 
     private void BtnRemoveEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveEmployeeActionPerformed

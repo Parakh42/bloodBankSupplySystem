@@ -6,12 +6,18 @@
 package userinterface.LabAssistantRole;
 
 import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Organization.InventoryOrganization;
+import business.Organization.NurseOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.NurseRole.VitalSignsAddJPanel;
 
 /**
  *
@@ -22,20 +28,22 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
+    private Enterprise enterprise;
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
 
-    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.organization = organization;
         this.business = business;
-        populateTable();
+        this.enterprise = enterprise;
+        populateRequestTable();
     }
 
-    public void populateTable(){
+    public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
@@ -44,8 +52,8 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                     
             
             row[0] = request.getSender();
-            row[1] = ((DonorWorkRequest) request);
-            row[2]= request.getStatus();
+            row[1] = request.getMessage() == null ? "Waiting for result" : request.getMessage();
+            row[2]= ((DonorWorkRequest) request);
             
             
             model.addRow(row);
@@ -63,8 +71,8 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSend = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -72,14 +80,14 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status"
+                "Sender", "Result", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -92,9 +100,19 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        jButton1.setText("send result");
+        btnSend.setText("send result");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Assign to me");
+        btnAssign.setText("Assign to me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Lab assistant work area");
@@ -111,9 +129,9 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(101, 101, 101)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -126,16 +144,65 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnAssign)
+                    .addComponent(btnSend))
                 .addContainerGap(371, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = workRequestJTable.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 2);        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("ProcessWorkRequestJPanel", new ProcessWorkRequestJPanel(userProcessContainer, account, request, organization));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = workRequestJTable.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 3);
+
+            if (request.getStatus().equalsIgnoreCase("Waiting")) {
+                request.setReceiver(account);
+                request.setStatus("Approved & Stored");
+                populateRequestTable();
+                Organization org = null;
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization instanceof InventoryOrganization) {
+                        org = organization;
+                        break;
+
+                    }
+                }
+                if (org != null) {
+                    org.getWorkQueue().getWorkRequestList().add(request);
+                    account.getWorkQueue().getWorkRequestList().add(request);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "The selected donor request is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_btnSendActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnSend;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;

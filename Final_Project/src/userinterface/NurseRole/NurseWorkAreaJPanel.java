@@ -9,6 +9,7 @@ import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Organization.LabOrganization;
 import business.Organization.NurseOrganization;
+import business.Organization.NutritionistOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
@@ -53,8 +54,8 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     
             
             row[0] = request.getSender();
-            row[1] = ((DonorWorkRequest) request);
-            row[2]= request.getStatus();
+            row[1] = request.getTime();
+            row[2]= ((DonorWorkRequest) request);
             
             
             model.addRow(row);
@@ -71,8 +72,9 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnSendToInventory = new javax.swing.JButton();
         getVitalsButton = new javax.swing.JButton();
+        btnSendToNutritionist = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,10 +101,10 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        jButton2.setText(" Send sample");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSendToInventory.setText(" Send sample");
+        btnSendToInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSendToInventoryActionPerformed(evt);
             }
         });
 
@@ -110,6 +112,13 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         getVitalsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getVitalsButtonActionPerformed(evt);
+            }
+        });
+
+        btnSendToNutritionist.setText("Assign Nutritionist");
+        btnSendToNutritionist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendToNutritionistActionPerformed(evt);
             }
         });
 
@@ -121,11 +130,13 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(getVitalsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSendToNutritionist, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(btnSendToInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -135,9 +146,11 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnSendToInventory)
                     .addComponent(getVitalsButton))
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(btnSendToNutritionist)
+                .addContainerGap(454, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -150,14 +163,14 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
 
-        DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 1);        
+        DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 2);        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("VitalSignsAddJPanel", new VitalSignsAddJPanel(userProcessContainer, userAccount, request, enterprise, organization));
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_getVitalsButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSendToInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendToInventoryActionPerformed
         // TODO add your handling code here:
         int selectedRow = workRequestJTable.getSelectedRow();
 
@@ -165,7 +178,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
-            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 1);
+            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
 
             if (request.getStatus().equalsIgnoreCase("VitalSigns Taken")) {
                 request.setReceiver(userAccount);
@@ -185,17 +198,53 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "The selected donor requesr is already send", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The selected donor request is already send", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 
         }
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSendToInventoryActionPerformed
+
+    private void btnSendToNutritionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendToNutritionistActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = workRequestJTable.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
+
+            if (request.getStatus().equalsIgnoreCase("Assign Nutrisionist")) {
+                request.setReceiver(userAccount);
+                request.setStatus("Sent to Nutritionist");
+                populateRequestTable();
+                Organization org = null;
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization instanceof NutritionistOrganization) {
+                        org = organization;
+                        break;
+
+                    }
+                }
+                if (org != null) {
+                    org.getWorkQueue().getWorkRequestList().add(request);
+                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "The selected donor request is already send", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        }        
+    }//GEN-LAST:event_btnSendToNutritionistActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSendToInventory;
+    private javax.swing.JButton btnSendToNutritionist;
     private javax.swing.JButton getVitalsButton;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
