@@ -5,14 +5,15 @@
  */
 package business.WorkQueue;
 
-import business.UserAccount.UserAccount;
+import business.BloodSample.BloodSampleCatalog;
 
 /**
  *
  * @author piyush sharma
  */
-public class NutritionistWorkRequest extends WorkRequest {
-
-        
+public class LabWorkRequest extends WorkRequest {
+    
+    
+    
     
 }

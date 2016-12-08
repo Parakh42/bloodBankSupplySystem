@@ -5,6 +5,8 @@
  */
 package business.WorkQueue;
 
+import business.BloodSample.BloodQuantity;
+import business.BloodSample.BloodSampleCatalog;
 import java.util.Date;
 
 /**
@@ -14,10 +16,18 @@ import java.util.Date;
 public class DonorWorkRequest extends WorkRequest {
     
 
+    public DonorWorkRequest() {
+        
+        
+    }
+    
+    
+
     @Override
     public String toString(){
         return this.getStatus();
     }
+
     
     
     

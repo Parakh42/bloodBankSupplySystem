@@ -8,14 +8,12 @@ package userinterface.NurseRole;
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Organization.LabOrganization;
-import business.Organization.NurseOrganization;
 import business.Organization.NutritionistOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -50,12 +48,13 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
                     
             
             row[0] = request.getSender();
             row[1] = request.getTime();
             row[2]= ((DonorWorkRequest) request);
+            row[3]= request.getBloodGroup() == null ? "Not determined" : request.getBloodGroup();
             
             
             model.addRow(row);
@@ -81,14 +80,14 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sender", "Time", "Status"
+                "Sender", "Time", "Status", "Blood group"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -143,14 +142,14 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSendToInventory)
                     .addComponent(getVitalsButton))
                 .addGap(28, 28, 28)
                 .addComponent(btnSendToNutritionist)
-                .addContainerGap(454, Short.MAX_VALUE))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

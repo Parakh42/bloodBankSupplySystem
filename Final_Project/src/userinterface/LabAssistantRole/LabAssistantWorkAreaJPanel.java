@@ -5,6 +5,7 @@
  */
 package userinterface.LabAssistantRole;
 
+import business.BloodSample.BloodSample;
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Organization.InventoryOrganization;
@@ -12,6 +13,7 @@ import business.Organization.NurseOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.LabWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -48,12 +50,13 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
                     
             
             row[0] = request.getSender();
             row[1] = request.getMessage() == null ? "Waiting for result" : request.getMessage();
             row[2]= ((DonorWorkRequest) request);
+            row[3]= request.getBloodGroup();
             
             
             model.addRow(row);
@@ -80,14 +83,14 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sender", "Result", "Status"
+                "Sender", "Result", "Status", "Blood group"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -124,7 +127,6 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,17 +134,19 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(101, 101, 101)
                                 .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(535, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAssign)
                     .addComponent(btnSend))
@@ -167,35 +171,48 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
-        int selectedRow = workRequestJTable.getSelectedRow();
+        try {
+            int selectedRow = workRequestJTable.getSelectedRow();
 
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        } else {
-            DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 3);
-
-            if (request.getStatus().equalsIgnoreCase("Waiting")) {
-                request.setReceiver(account);
-                request.setStatus("Approved & Stored");
-                populateRequestTable();
-                Organization org = null;
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    if (organization instanceof InventoryOrganization) {
-                        org = organization;
-                        break;
-
-                    }
-                }
-                if (org != null) {
-                    org.getWorkQueue().getWorkRequestList().add(request);
-                    account.getWorkQueue().getWorkRequestList().add(request);
-                }
-
+            if (selectedRow < 0) {
+                JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+                return;
             } else {
-                JOptionPane.showMessageDialog(null, "The selected donor request is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+                DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
 
+                if (request.getStatus().equalsIgnoreCase("Completed")) {
+                    request.setReceiver(account);
+                    request.getBloodGroup();
+                    request.setStatus("Approved & Stored");
+                    populateRequestTable();
+                    
+                    BloodSample bs = request.getBloodSampleCatalog().addBloodSample();
+                    bs.setBloodGroup(request.getBloodGroup());
+                    for(BloodSample bs1:request.getBloodSampleCatalog().getBloodCatalog())
+                    {
+                        bs.setQuantityAvailable(bs1.getQuantityAvailable()+1);
+                    }
+                    
+                    Organization org = null;
+                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        if (organization instanceof InventoryOrganization) {
+                            org = organization;
+                            break;
+
+                        }
+                    }
+                    if (org != null) {
+                        org.getWorkQueue().getWorkRequestList().add(request);
+                        account.getWorkQueue().getWorkRequestList().add(request);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "The selected donor request is already assigned ", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }//GEN-LAST:event_btnSendActionPerformed
 

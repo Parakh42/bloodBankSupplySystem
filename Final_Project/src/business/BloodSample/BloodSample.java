@@ -12,11 +12,9 @@ package business.BloodSample;
 public class BloodSample {
     private String bloodGroup;
     private int quantityAvailable;
-    private static int count;
 
     public BloodSample() {
-        quantityAvailable = count;
-        count++;
+        
     }
     
     public String getBloodGroup() {

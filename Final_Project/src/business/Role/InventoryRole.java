@@ -25,7 +25,7 @@ public class InventoryRole extends Role {
             Enterprise enterprise,
             EcoSystem business){
         
-        return new InventoryWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new InventoryWorkAreaJPanel(userProcessContainer, account, organization, business, enterprise);
     }
     
 }

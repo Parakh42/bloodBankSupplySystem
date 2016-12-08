@@ -23,29 +23,29 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel5" max="32767" attributes="0"/>
                               <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" pref="143" max="32767" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
                           </Group>
                           <Component id="backBtn" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="addVitalsBtn" pref="127" max="32767" attributes="0"/>
                           <Component id="haemoJTxt" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="tempJTxt" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="bloodPressJTxt" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="bloodGrpComboBx" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="weightJTxt" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="addVitalsBtn" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="473" max="-2" attributes="0"/>
+              <EmptySpace pref="398" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,7 +54,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="191" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="haemoJTxt" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
                   <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addVitalsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace pref="189" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
