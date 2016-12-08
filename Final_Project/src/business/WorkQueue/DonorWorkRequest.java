@@ -5,22 +5,18 @@
  */
 package business.WorkQueue;
 
-import business.BloodSample.BloodQuantity;
-import business.BloodSample.BloodSampleCatalog;
-import java.util.Date;
-
 /**
  *
  * @author piyush sharma
  */
 public class DonorWorkRequest extends WorkRequest {
-    
+
 
     public DonorWorkRequest() {
         
         
     }
-    
+ 
     
 
     @Override

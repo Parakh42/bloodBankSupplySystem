@@ -7,13 +7,12 @@ package userinterface.InventoryRole;
 
 import business.BloodSample.BloodSample;
 import business.EcoSystem;
+import business.Enterprise.BloodBankEnterprise;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
-import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,7 +27,9 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
-    private Enterprise enterprise;
+    private BloodBankEnterprise enterprise;
+    private static int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0;
+
 
     public InventoryWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
         initComponents();
@@ -36,86 +37,101 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.organization = organization;
         this.business = business;
-        this.enterprise = enterprise;
+        this.enterprise = (BloodBankEnterprise) enterprise;
         populatelbl();
     }
 
     public void populatelbl() {
-        int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0;
-        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (org.getName().equalsIgnoreCase("Donor Organization")) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    for (WorkRequest request : ua.getWorkQueue().getWorkRequestList()) {
+//        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//            if (org.getName().equalsIgnoreCase("Donor Organization")) {
+//                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    enterprise.getHash().put("A+", 0);
+                    enterprise.getHash().put("A-", 0);
+                    enterprise.getHash().put("B+", 0);
+                    enterprise.getHash().put("B-", 0);
+                    enterprise.getHash().put("AB+", 0);
+                    enterprise.getHash().put("AB-", 0);
+                    enterprise.getHash().put("O+", 0);
+                    enterprise.getHash().put("O-", 0);
+                       
+                    for (WorkRequest req : organization.getWorkQueue().getWorkRequestList()) {
 
-                        for (BloodSample bs : request.getBloodSampleCatalog().getBloodCatalog()) {
+                        for (BloodSample bs : req.getBloodSampleCatalog().getBloodCatalog()) {
                             if (bs.getBloodGroup().equalsIgnoreCase("A+")) {
-                                a = request.getBq().getHash().get("A+");
+                                a = enterprise.getHash().get("A+");
                                 a++;
-                                request.getBq().getHash().put("A+", a);
+                                enterprise.getHash().put("A+", a);
+                                jTextField1.setText((String.valueOf(a)));
 
                             }
                             else if (bs.getBloodGroup().equalsIgnoreCase("A-")) {
-                                b = request.getBq().getHash().get("A-");
+                                b = enterprise.getHash().get("A-");
                                 b++;
-                                request.getBq().getHash().put("A-", b);
+                                enterprise.getHash().put("A-", b);
+                                jTextField2.setText((String.valueOf(b)));
 
                             }
                             else if (bs.getBloodGroup().equalsIgnoreCase("B+")) {
-                                c = request.getBq().getHash().get("B+");
+                                c = enterprise.getHash().get("B+");
                                 c++;
-                                request.getBq().getHash().put("B+", c);
+                                enterprise.getHash().put("B+", c);
+                                jTextField3.setText((String.valueOf(c)));
 
                             }
                             else if (bs.getBloodGroup().equalsIgnoreCase("B-")) {
-                                d = request.getBq().getHash().get("B_");
+                                d = enterprise.getHash().get("B-");
                                 d++;
-                                request.getBq().getHash().put("B-", d);
+                                enterprise.getHash().put("B-", d);
+                                jTextField4.setText((String.valueOf(d)));
 
                             }
                             else if (bs.getBloodGroup().equalsIgnoreCase("AB+")) {
-                                e = request.getBq().getHash().get("AB+");
+                                e = enterprise.getHash().get("AB+");
                                 e++;
-                                request.getBq().getHash().put("AB+", e);
+                                enterprise.getHash().put("AB+", e);
+                                jTextField5.setText((String.valueOf(e)));
 
                             }
                             else if (bs.getBloodGroup().equalsIgnoreCase("AB-")) {
-                                f = request.getBq().getHash().get("AB-");
+                                f = enterprise.getHash().get("AB-");
                                 f++;
-                                request.getBq().getHash().put("AB-", e);
+                                enterprise.getHash().put("AB-", f);
+                                jTextField6.setText((String.valueOf(f)));
+
                             }
 
                             else if (bs.getBloodGroup().equalsIgnoreCase("O+")) {
-                                g = request.getBq().getHash().get("O+");
+                                g = enterprise.getHash().get("O+");
                                 g++;
-                                request.getBq().getHash().put("O+", g);
+                                enterprise.getHash().put("O+", g);
+                                jTextField7.setText((String.valueOf(g)));
+
 
                             }
                             else {
-                                h = request.getBq().getHash().get("O-");
+                                h = enterprise.getHash().get("O-");
                                 h++;
-                                request.getBq().getHash().put("O-", h);
+                                enterprise.getHash().put("O-", h);
+                                jTextField8.setText((String.valueOf(h)));
+
                         }
                     }
                 }
             }
 
             
-        }
-    }}
-    
+        
 
     
 
-    public void populateTable() {
-//        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+//    public void populateTable(){
+//        DefaultTableModel model= (DefaultTableModel)inventoryTable.getModel();
 //        model.setRowCount(0);
 //        
-//             Object[] row = new Object[2];
-//             row[0] = bs;
-//             row[1] = bs.getQuantityAvailable();
-//            
+//        Object[][] tableData=new Object[enterprise.getHash().keySet().size()][2];
 //        
-    }
+//        
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,15 +167,20 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
 
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Blood group", "Quantity (1 Pint= 473ml)"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(inventoryTable);
 
         jLabel2.setText("A+");
@@ -209,39 +230,43 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel2)
                                     .addGap(91, 91, 91)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(93, 93, 93))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(82, 82, 82)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 465, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(101, 101, 101))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -273,8 +298,11 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(366, Short.MAX_VALUE))
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

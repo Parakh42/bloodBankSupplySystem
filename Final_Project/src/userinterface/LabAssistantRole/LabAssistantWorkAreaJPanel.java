@@ -188,10 +188,10 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                     
                     BloodSample bs = request.getBloodSampleCatalog().addBloodSample();
                     bs.setBloodGroup(request.getBloodGroup());
-                    for(BloodSample bs1:request.getBloodSampleCatalog().getBloodCatalog())
-                    {
-                        bs.setQuantityAvailable(bs1.getQuantityAvailable()+1);
-                    }
+//                    for(BloodSample bs1:request.getBloodSampleCatalog().getBloodCatalog())
+//                    {
+//                        bs.setQuantityAvailable(bs1.getQuantityAvailable()+1);
+//                    }
                     
                     Organization org = null;
                     for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
