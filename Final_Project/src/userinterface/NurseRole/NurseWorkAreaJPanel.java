@@ -12,6 +12,7 @@ import business.Organization.NutritionistOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.NutritionistWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
     Organization organization;
     Enterprise enterprise;
     EcoSystem business;
+    NutritionistWorkRequest request1;
     
     public NurseWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
@@ -206,18 +208,24 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSendToNutritionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendToNutritionistActionPerformed
         // TODO add your handling code here:
-        
+        request1 = new NutritionistWorkRequest();
         int selectedRow = workRequestJTable.getSelectedRow();
-
+        
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
+            
             DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
-
+            
+            
+            
             if (request.getStatus().equalsIgnoreCase("Assign Nutrisionist")) {
                 request.setReceiver(userAccount);
-                request.setStatus("Sent to Nutritionist");
+                request1.setSender(request.getReceiver());
+                request1.setUser(request.getSender());
+                request1.setMessage("need medical assistance");
+                //request.setStatus("Sent to Nutritionist");
                 populateRequestTable();
                 Organization org = null;
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -228,8 +236,8 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
                 if (org != null) {
-                    org.getWorkQueue().getWorkRequestList().add(request);
-                    userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    org.getWorkQueue().getWorkRequestList().add(request1);
+                    userAccount.getWorkQueue().getWorkRequestList().add(request1);
                 }
 
             } else {

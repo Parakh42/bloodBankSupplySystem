@@ -8,6 +8,7 @@ package userinterface.LabAssistantRole;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
+import business.WorkQueue.NutritionistWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -31,6 +32,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.request = request;
         this.organization = organization;
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -6,6 +6,7 @@
 package business.WorkQueue;
 
 import business.BloodSample.BloodSampleCatalog;
+import business.UserAccount.UserAccount;
 
 /**
  *
@@ -13,7 +14,7 @@ import business.BloodSample.BloodSampleCatalog;
  */
 public class LabWorkRequest extends WorkRequest {
     
-    
+      
     
     
 }
