@@ -7,6 +7,7 @@ package userinterface.HospitalAdminRole;
 
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
+import business.Enterprise.HospitalEnterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -22,7 +23,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
-    private Enterprise enterprise;
+    private HospitalEnterprise enterprise;
     /**
      * Creates new form HospitalAdminWorkAreaJPanel
      */
@@ -33,7 +34,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.organization = organization;
         this.business = business;
-        this.enterprise = enterprise;
+        this.enterprise =  (HospitalEnterprise) enterprise;
         valueJLabel.setText(enterprise.getName());
     }
 

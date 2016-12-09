@@ -6,6 +6,7 @@
 package userinterface.AdminRole;
 
 import business.EcoSystem;
+import business.Enterprise.BloodBankEnterprise;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
@@ -21,7 +22,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
-    private Enterprise enterprise;
+    private BloodBankEnterprise enterprise;
     /**
      * Creates new form AdminWorkAreaJPanel
      */
@@ -32,7 +33,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.organization = organization;
         this.business = business;
-        this.enterprise = enterprise;
+        this.enterprise = (BloodBankEnterprise) enterprise;
         valueJLabel.setText(enterprise.getName());
     }
 

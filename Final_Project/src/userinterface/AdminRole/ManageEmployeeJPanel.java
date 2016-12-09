@@ -42,7 +42,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     public void populateOrganizationTypeComboBox() {
         organizationTypeComboBox.removeAllItems();
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-            if ((organization instanceof DonorOrganization) && (organization instanceof DoctorOrganization) && (organization instanceof PharmacistOrganization) && (organization instanceof HospitalAdminOrganization)) {
+            if (organization instanceof DonorOrganization) {
 
             } else {
                 organizationTypeComboBox.addItem(organization);
@@ -53,7 +53,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     public void populateEmployeeTypeComboBox() {
         employeeTypeComboBox1.removeAllItems();
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-            if ((organization instanceof DonorOrganization) && (organization instanceof DoctorOrganization) && (organization instanceof PharmacistOrganization) && (organization instanceof HospitalAdminOrganization)) {
+            if (organization instanceof DonorOrganization) {
 
             } else {
                 employeeTypeComboBox1.addItem(organization);

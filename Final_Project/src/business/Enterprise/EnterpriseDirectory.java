@@ -28,6 +28,11 @@ public class EnterpriseDirectory {
             enterprise = new BloodBankEnterprise(name);
             enterpriseList.add(enterprise);
         }
+        else
+        {
+            enterprise = new HospitalEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;
     }
 }
