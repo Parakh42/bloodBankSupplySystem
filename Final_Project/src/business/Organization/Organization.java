@@ -40,7 +40,7 @@ public abstract class Organization {
         Donor("Donor Organization"), Receptionist("Reception Organization"), Lab("Lab Organization"), 
         Nurse("Nurse Organization"),
         Inventory("Inventory Organization"), Admin("Admin Organization") , Nutritionist("Nutritionist Organization"), 
-        Pharmacist("Pharmacist Organization"), Doctor("Doctor Organization");
+        Pharmacist("Pharmacist Organization"), Doctor("Doctor Organization"), HospitalAdmin("HospitalAdmin Organization");
         private String value;
         private Type(String value) {
             this.value = value;

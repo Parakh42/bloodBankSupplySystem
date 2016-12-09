@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.AdminRole;
+package userinterface.HospitalAdminRole;
 
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
-import business.Person.Donor;
 import business.Person.Employee;
 import business.Person.Person;
 import business.Role.Role;
@@ -21,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PARAKH MAHAJAN
  */
-public class ManageUserAccountJPanel extends javax.swing.JPanel {
+public class ManageUserAccount1JPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private Enterprise enterprise;
@@ -29,7 +28,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageUserAccountJPanel
      */
-    ManageUserAccountJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    ManageUserAccount1JPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -50,9 +49,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
             personComboBox.addItem(employee);
-        }
-        for (Donor donor : organization.getDonorDirectory().getDonorList()) {
-            personComboBox.addItem(donor);
         }
     }
     

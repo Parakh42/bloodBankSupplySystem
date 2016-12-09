@@ -14,7 +14,6 @@ import business.Organization.ReceptionOrganization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,7 +28,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ReceptionWorkAreaJPanel
      */
-    private ArrayList<WorkRequest> requestList;
     private JPanel userProcessContainer;
     private UserAccount userAccount;
     private ReceptionOrganization organization;
@@ -44,13 +42,11 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = (ReceptionOrganization) organization;
         this.business = business;
         this.enterprise = enterprise;
-        requestList = new ArrayList<>();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
@@ -76,6 +72,9 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         forwardNurse = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,32 +104,21 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 238, 536, 155));
+
+        forwardNurse.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         forwardNurse.setText("Forward to nurse");
         forwardNurse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forwardNurseActionPerformed(evt);
             }
         });
+        add(forwardNurse, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 487, 185, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(forwardNurse, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 369, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(forwardNurse)
-                .addContainerGap(517, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Reception Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 54, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -139,7 +127,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select a row first!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
             DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 3);
@@ -148,6 +136,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 request.setReceiver(userAccount);
                 request.setStatus("assigned");
                 populateRequestTable();
+                JOptionPane.showMessageDialog(this, "Selected donor request is successfully assigned to nurse", "Information", JOptionPane.INFORMATION_MESSAGE);
                 Organization org = null;
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                     if (organization instanceof NurseOrganization) {
@@ -162,7 +151,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "The selected donor request is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "The selected donor request is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 
         }
@@ -171,6 +160,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton forwardNurse;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

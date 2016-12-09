@@ -19,8 +19,10 @@ import javax.swing.table.DefaultTableModel;
  * @author PARAKH MAHAJAN
  */
 public class ManageDonorJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private OrganizationDirectory organizationDirectory;
+
     /**
      * Creates new form ManageDonorJPanel
      */
@@ -32,23 +34,21 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         populateDonorComboBox();
         //populateTable();
     }
-
     
-    public void populateDonorComboBox()
-    {
+    public void populateDonorComboBox() {
         donorComboBox.removeAllItems();
-        for(Organization organization : organizationDirectory.getOrganizationList())
-        if(organization instanceof DonorOrganization)
-        {
-            donorComboBox.addItem(organization);
+        for (Organization organization : organizationDirectory.getOrganizationList()) {
+            if (organization instanceof DonorOrganization) {
+                donorComboBox.addItem(organization);
+            }
         }
     }
     
-     private void populateTable(Organization organization){
+    private void populateTable(Organization organization) {
         DefaultTableModel model = (DefaultTableModel) manageDonorTable.getModel();
         model.setRowCount(0);
         
-        for (Donor donor : organization.getDonorDirectory().getDonorList()){
+        for (Donor donor : organization.getDonorDirectory().getDonorList()) {
             Object[] row = new Object[2];
             row[0] = donor.getDonorId();
             row[1] = donor.getFirstName();
@@ -90,9 +90,12 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         genderComboBox = new javax.swing.JComboBox();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Donor");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 61, -1, 41));
 
         manageDonorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,30 +114,46 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
             manageDonorTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 120, -1, 91));
+
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel2.setText("Organization :");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 244, 100, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel3.setText("First Name :");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 270, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel4.setText("Last Name :");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 296, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel5.setText("Email Id :");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 322, 100, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel6.setText("Age :");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 348, 100, -1));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel7.setText("Contact Number :");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 405, 100, -1));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel9.setText("Address :");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 433, 100, -1));
+        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 267, 257, -1));
+        add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 293, 257, -1));
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 319, 257, -1));
+        add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 345, 257, -1));
+        add(contactNumberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 402, 257, -1));
 
         addressTextArea.setColumns(20);
         addressTextArea.setRows(5);
         jScrollPane2.setViewportView(addressTextArea);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 433, 257, 37));
 
         donorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         donorComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +161,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
                 donorComboBoxActionPerformed(evt);
             }
         });
+        add(donorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 241, 100, -1));
 
         BtnAddDonor.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnAddDonor.setText("Add Donor");
@@ -150,6 +170,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
                 BtnAddDonorActionPerformed(evt);
             }
         });
+        add(BtnAddDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 481, 107, -1));
 
         BtnRemoveDonor.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnRemoveDonor.setText("Remove Donor");
@@ -158,6 +179,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
                 BtnRemoveDonorActionPerformed(evt);
             }
         });
+        add(BtnRemoveDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 512, -1, -1));
 
         BtnBack.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnBack.setText("<< Back");
@@ -166,121 +188,18 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
                 BtnBackActionPerformed(evt);
             }
         });
+        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 548, 102, -1));
 
         BtnUpdate.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         BtnUpdate.setText("Update Details");
+        add(BtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 548, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel11.setText("Gender :");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 374, 100, -1));
 
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(319, 319, 319)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(168, 168, 168)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(95, 95, 95)
-                                        .addComponent(lastNameTextField))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(95, 95, 95)
-                                        .addComponent(emailTextField))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(95, 95, 95)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(donorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(firstNameTextField)))
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(95, 95, 95)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ageTextField))))
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(360, 360, 360)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnUpdate)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(BtnAddDonor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(BtnRemoveDonor))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                                .addComponent(contactNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                .addContainerGap(280, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(donorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(contactNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnAddDonor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnRemoveDonor)
-                .addGap(46, 46, 46)
-                .addComponent(BtnUpdate)
-                .addGap(3, 3, 3)
-                .addComponent(BtnBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(genderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 371, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRemoveDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveDonorActionPerformed
@@ -302,7 +221,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
 
     private void BtnAddDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddDonorActionPerformed
         // TODO add your handling code here:
-        Organization organization = (Organization)donorComboBox.getSelectedItem();
+        Organization organization = (Organization) donorComboBox.getSelectedItem();
         Donor donor = organization.getDonorDirectory().addDonor();
         donor.setFirstName(firstNameTextField.getText());
         donor.setLastName(lastNameTextField.getText());
@@ -310,8 +229,17 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         donor.setAge(Integer.parseInt(ageTextField.getText()));
         donor.setPhoneNumber(contactNumberTextField.getText());
         donor.setAddress(addressTextArea.getText());
-        donor.setGender((String)genderComboBox.getSelectedItem());
-        JOptionPane.showMessageDialog(null, "Donor is added successfully","Information", JOptionPane.INFORMATION_MESSAGE);
+        donor.setGender((String) genderComboBox.getSelectedItem());
+        JOptionPane.showMessageDialog(null, "Donor is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+        
+        populateTable(organization);
+        
+        firstNameTextField.setText("");
+        lastNameTextField.setText("");
+        emailTextField.setText("");
+        ageTextField.setText("");
+        contactNumberTextField.setText("");
+        addressTextArea.setText("");
     }//GEN-LAST:event_BtnAddDonorActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
@@ -324,8 +252,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
     private void donorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorComboBoxActionPerformed
         // TODO add your handling code here:
         Organization organization = (Organization) donorComboBox.getSelectedItem();
-        if(organization != null)
-        {
+        if (organization != null) {
             populateTable(organization);
         }
     }//GEN-LAST:event_donorComboBoxActionPerformed

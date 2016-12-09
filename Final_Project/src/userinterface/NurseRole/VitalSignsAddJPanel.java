@@ -14,6 +14,7 @@ import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -31,41 +32,42 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
     
     DonorWorkRequest request;
     Organization organization;
-
+    
     VitalSignsAddJPanel(JPanel userProcessContainer, UserAccount userAccount, DonorWorkRequest request, Enterprise enterprise, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        this.organization=organization;
+        this.organization = organization;
         this.request = request;
         this.enterprise = enterprise;
     }
-
-    public void checkVital(){
+    
+    public void checkVital() {
         float bp = Float.parseFloat(bloodPressJTxt.getText());
-        float temp = Float.parseFloat(tempJTxt.getText()); 
-        float weight = Float.parseFloat(weightJTxt.getText()); 
+        float temp = Float.parseFloat(tempJTxt.getText());        
+        float weight = Float.parseFloat(weightJTxt.getText());        
         float haemo = Float.parseFloat(haemoJTxt.getText());
-        if(bp>80|| bp<120)
-        {
-           if(temp<98.6)
-           {
-               if(weight >110)
-               {
-                   if(haemo>13 || haemo<15.1)
-                   {
-                       request.setStatus("VitalSigns Taken");
-                       
-                   }
-                   else{request.setStatus("Assign Nutrisionist");}
-               }
-               else{request.setStatus("Assign Nutrisionist");}
-           }
-           else{request.setStatus("Assign Nutrisionist");}
+        if (bp > 80 || bp < 120) {
+            if (temp < 98.6) {
+                if (weight > 110) {
+                    if (haemo > 13 || haemo < 15.1) {
+                        request.setStatus("VitalSigns Taken");
+                        
+                    } else {
+                        request.setStatus("Assign Nutrisionist");
+                    }
+                } else {
+                    request.setStatus("Assign Nutrisionist");
+                }
+            } else {
+                request.setStatus("Assign Nutrisionist");
+            }
+        } else {
+            request.setStatus("Assign Nutrisionist");
         }
-        else{request.setStatus("Assign Nutrisionist");}
-       
+        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,117 +91,86 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         bloodGrpComboBx = new javax.swing.JComboBox<>();
         backBtn = new javax.swing.JButton();
 
-        jLabel3.setText("bloodPressure");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel3.setText("BloodPressure");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 143, -1));
 
         bloodPressJTxt.setText(" ");
+        add(bloodPressJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 238, 107, -1));
 
-        jLabel4.setText("bloodGroup");
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel4.setText("BloodGroup");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 271, 143, -1));
 
-        jLabel5.setText("weight");
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5.setText("Weight");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 302, 143, -1));
 
         weightJTxt.setText(" ");
+        add(weightJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 300, 107, -1));
 
+        addVitalsBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         addVitalsBtn.setText("Add Vitals");
         addVitalsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addVitalsBtnActionPerformed(evt);
             }
         });
+        add(addVitalsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 372, 107, -1));
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Haemoglobin Level");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 178, 143, -1));
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Record VitalSigns");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 27, -1, -1));
 
         haemoJTxt.setText(" ");
+        add(haemoJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 176, 107, -1));
 
-        jLabel2.setText("temperature");
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setText("Temperature");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 209, 143, -1));
 
         tempJTxt.setText(" ");
+        add(tempJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 207, 107, -1));
 
         bloodGrpComboBx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }));
+        add(bloodGrpComboBx, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 269, 107, -1));
 
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("<<BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(339, 339, 339)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(haemoJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tempJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bloodPressJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bloodGrpComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(weightJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addVitalsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(398, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(haemoJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tempJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(bloodPressJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(bloodGrpComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(weightJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(addVitalsBtn))
-                .addContainerGap(189, Short.MAX_VALUE))
-        );
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 372, 108, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addVitalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsBtnActionPerformed
         // TODO add your handling code here:
         
-        String userName=request.getSender().getUserName();
-
-                Donor donor = (Donor)request.getSender().getPerson();
-                VitalSigns vs = donor.getVsh().addVital();
-                    vs.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
-                    vs.setBloodPressure(Float.parseFloat(bloodPressJTxt.getText()));
-                    vs.setHaemoglobinLevel(Float.parseFloat(haemoJTxt.getText()));
-                    vs.setTemperature(Float.parseFloat(tempJTxt.getText()));
-                    vs.setWeight(Float.parseFloat(weightJTxt.getText()));
-                    checkVital();
+        String userName = request.getSender().getUserName();
+        
+        Donor donor = (Donor) request.getSender().getPerson();
+        VitalSigns vs = donor.getVsh().addVital();
+        vs.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
+        vs.setBloodPressure(Float.parseFloat(bloodPressJTxt.getText()));
+        vs.setHaemoglobinLevel(Float.parseFloat(haemoJTxt.getText()));
+        vs.setTemperature(Float.parseFloat(tempJTxt.getText()));
+        vs.setWeight(Float.parseFloat(weightJTxt.getText()));
+        checkVital();
+        JOptionPane.showMessageDialog(this, "VitalSigns recorded successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+        
+        bloodPressJTxt.setText("");
+        haemoJTxt.setText("");
+        tempJTxt.setText("");
+        weightJTxt.setText("");
     }//GEN-LAST:event_addVitalsBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -210,7 +181,7 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         NurseWorkAreaJPanel nwjp = (NurseWorkAreaJPanel) component;
         nwjp.populateRequestTable();
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 

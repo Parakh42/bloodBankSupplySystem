@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.AdminRole;
+package userinterface.HospitalAdminRole;
 
 import business.Organization.DoctorOrganization;
+import userinterface.AdminRole.*;
 import business.Organization.DonorOrganization;
-import business.Organization.HospitalAdminOrganization;
 import business.Organization.Organization;
 import business.Organization.OrganizationDirectory;
 import business.Organization.PharmacistOrganization;
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PARAKH MAHAJAN
  */
-public class ManageEmployeeJPanel extends javax.swing.JPanel {
+public class ManageEmployee1JPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private OrganizationDirectory organizationDirectory;
@@ -31,7 +31,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
      * Creates new form ManageEmployeeJPanel
      */
 
-    ManageEmployeeJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+    ManageEmployee1JPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
@@ -42,22 +42,20 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     public void populateOrganizationTypeComboBox() {
         organizationTypeComboBox.removeAllItems();
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-            if ((organization instanceof DonorOrganization) && (organization instanceof DoctorOrganization) && (organization instanceof PharmacistOrganization) && (organization instanceof HospitalAdminOrganization)) {
-
-            } else {
-                organizationTypeComboBox.addItem(organization);
-            }
+            if ((organization instanceof DoctorOrganization) && (organization instanceof PharmacistOrganization))
+            {
+                 organizationTypeComboBox.addItem(organization);
+            } 
         }
     }
 
     public void populateEmployeeTypeComboBox() {
         employeeTypeComboBox1.removeAllItems();
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-            if ((organization instanceof DonorOrganization) && (organization instanceof DoctorOrganization) && (organization instanceof PharmacistOrganization) && (organization instanceof HospitalAdminOrganization)) {
-
-            } else {
-                employeeTypeComboBox1.addItem(organization);
-            }
+             if ((organization instanceof DoctorOrganization) && (organization instanceof PharmacistOrganization))
+            {
+                 employeeTypeComboBox1.addItem(organization);
+            } 
         }
     }
 

@@ -15,6 +15,7 @@ import java.util.Date;
 import javax.swing.JPanel;
 import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,23 +33,21 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DonorWorkAreaJPanel
      */
-    
     public DonorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
-        
+
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.organization = (DonorOrganization) organization;
         this.enterprise = enterprise;
-        
         populateRequestTable();
     }
-    
-    public void populateRequestTable(){
+
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
+
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[2];
             UserAccount receiver = request.getReceiver();
             row[0] = receiver == null ? "not assigned" : receiver;
@@ -74,19 +73,30 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         datePicker = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         timeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10AM to 11AM", "11AM to 12PM", "12PM to 1PM", "1PM to 2PM", "4PM to 5PM", "5PM to 6PM", " ", " " }));
+        add(timeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 350, 139, -1));
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Time Slot:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 352, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText(" Date:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 384, 58, -1));
 
+        scheduleButton.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         scheduleButton.setText("Schedule Appointment");
         scheduleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleButtonActionPerformed(evt);
             }
         });
+        add(scheduleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 475, -1, -1));
+        add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 381, 139, -1));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,42 +119,12 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1))
-                        .addGap(114, 114, 114)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(timeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(211, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(scheduleButton)
-                .addContainerGap(294, Short.MAX_VALUE))
-        );
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 165, 679, 105));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Donor Work Area");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 31, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void datePickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datePickerActionPerformed
@@ -154,27 +134,27 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     private void scheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleButtonActionPerformed
         // TODO add your handling code here:
         request = new DonorWorkRequest();
-        String time = (String)timeComboBox.getSelectedItem();
+        String time = (String) timeComboBox.getSelectedItem();
         Date date = datePicker.getDate();
         request.setRequestDate(date);
         request.setTime(time);
         request.setSender(userAccount);
         request.setStatus("Waiting");
-        
+
         Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof ReceptionOrganization){
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof ReceptionOrganization) {
                 org = organization;
                 break;
             }
         }
-        if (org!=null){
+        if (org != null) {
             org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
         scheduleButton.setEnabled(false);
         populateRequestTable();
-        
+        JOptionPane.showMessageDialog(this, "Appointment is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_scheduleButtonActionPerformed
 
 
@@ -182,6 +162,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXDatePicker datePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton scheduleButton;
     private javax.swing.JComboBox<String> timeComboBox;

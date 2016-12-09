@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.AdminRole;
+package userinterface.HospitalAdminRole;
 
 import business.Organization.Organization;
 import business.Organization.Organization.Type;
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PARAKH MAHAJAN
  */
-public class ManageOrganizationJPanel extends javax.swing.JPanel {
+public class ManageOrganization1JPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private OrganizationDirectory organizationDirectory;
@@ -26,7 +26,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
      * Creates new form ManageOrganizationJPanel
      */
 
-    ManageOrganizationJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+    ManageOrganization1JPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
@@ -37,7 +37,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void populateComboBox() {
         organizationTypeComboBox.removeAllItems();
         for (Type type : Organization.Type.values()) {
-            if ((!type.getValue().equals(Type.Admin.getValue())) && (!type.getValue().equals(Type.HospitalAdmin.getValue())) && (!type.getValue().equals(Type.Doctor.getValue())) && (!type.getValue().equals(Type.Pharmacist.getValue()))) {
+            if ((type.getValue().equals(Type.Doctor.getValue())) && (type.getValue().equals(Type.Pharmacist.getValue()))) {
                 organizationTypeComboBox.addItem(type);
             }
         }

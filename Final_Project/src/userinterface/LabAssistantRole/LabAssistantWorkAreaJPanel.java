@@ -9,28 +9,27 @@ import business.BloodSample.BloodSample;
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Organization.InventoryOrganization;
-import business.Organization.NurseOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
-import business.WorkQueue.LabWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.NurseRole.VitalSignsAddJPanel;
 
 /**
  *
  * @author piyush sharma
  */
 public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
     private Enterprise enterprise;
+
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
@@ -45,24 +44,22 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }
 
-    public void populateRequestTable(){
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
+
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
-                    
-            
+
             row[0] = request.getSender();
             row[1] = request.getMessage() == null ? "Waiting for result" : request.getMessage();
-            row[2]= ((DonorWorkRequest) request);
-            row[3]= request.getBloodGroup();
-            
-            
+            row[2] = ((DonorWorkRequest) request);
+            row[3] = request.getBloodGroup();
+
             model.addRow(row);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,6 +74,8 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         btnSend = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,67 +102,42 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        btnSend.setText("send result");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 190, 715, 185));
+
+        btnSend.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnSend.setText("Send result");
         btnSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendActionPerformed(evt);
             }
         });
+        add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 486, 127, -1));
 
+        btnAssign.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnAssign.setText("Assign to me");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
+        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 486, 166, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Lab assistant work area");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101)
-                                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(535, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
-                        .addGap(53, 53, 53))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAssign)
-                    .addComponent(btnSend))
-                .addContainerGap(371, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Lab Assistant Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 65, 422, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
         int selectedRow = workRequestJTable.getSelectedRow();
 
-        if (selectedRow < 0){
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        DonorWorkRequest request = (DonorWorkRequest)workRequestJTable.getValueAt(selectedRow, 2);        
+        DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("ProcessWorkRequestJPanel", new ProcessWorkRequestJPanel(userProcessContainer, account, request, organization));
         layout.next(userProcessContainer);
@@ -185,14 +159,9 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                     request.getBloodGroup();
                     request.setStatus("Approved & Stored");
                     populateRequestTable();
-                    
+                    JOptionPane.showMessageDialog(this, "Blood is sent to Inventory", "Information", JOptionPane.INFORMATION_MESSAGE);
                     BloodSample bs = request.getBloodSampleCatalog().addBloodSample();
                     bs.setBloodGroup(request.getBloodGroup());
-//                    for(BloodSample bs1:request.getBloodSampleCatalog().getBloodCatalog())
-//                    {
-//                        bs.setQuantityAvailable(bs1.getQuantityAvailable()+1);
-//                    }
-                    
                     Organization org = null;
                     for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                         if (organization instanceof InventoryOrganization) {
