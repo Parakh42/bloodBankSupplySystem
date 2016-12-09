@@ -22,7 +22,7 @@ public class DoctorWorkRequest extends WorkRequest{
     
     @Override
     public String toString(){
-        return this.getStatus();
+        return (String.valueOf(quantity));
     }
     
 }

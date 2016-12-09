@@ -7,6 +7,7 @@ package userinterface.PharmacistRole;
 
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
+import business.Network.Network;
 import business.Organization.InventoryOrganization;
 import business.Organization.Organization;
 import business.Organization.PharmacistOrganization;
@@ -30,31 +31,33 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     PharmacistOrganization organization;
     Enterprise enterprise;
-
+    EcoSystem system;
+    
     public PharmacistWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.organization = (PharmacistOrganization) organization;
         this.enterprise = enterprise;
+        this.system = business;
         populateTable();
     }
     
-    public void populateTable(){
+    public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) workReqJTable.getModel();
-
+        
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
-
             
             row[0] = request.getReceiver();
             row[1] = request.getBloodGroup();
-            row[2] = ((DoctorWorkRequest) request).getQuantity();
+            row[2] = ((DoctorWorkRequest) request);
             row[3] = request.getStatus();
             model.addRow(row);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,34 +129,41 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         // TODO add your handling code here:
         int selectedRow = workReqJTable.getSelectedRow();
-
+        
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
             DoctorWorkRequest request = (DoctorWorkRequest) workReqJTable.getValueAt(selectedRow, 3);
-
+            
             if (request.getStatus().equalsIgnoreCase("Waiting")) {
                 request.setReceiver(userAccount);
                 request.setStatus("Sent to inventory");
                 populateTable();
                 Organization org = null;
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    if (organization instanceof InventoryOrganization) {
-                        org = organization;
-                        break;
-
+                
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (e.getEnterpriseType().getValue().equals("BloodBank")) {
+                            
+                            for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof InventoryOrganization) {
+                                    org = organization;
+                                    break;
+                                    
+                                }
+                            }
+                            if (org != null) {
+                                org.getWorkQueue().getWorkRequestList().add(request);
+                                userAccount.getWorkQueue().getWorkRequestList().add(request);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "The selected request is already in process !", "Warning", JOptionPane.WARNING_MESSAGE);
+                            }
+                            
+                        }
                     }
                 }
-                if (org != null) {
-                    org.getWorkQueue().getWorkRequestList().add(request);
-                    userAccount.getWorkQueue().getWorkRequestList().add(request);
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(this, "The selected request is already in process !", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-
         }
     }//GEN-LAST:event_sendButtonActionPerformed
 
