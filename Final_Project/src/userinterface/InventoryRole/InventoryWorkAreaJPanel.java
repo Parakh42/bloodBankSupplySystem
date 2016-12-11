@@ -125,7 +125,6 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                 if (request instanceof DoctorWorkRequest) {
 //DoctorWorkRequest req= (DoctorWorkRequest) request;
                     Object[] row = new Object[4];
-
                     row[0] = request.getSender();
                     row[1] = request.getBloodGroup();
                     row[2] = ((DoctorWorkRequest) request);
@@ -170,51 +169,70 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
         processReqBtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setText("Inventory Work Area ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 16, 348, 52));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setText("A+");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 84, 40, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel3.setText("A-");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 130, 40, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setText("B+");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 176, 40, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel5.setText("B-");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 215, 40, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel6.setText("O+");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 270, 40, -1));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel7.setText("O-");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 316, 40, -1));
 
         jLabel8.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel8.setText("AB+");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 362, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel9.setText("AB-");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 417, -1, -1));
 
         aPosTextField.setEnabled(false);
+        add(aPosTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 86, 72, -1));
 
         aNeTextField.setEnabled(false);
+        add(aNeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 132, 72, -1));
 
         bPosTextField.setEnabled(false);
+        add(bPosTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 178, 72, -1));
 
         bNeTextField.setEnabled(false);
+        add(bNeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 217, 72, -1));
 
         oPosTextField.setEnabled(false);
+        add(oPosTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 272, 72, -1));
 
         oNeTextField.setEnabled(false);
+        add(oNeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 318, 72, -1));
 
         abPosTextField.setEnabled(false);
+        add(abPosTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 364, 72, -1));
 
         abNeTextField.setEnabled(false);
+        add(abNeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 419, 72, -1));
 
         chartButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         chartButton.setText("See graphical representation");
@@ -223,6 +241,7 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                 chartButtonActionPerformed(evt);
             }
         });
+        add(chartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 504, -1, -1));
 
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -242,6 +261,8 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(inventoryTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 750, 230));
+
         processReqBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         processReqBtn.setText("Process request");
         processReqBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -249,97 +270,11 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                 processReqBtnActionPerformed(evt);
             }
         });
+        add(processReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 169, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(chartButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(94, 94, 94)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(abPosTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                        .addComponent(oNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(oPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(bNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(bPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(aNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(aPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(processReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(aPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(aNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(bPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(bNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(oPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(oNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(abPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chartButton)
-                    .addComponent(processReqBtn))
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
+        jLabel10.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel10.setText("Requests from pharmacists");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 290, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void chartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chartButtonActionPerformed
@@ -479,6 +414,7 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton chartButton;
     private javax.swing.JTable inventoryTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

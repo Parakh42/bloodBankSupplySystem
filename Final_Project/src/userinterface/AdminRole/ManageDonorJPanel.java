@@ -179,7 +179,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel9.setText("Address :");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 150, -1));
-        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 257, -1));
+        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 257, -1));
         add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 257, -1));
         add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 257, -1));
         add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 257, -1));
@@ -206,7 +206,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
                 BtnAddDonorActionPerformed(evt);
             }
         });
-        add(BtnAddDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 670, 170, -1));
+        add(BtnAddDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 660, 170, -1));
 
         BtnRemoveDonor.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnRemoveDonor.setText("Remove Donor");
