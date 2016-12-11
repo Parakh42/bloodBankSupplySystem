@@ -141,17 +141,23 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
     private void getVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getVitalsButtonActionPerformed
         // TODO add your handling code here:
+        
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
+        if(request.getStatus().equals("assigned"))
+        {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("VitalSignsAddJPanel", new VitalSignsAddJPanel(userProcessContainer, userAccount, request, enterprise, organization));
         layout.next(userProcessContainer);
+        }
+        else
+           JOptionPane.showMessageDialog(this, "VitalSigns are taken already", "Warning", JOptionPane.WARNING_MESSAGE);
 
     }//GEN-LAST:event_getVitalsButtonActionPerformed
 
@@ -160,7 +166,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
             DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
@@ -181,9 +187,9 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
                 }
-
+                 JOptionPane.showMessageDialog(this, "The selected donor request is send successfully to lab", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "The selected donor request is already send", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "The selected donor request is already send", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 
         }
@@ -196,20 +202,18 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else {
             
             DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
-            
-            
             
             if (request.getStatus().equalsIgnoreCase("Assign Nutrisionist")) {
                 request.setReceiver(userAccount);
                 request1.setSender(request.getReceiver());
                 request1.setUser(request.getSender());
                 request1.setMessage("need medical assistance");
-                //request.setStatus("Sent to Nutritionist");
+                request.setStatus("Sent to Nutritionist");
                 populateRequestTable();
                 Organization org = null;
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -223,9 +227,9 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     org.getWorkQueue().getWorkRequestList().add(request1);
                     userAccount.getWorkQueue().getWorkRequestList().add(request1);
                 }
-
+                JOptionPane.showMessageDialog(this, "The selected donor request is send successfully to Nutritionist", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "The selected donor request is already send", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "The selected donor request is already send", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 
         } 

@@ -120,13 +120,19 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-
+        if(nameTextField.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Name is mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
         String name = nameTextField.getText();
         Network network = system.createAndAddNetwork();
         network.setName(name);
         populateNetworkTable();
         nameTextField.setText("");
         JOptionPane.showMessageDialog(this, "Network is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

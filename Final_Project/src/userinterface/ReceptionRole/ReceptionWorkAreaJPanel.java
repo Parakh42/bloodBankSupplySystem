@@ -150,7 +150,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                     org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
                 }
-
+                JOptionPane.showMessageDialog(this, "The selected donor request is send successfully to Nurse", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "The selected donor request is already assigned to a nurse", "Warning", JOptionPane.WARNING_MESSAGE);
             }

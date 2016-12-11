@@ -50,7 +50,7 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
 
-            row[0] = request.getReceiver();
+            row[0] = request.getSender();
             row[1] = request.getBloodGroup();
             row[2] = ((DoctorWorkRequest) request);
             row[3] = request.getStatus();
@@ -144,7 +144,8 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
                 populateTable();
                 Organization org = null;
 
-                for (Network n : system.getNetworkList()) {
+                for (Network n : system.getNetworkList()) 
+                {
                     for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
                         if (e.getEnterpriseType().getValue().equals("BloodBank")) {
 
@@ -163,6 +164,7 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
 
                     }
                 }
+                JOptionPane.showMessageDialog(this, "Doctor request sent successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "The selected request is already in process !", "Warning", JOptionPane.WARNING_MESSAGE);
             }

@@ -34,7 +34,6 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-
     public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -135,14 +134,18 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("ProcessWorkRequestJPanel", new ProcessWorkRequestJPanel(userProcessContainer, account, request, organization));
-        layout.next(userProcessContainer);
+        if (request.getStatus().equals("Sent to Lab")) {
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add("ProcessWorkRequestJPanel", new ProcessWorkRequestJPanel(userProcessContainer, account, request, organization));
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(this, "Lab test is already completed", "warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
@@ -151,7 +154,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             int selectedRow = workRequestJTable.getSelectedRow();
 
             if (selectedRow < 0) {
-                JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
                 return;
             } else {
                 DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
@@ -178,7 +181,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "The selected donor request is already assigned ", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "The selected donor request is already sent to Inventory", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
 
             }

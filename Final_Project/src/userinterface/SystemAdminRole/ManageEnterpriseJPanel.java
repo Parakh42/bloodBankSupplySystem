@@ -155,13 +155,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
         if(nameTextField.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Name field can not be empty", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Name field can not be empty", "Warning", JOptionPane.WARNING_MESSAGE);
         }
+        else
+        {
         String name = nameTextField.getText();
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         populateTable();
         nameTextField.setText("");
         JOptionPane.showMessageDialog(this, "Enterprise is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

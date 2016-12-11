@@ -10,6 +10,7 @@ import business.UserAccount.UserAccount;
 import business.WorkQueue.DonorWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
  * @author piyush sharma
  */
 public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
-    
+
     private JPanel userProcessContainer;
     private UserAccount account;
     private DonorWorkRequest request;
@@ -81,7 +82,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        
+
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -92,10 +93,14 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        
-        request.setStatus("Completed");
-        request.setMessage(resultJTextField.getText());
-        resultJTextField.setText("");
+        if (resultJTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please record test reults", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            request.setStatus("Completed");
+            request.setMessage(resultJTextField.getText());
+            resultJTextField.setText("");
+            JOptionPane.showMessageDialog(this, "Lab test performed successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 

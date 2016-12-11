@@ -255,8 +255,8 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (validation()) {
             int a = (Integer.parseInt(ageTextField.getText()));
-            if (a < 17) {
-                JOptionPane.showMessageDialog(this, "You must be atleast 17 years old for donation !", "Warning", JOptionPane.WARNING_MESSAGE);
+            if (a < 17 && a > 65) {
+                JOptionPane.showMessageDialog(this, "You are not eligible for donation !", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
                 try {
                     Organization organization = (Organization) donorComboBox.getSelectedItem();

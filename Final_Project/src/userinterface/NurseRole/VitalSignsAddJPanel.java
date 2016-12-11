@@ -29,10 +29,10 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Enterprise enterprise;
-    
+
     DonorWorkRequest request;
     Organization organization;
-    
+
     VitalSignsAddJPanel(JPanel userProcessContainer, UserAccount userAccount, DonorWorkRequest request, Enterprise enterprise, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -41,18 +41,18 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         this.request = request;
         this.enterprise = enterprise;
     }
-    
+
     public void checkVital() {
         float bp = Float.parseFloat(bloodPressJTxt.getText());
-        float temp = Float.parseFloat(tempJTxt.getText());        
-        float weight = Float.parseFloat(weightJTxt.getText());        
+        float temp = Float.parseFloat(tempJTxt.getText());
+        float weight = Float.parseFloat(weightJTxt.getText());
         float haemo = Float.parseFloat(haemoJTxt.getText());
-        if (bp > 80 || bp < 120) {
-            if (temp < 98.6) {
-                if (weight > 110) {
-                    if (haemo > 13 || haemo < 15.1) {
+        if (bp > 80 && bp < 120) {
+            if (temp < 99.5 && temp > 97.7) {
+                if (weight > 110 && weight < 400) {
+                    if (haemo > 13 && haemo < 15.1) {
                         request.setStatus("VitalSigns Taken");
-                        
+
                     } else {
                         request.setStatus("Assign Nutrisionist");
                     }
@@ -65,7 +65,7 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         } else {
             request.setStatus("Assign Nutrisionist");
         }
-        
+
     }
 
     /**
@@ -155,23 +155,26 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
 
     private void addVitalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsBtnActionPerformed
         // TODO add your handling code here:
-        
-        String userName = request.getSender().getUserName();
-        
-        Donor donor = (Donor) request.getSender().getPerson();
-        VitalSigns vs = donor.getVsh().addVital();
-        vs.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
-        vs.setBloodPressure(Float.parseFloat(bloodPressJTxt.getText()));
-        vs.setHaemoglobinLevel(Float.parseFloat(haemoJTxt.getText()));
-        vs.setTemperature(Float.parseFloat(tempJTxt.getText()));
-        vs.setWeight(Float.parseFloat(weightJTxt.getText()));
-        checkVital();
-        JOptionPane.showMessageDialog(this, "VitalSigns recorded successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
-        
-        bloodPressJTxt.setText("");
-        haemoJTxt.setText("");
-        tempJTxt.setText("");
-        weightJTxt.setText("");
+        if (haemoJTxt.getText().equals("") || tempJTxt.getText().equals("") || bloodPressJTxt.getText().equals("") || weightJTxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "All VitalSigns are mandatory", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String userName = request.getSender().getUserName();
+
+            Donor donor = (Donor) request.getSender().getPerson();
+            VitalSigns vs = donor.getVsh().addVital();
+            vs.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
+            vs.setBloodPressure(Float.parseFloat(bloodPressJTxt.getText()));
+            vs.setHaemoglobinLevel(Float.parseFloat(haemoJTxt.getText()));
+            vs.setTemperature(Float.parseFloat(tempJTxt.getText()));
+            vs.setWeight(Float.parseFloat(weightJTxt.getText()));
+            checkVital();
+            JOptionPane.showMessageDialog(this, "VitalSigns recorded successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+            bloodPressJTxt.setText("");
+            haemoJTxt.setText("");
+            tempJTxt.setText("");
+            weightJTxt.setText("");
+        }
     }//GEN-LAST:event_addVitalsBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
