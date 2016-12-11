@@ -76,6 +76,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         btnSendToNutritionist = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -103,36 +104,39 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 212, 918, 157));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 918, 157));
 
-        btnSendToInventory.setText(" Send sample");
+        btnSendToInventory.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        btnSendToInventory.setText(" Send sample to lab");
         btnSendToInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendToInventoryActionPerformed(evt);
             }
         });
-        add(btnSendToInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 444, 168, -1));
+        add(btnSendToInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 370, 200, -1));
 
+        getVitalsButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         getVitalsButton.setText("Get Vital Signs");
         getVitalsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getVitalsButtonActionPerformed(evt);
             }
         });
-        add(getVitalsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 444, 168, -1));
+        add(getVitalsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 168, -1));
 
+        btnSendToNutritionist.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnSendToNutritionist.setText("Assign Nutritionist");
         btnSendToNutritionist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendToNutritionistActionPerformed(evt);
             }
         });
-        add(btnSendToNutritionist, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 495, 168, -1));
+        add(btnSendToNutritionist, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 450, 200, -1));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Nurse Work Area");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 75, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void getVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getVitalsButtonActionPerformed

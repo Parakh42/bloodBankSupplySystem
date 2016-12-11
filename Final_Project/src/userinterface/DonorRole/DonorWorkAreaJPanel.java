@@ -75,35 +75,33 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         timeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10AM to 11AM", "11AM to 12PM", "12PM to 1PM", "1PM to 2PM", "4PM to 5PM", "5PM to 6PM", " ", " " }));
-        add(timeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 350, 139, -1));
+        add(timeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 139, -1));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Time Slot:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 352, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 110, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText(" Date:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 384, 58, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 90, -1));
 
-        scheduleButton.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        scheduleButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         scheduleButton.setText("Schedule Appointment");
         scheduleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleButtonActionPerformed(evt);
             }
         });
-        add(scheduleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 475, -1, -1));
-        add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 381, 139, -1));
+        add(scheduleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
+        add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 139, -1));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Receiver", "Status"
@@ -119,7 +117,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 110, 679, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 110, 679, 180));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

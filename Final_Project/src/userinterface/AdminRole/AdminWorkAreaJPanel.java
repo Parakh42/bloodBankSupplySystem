@@ -54,17 +54,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         BtnManageDonor = new javax.swing.JButton();
         BtnManageUser = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Admin Work Area");
 
-        enterpriseJLabel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        enterpriseJLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         enterpriseJLabel.setText("Enterprise :");
 
-        valueJLabel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        valueJLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         valueJLabel.setText("<Value>");
 
-        BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageOrganization.setText("Manage Organization");
         BtnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +74,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageEmployee.setText("Manage Employee");
         BtnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +82,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        BtnManageDonor.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageDonor.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageDonor.setText("Manage Donor");
         BtnManageDonor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +90,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageUser.setText("Manage User");
         BtnManageUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,40 +105,40 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129)
-                        .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(365, 365, 365)
+                        .addGap(102, 102, 102)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BtnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BtnManageDonor, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BtnManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(557, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addGap(65, 65, 65)
                 .addComponent(BtnManageOrganization)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(BtnManageEmployee)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addComponent(BtnManageDonor)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(BtnManageUser)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

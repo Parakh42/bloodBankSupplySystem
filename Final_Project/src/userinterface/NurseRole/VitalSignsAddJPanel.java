@@ -91,65 +91,66 @@ public class VitalSignsAddJPanel extends javax.swing.JPanel {
         bloodGrpComboBx = new javax.swing.JComboBox<>();
         backBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel3.setText("BloodPressure");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 143, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 143, -1));
 
         bloodPressJTxt.setText(" ");
-        add(bloodPressJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 238, 107, -1));
+        add(bloodPressJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 107, -1));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setText("BloodGroup");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 271, 143, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 143, -1));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("Weight");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 302, 143, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 143, -1));
 
         weightJTxt.setText(" ");
-        add(weightJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 300, 107, -1));
+        add(weightJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 107, -1));
 
-        addVitalsBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        addVitalsBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         addVitalsBtn.setText("Add Vitals");
         addVitalsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addVitalsBtnActionPerformed(evt);
             }
         });
-        add(addVitalsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 372, 107, -1));
+        add(addVitalsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 160, -1));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Haemoglobin Level");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 178, 143, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 170, -1));
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Record VitalSigns");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 27, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 290, 40));
 
         haemoJTxt.setText(" ");
-        add(haemoJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 176, 107, -1));
+        add(haemoJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 107, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Temperature");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 209, 143, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 143, -1));
 
         tempJTxt.setText(" ");
-        add(tempJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 207, 107, -1));
+        add(tempJTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 107, -1));
 
         bloodGrpComboBx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }));
-        add(bloodGrpComboBx, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 269, 107, -1));
+        add(bloodGrpComboBx, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 107, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backBtn.setText("<<BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 372, 108, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 108, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addVitalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsBtnActionPerformed

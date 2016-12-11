@@ -74,6 +74,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         forwardNurse = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,21 +105,21 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 238, 536, 155));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 870, 230));
 
-        forwardNurse.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        forwardNurse.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         forwardNurse.setText("Forward to nurse");
         forwardNurse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forwardNurseActionPerformed(evt);
             }
         });
-        add(forwardNurse, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 487, 185, -1));
+        add(forwardNurse, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 481, 260, 50));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Reception Work Area");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 54, -1, -1));
+        jLabel1.setText("Receptionist Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 60));
     }// </editor-fold>//GEN-END:initComponents
 
 

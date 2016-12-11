@@ -73,6 +73,46 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     }
 
+    public boolean validation() {
+        if (firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || emailTextField.getText().equals("") || ageTextField.getText().equals("")
+                || contactTextField.getText().equals("") || addressTextArea.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return false;
+        } else {
+            String namePattern = "[a-zA-Z]+\\.?";
+            String name = firstNameTextField.getText();
+
+            if (!(name.matches(namePattern))) {
+
+                JOptionPane.showMessageDialog(null, "Please enter a valid first name");
+                return false;
+            }
+
+            String namePattern2 = "[a-zA-Z]+\\.?";
+            String lastName = lastNameTextField.getText();
+
+            if (!(lastName.matches(namePattern2))) {
+
+                JOptionPane.showMessageDialog(null, "Please enter a valid last name");
+                return false;
+            }
+
+            String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            String email = emailTextField.getText();
+
+            if (!(email.matches(emailPattern))) {
+
+                JOptionPane.showMessageDialog(null, "Please enter a valid email ID ");
+                return false;
+            }
+
+        }
+
+        return true;
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,23 +145,20 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         BtnAddEmployee = new javax.swing.JButton();
         BtnRemoveEmployee = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
-        BtnUpdate1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         genderComboBox = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Manage Employee");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 45, -1, 28));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 290, 28));
 
         manageEmployeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Name"
@@ -141,39 +178,39 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             manageEmployeeTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 122, -1, 91));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 730, 100));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Organization :");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 94, 100, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 130, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Organization :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 234, 100, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 100, -1));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setText("First Name :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 260, 100, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 100, -1));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("Last Name :");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 286, 100, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 100, -1));
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setText("Email Id :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 312, 100, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 100, -1));
 
-        jLabel7.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel7.setText("Age :");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 338, 100, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 100, -1));
 
-        jLabel8.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel8.setText("Contact Number :");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 390, 100, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 140, -1));
 
-        jLabel9.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel9.setText("Address :");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 413, 100, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 110, -1));
 
         organizationTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -181,86 +218,89 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 organizationTypeComboBoxActionPerformed(evt);
             }
         });
-        add(organizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 91, -1, -1));
+        add(organizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         employeeTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(employeeTypeComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 231, -1, -1));
-        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 257, 315, -1));
-        add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 283, 315, -1));
-        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 309, 315, -1));
+        add(employeeTypeComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 315, -1));
+        add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 315, -1));
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 315, -1));
 
         ageTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ageTextFieldActionPerformed(evt);
             }
         });
-        add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 335, 315, -1));
-        add(contactTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 387, 315, -1));
+        add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 315, -1));
+        add(contactTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 510, 330, -1));
 
         addressTextArea.setColumns(20);
         addressTextArea.setRows(5);
         jScrollPane2.setViewportView(addressTextArea);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 413, 315, 46));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, 330, 46));
 
-        BtnAddEmployee.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        BtnAddEmployee.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnAddEmployee.setText("Add Employee");
         BtnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddEmployeeActionPerformed(evt);
             }
         });
-        add(BtnAddEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 498, 125, -1));
+        add(BtnAddEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 630, 170, -1));
 
-        BtnRemoveEmployee.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        BtnRemoveEmployee.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnRemoveEmployee.setText("Remove Employee");
         BtnRemoveEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRemoveEmployeeActionPerformed(evt);
             }
         });
-        add(BtnRemoveEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 529, -1, -1));
+        add(BtnRemoveEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 680, -1, -1));
 
-        BtnBack.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        BtnBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnBack.setText("<< Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
             }
         });
-        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 560, 125, -1));
+        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 125, -1));
 
-        BtnUpdate1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        BtnUpdate1.setText("Update Details");
-        add(BtnUpdate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 560, 125, -1));
-
-        jLabel11.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel11.setText("Gender :");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 361, 100, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 100, -1));
 
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
-        add(genderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 361, -1, -1));
+        add(genderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddEmployeeActionPerformed
         // TODO add your handling code here:
-        Organization organization = (Organization) employeeTypeComboBox1.getSelectedItem();
-        Employee employee = organization.getEmployeeDirectory().addEmployee();
-        employee.setFirstName(firstNameTextField.getText());
-        employee.setLastName(lastNameTextField.getText());
-        employee.setEmailId(emailTextField.getText());
-        employee.setAge(Integer.parseInt(ageTextField.getText()));
-        employee.setPhoneNumber(contactTextField.getText());
-        employee.setAddress(addressTextArea.getText());
-        employee.setGender((String) genderComboBox.getSelectedItem());
-        JOptionPane.showMessageDialog(this, "Employee is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+        if (validation()) {
+            try {
 
-        firstNameTextField.setText("");
-        lastNameTextField.setText("");
-        emailTextField.setText("");
-        ageTextField.setText("");
-        contactTextField.setText("");
-        addressTextArea.setText("");
+                Organization organization = (Organization) employeeTypeComboBox1.getSelectedItem();
+                Employee employee = organization.getEmployeeDirectory().addEmployee();
+                employee.setFirstName(firstNameTextField.getText());
+                employee.setLastName(lastNameTextField.getText());
+                employee.setEmailId(emailTextField.getText());
+                employee.setAge(Integer.parseInt(ageTextField.getText()));
+                employee.setPhoneNumber(contactTextField.getText());
+                employee.setAddress(addressTextArea.getText());
+                employee.setGender((String) genderComboBox.getSelectedItem());
+                JOptionPane.showMessageDialog(this, "Employee is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                firstNameTextField.setText("");
+                lastNameTextField.setText("");
+                emailTextField.setText("");
+                ageTextField.setText("");
+                contactTextField.setText("");
+                addressTextArea.setText("");
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(this, "Please enter appropriate values in age field");
+            }
+        }
     }//GEN-LAST:event_BtnAddEmployeeActionPerformed
 
     private void BtnRemoveEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveEmployeeActionPerformed
@@ -300,7 +340,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void ageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageTextFieldActionPerformed
         // TODO add your handling code here:
- 
+
     }//GEN-LAST:event_ageTextFieldActionPerformed
 
 
@@ -308,7 +348,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JButton BtnAddEmployee;
     private javax.swing.JButton BtnBack;
     private javax.swing.JButton BtnRemoveEmployee;
-    private javax.swing.JButton BtnUpdate1;
     private javax.swing.JTextArea addressTextArea;
     private javax.swing.JTextField ageTextField;
     private javax.swing.JTextField contactTextField;

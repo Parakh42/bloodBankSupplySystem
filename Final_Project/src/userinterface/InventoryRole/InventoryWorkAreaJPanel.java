@@ -117,25 +117,25 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populateTable() {
-        try{
+        try {
             DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
-        
-        model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            if(request instanceof DoctorWorkRequest){
+
+            model.setRowCount(0);
+            for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
+                if (request instanceof DoctorWorkRequest) {
 //DoctorWorkRequest req= (DoctorWorkRequest) request;
-            Object[] row = new Object[4];
+                    Object[] row = new Object[4];
 
-            row[0] = request.getSender();
-            row[1] = request.getBloodGroup();
-            row[2] = ((DoctorWorkRequest) request);
-            row[3] = request.getStatus();
+                    row[0] = request.getSender();
+                    row[1] = request.getBloodGroup();
+                    row[2] = ((DoctorWorkRequest) request);
+                    row[3] = request.getStatus();
 
-            model.addRow(row);
-        }
+                    model.addRow(row);
+                }
 
-    }}
-        catch (Exception ex) {
+            }
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }
@@ -216,7 +216,8 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
 
         abNeTextField.setEnabled(false);
 
-        chartButton.setText("Chart");
+        chartButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        chartButton.setText("See graphical representation");
         chartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chartButtonActionPerformed(evt);
@@ -241,6 +242,7 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(inventoryTable);
 
+        processReqBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         processReqBtn.setText("Process request");
         processReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,89 +254,91 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(94, 94, 94)
+                            .addComponent(chartButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(94, 94, 94)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(abPosTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                        .addComponent(oNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(oPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(bNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(bPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(aNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(aPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                        .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(abPosTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                .addComponent(oNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(oPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(bNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(bPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(aNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(aPosTextField, javax.swing.GroupLayout.Alignment.TRAILING))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(chartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(processReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(processReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(aPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(aNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(bPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(aPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(aNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(bPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(bNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(oPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(oNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(abPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(bNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(oPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(oNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(abPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chartButton)
                     .addComponent(processReqBtn))
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -377,8 +381,8 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
             return;
         } else {
             DoctorWorkRequest request = (DoctorWorkRequest) inventoryTable.getValueAt(selectedRow, 2);
-            int quantity= request.getQuantity();
-            String bGroup= request.getBloodGroup();
+            int quantity = request.getQuantity();
+            String bGroup = request.getBloodGroup();
             int a = enterprise.getHash().get("A+");
             int b = enterprise.getHash().get("A-");
             int c = enterprise.getHash().get("B+");
@@ -387,51 +391,80 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
             int f = enterprise.getHash().get("AB-");
             int g = enterprise.getHash().get("O+");
             int h = enterprise.getHash().get("O-");
-        
-            if (bGroup.equalsIgnoreCase("A+")) {
-                int a1=a-quantity;
-                enterprise.getHash().put("A+", a1);
-                    aPosTextField.setText((String.valueOf(a1)));
 
-                } else if (bGroup.equalsIgnoreCase("A-")) {
-                    int b1=b-quantity;
+            if (bGroup.equalsIgnoreCase("A+")) {
+                if (a <= 0 && a < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int a1 = a - quantity;
+                    enterprise.getHash().put("A+", a1);
+                    aPosTextField.setText((String.valueOf(a1)));
+                }
+
+            } else if (bGroup.equalsIgnoreCase("A-")) {
+                if (b <= 0 && b < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int b1 = b - quantity;
                     enterprise.getHash().put("A-", b1);
                     aNeTextField.setText((String.valueOf(b1)));
+                }
 
-                } else if (bGroup.equalsIgnoreCase("B+")) {
-                    int c1=c-quantity;
+            } else if (bGroup.equalsIgnoreCase("B+")) {
+                if (c <= 0 && c < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int c1 = c - quantity;
                     enterprise.getHash().put("B+", c1);
                     bPosTextField.setText((String.valueOf(c1)));
+                }
 
-                } else if (bGroup.equalsIgnoreCase("B-")) {
-                    int d1=d-quantity;
+            } else if (bGroup.equalsIgnoreCase("B-")) {
+                if (d <= 0 && d < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int d1 = d - quantity;
                     enterprise.getHash().put("B-", d1);
                     bNeTextField.setText((String.valueOf(d1)));
+                }
 
-                } else if (bGroup.equalsIgnoreCase("AB+")) {
-                    int e1=e-quantity;
+            } else if (bGroup.equalsIgnoreCase("AB+")) {
+                if (e <= 0 && e < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int e1 = e - quantity;
                     enterprise.getHash().put("AB+", e1);
                     abPosTextField.setText((String.valueOf(e1)));
+                }
 
-                } else if (bGroup.equalsIgnoreCase("AB-")) {
-                    int f1=f-quantity;
+            } else if (bGroup.equalsIgnoreCase("AB-")) {
+                if (f <= 0 && f < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int f1 = f - quantity;
                     enterprise.getHash().put("AB-", f1);
                     abNeTextField.setText((String.valueOf(f1)));
+                }
 
-                } else if (bGroup.equalsIgnoreCase("O+")) {
-                    int g1=g-quantity;
+            } else if (bGroup.equalsIgnoreCase("O+")) {
+                if (g <= 0 && g < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int g1 = g - quantity;
                     enterprise.getHash().put("O+", g1);
                     oPosTextField.setText((String.valueOf(g1)));
+                }
 
-                } else if(bGroup.equalsIgnoreCase("O-")){
-                    int h1=h-quantity;
+            } else if (bGroup.equalsIgnoreCase("O-")) {
+                if (h <= 0 && h < quantity) {
+                    JOptionPane.showMessageDialog(this, "Required blood group is not available ", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int h1 = h - quantity;
                     enterprise.getHash().put("O-", h1);
                     oNeTextField.setText((String.valueOf(h1)));
+                }
 
-                }
-                else{
-                    JOptionPane.showMessageDialog(this,"Required quantity is currently unavailable !","Warning",JOptionPane.WARNING_MESSAGE);
-                }
+            }
         }
     }//GEN-LAST:event_processReqBtnActionPerformed
 

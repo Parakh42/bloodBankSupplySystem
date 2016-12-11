@@ -97,38 +97,38 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(enterpriseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 68, 684, 166));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 860, 166));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Enterprise type:");
         jLabel1.setVerifyInputWhenFocusTarget(false);
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 360, 160, 39));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 160, 39));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Network:");
         jLabel2.setVerifyInputWhenFocusTarget(false);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 281, 160, 39));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 160, 39));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel3.setText("Name:");
         jLabel3.setVerifyInputWhenFocusTarget(false);
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 448, 160, 39));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 160, 39));
 
         networkComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(networkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 291, 241, -1));
+        add(networkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 241, -1));
 
         enterpriseTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(enterpriseTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 370, 241, -1));
-        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 458, 241, -1));
+        add(enterpriseTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 241, -1));
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 241, -1));
 
         submitButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        submitButton.setText("Submit");
+        submitButton.setText("Create an enterprise");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
             }
         });
-        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 595, -1, -1));
+        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 580, -1, -1));
 
         backButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backButton.setText("<<Back");
@@ -137,11 +137,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
-        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 595, -1, -1));
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel4.setText("Manage Enterprises:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 14, 220, 36));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 340, 36));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed

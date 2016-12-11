@@ -89,21 +89,21 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(networkJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 82, 724, 218));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 724, 218));
 
         submitJButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        submitJButton.setText("Submit");
+        submitJButton.setText("Create network");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 623, -1, -1));
-        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 361, 214, -1));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 200, -1));
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 214, 30));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Name:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 359, 76, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 76, -1));
 
         backJButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
@@ -112,11 +112,11 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 623, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel2.setText("Manage Networks");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 11, 190, 53));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 300, 53));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed

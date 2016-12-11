@@ -51,33 +51,33 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Result");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 254, 80, -1));
-        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 252, 250, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 80, -1));
+        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 250, -1));
 
-        backJButton.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backJButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 427, 80, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 80, -1));
 
-        submitJButton.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        submitJButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         submitJButton.setText("Submit Result");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 427, -1, -1));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Lab Request Work Area");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 56, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

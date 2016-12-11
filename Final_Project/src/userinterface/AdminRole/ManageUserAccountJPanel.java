@@ -36,18 +36,18 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         populateOrganizationComboBox();
         populateTable();
     }
-    
+
     public void populateOrganizationComboBox() {
         organizationComboBox.removeAllItems();
-        
+
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             organizationComboBox.addItem(organization);
         }
     }
-    
+
     public void populatePersonComboBox(Organization organization) {
         personComboBox.removeAllItems();
-        
+
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
             personComboBox.addItem(employee);
         }
@@ -55,19 +55,19 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             personComboBox.addItem(donor);
         }
     }
-    
+
     private void populateRoleComboBox(Organization organization) {
         roleComboBox.removeAllItems();
         for (Role role : organization.getSupportedRole()) {
             roleComboBox.addItem(role);
         }
     }
-    
+
     public void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) manageUserTable.getModel();
         model.setRowCount(0);
-        
+
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
                 Object row[] = new Object[2];
@@ -76,6 +76,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 ((DefaultTableModel) manageUserTable.getModel()).addRow(row);
             }
         }
+    }
+
+    public boolean validation() {
+        if (userNameTextField.getText().equals("") || passwordField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return false;
+        }
+        return true;
+
     }
 
     /**
@@ -105,10 +114,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage User Account");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 53, -1, 31));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, 31));
 
         manageUserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,27 +141,27 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             manageUserTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 110, -1, 130));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 680, 130));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Organization :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 277, 140, 24));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 140, 24));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel3.setText("Person :");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 307, 140, 24));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 140, 24));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setText("Role :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 337, 140, 24));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 140, 24));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("User Name :");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 367, 140, 24));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 140, 24));
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setText("Password :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 397, 140, 24));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 140, 24));
 
         organizationComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -160,15 +169,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 organizationComboBoxActionPerformed(evt);
             }
         });
-        add(organizationComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 279, 90, -1));
+        add(organizationComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 90, -1));
 
         personComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(personComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 309, 90, -1));
+        add(personComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 90, -1));
 
         roleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(roleComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 339, 90, -1));
-        add(userNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 369, 286, -1));
-        add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 399, 286, -1));
+        add(roleComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 90, -1));
+        add(userNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 286, -1));
+        add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 286, -1));
 
         BtnCreate.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnCreate.setText("Create");
@@ -177,7 +186,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 BtnCreateActionPerformed(evt);
             }
         });
-        add(BtnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 456, -1, -1));
+        add(BtnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, -1, -1));
 
         BtnBack.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         BtnBack.setText("<<Back");
@@ -191,18 +200,20 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     private void BtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateActionPerformed
         // TODO add your handling code here:
-        String userName = userNameTextField.getText();
-        char[] passwordCharArray = passwordField.getPassword();
-        String password = String.valueOf(passwordCharArray);
-        Organization organization = (Organization) organizationComboBox.getSelectedItem();
-        Person person = (Person) personComboBox.getSelectedItem();
-        Role role = (Role) roleComboBox.getSelectedItem();
-        organization.getUserAccountDirectory().createUserAccount(userName, password, person, role);        
-        populateTable();
-        JOptionPane.showMessageDialog(this, "User Account is created successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
-        
-        userNameTextField.setText("");
-        passwordField.setText("");
+        if (validation()) {
+            String userName = userNameTextField.getText();
+            char[] passwordCharArray = passwordField.getPassword();
+            String password = String.valueOf(passwordCharArray);
+            Organization organization = (Organization) organizationComboBox.getSelectedItem();
+            Person person = (Person) personComboBox.getSelectedItem();
+            Role role = (Role) roleComboBox.getSelectedItem();
+            organization.getUserAccountDirectory().createUserAccount(userName, password, person, role);
+            populateTable();
+            JOptionPane.showMessageDialog(this, "User Account is created successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+            userNameTextField.setText("");
+            passwordField.setText("");
+        }
     }//GEN-LAST:event_BtnCreateActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed

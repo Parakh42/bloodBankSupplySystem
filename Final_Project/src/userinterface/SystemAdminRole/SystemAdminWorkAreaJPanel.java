@@ -97,9 +97,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageNetworkButton = new javax.swing.JButton();
         manageEnterpriseButton = new javax.swing.JButton();
         manageEnterpriseAdminButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                jTreeValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTree);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -122,14 +128,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jSplitPane1.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Selected node:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 78, 160, 43));
 
         selectedNodeJLabel.setText("<view_selected_node>");
-        jPanel2.add(selectedNodeJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 80, 208, 38));
 
         manageNetworkButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageNetworkButton.setText("Manage network");
@@ -138,7 +141,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageNetworkButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(manageNetworkButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 210, 269, 37));
 
         manageEnterpriseButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageEnterpriseButton.setText("Manage enterprise");
@@ -147,7 +149,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageEnterpriseButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(manageEnterpriseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 313, 269, 37));
 
         manageEnterpriseAdminButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageEnterpriseAdminButton.setText("Manage enterprise admin");
@@ -156,7 +157,45 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageEnterpriseAdminButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(manageEnterpriseAdminButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 415, -1, 37));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setText("System admin work area");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(manageNetworkButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(manageEnterpriseButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(manageEnterpriseAdminButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectedNodeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(237, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectedNodeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97)
+                .addComponent(manageNetworkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(manageEnterpriseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addComponent(manageEnterpriseAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(254, Short.MAX_VALUE))
+        );
 
         jSplitPane1.setRightComponent(jPanel2);
 
@@ -197,9 +236,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageEnterpriseAdminButtonActionPerformed
 
+    private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
+        // TODO add your handling code here:
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree.getLastSelectedPathComponent();
+        if (selectedNode != null) {
+            selectedNodeJLabel.setText(selectedNode.toString());
+        }
+    }//GEN-LAST:event_jTreeValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

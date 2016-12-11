@@ -72,19 +72,17 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         BtnAddOrganization = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Organization");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 81, -1, 41));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 41));
 
         manageOrganizationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Name"
@@ -96,32 +94,32 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             manageOrganizationTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 159, -1, 93));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 740, 120));
 
-        jLabel2.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel2.setText("Organization Type");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 336, -1, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, 30));
 
         organizationTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(organizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 337, 100, 30));
+        add(organizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 100, 30));
 
-        BtnAddOrganization.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnAddOrganization.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnAddOrganization.setText("Add Organization");
         BtnAddOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddOrganizationActionPerformed(evt);
             }
         });
-        add(BtnAddOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 402, 159, -1));
+        add(BtnAddOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 180, -1));
 
-        BtnBack.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnBack.setText("<<Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
             }
         });
-        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 520, 94, -1));
+        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 94, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAddOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddOrganizationActionPerformed

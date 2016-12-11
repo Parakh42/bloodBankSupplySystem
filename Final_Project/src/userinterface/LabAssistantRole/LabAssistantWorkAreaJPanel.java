@@ -76,6 +76,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -103,30 +104,30 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 190, 715, 185));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 715, 185));
 
-        btnSend.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnSend.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnSend.setText("Send result");
         btnSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendActionPerformed(evt);
             }
         });
-        add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 486, 127, -1));
+        add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 400, 127, -1));
 
-        btnAssign.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnAssign.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnAssign.setText("Assign to me");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
-        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 486, 166, -1));
+        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 166, -1));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Lab Assistant Work Area");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 65, 422, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 422, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed

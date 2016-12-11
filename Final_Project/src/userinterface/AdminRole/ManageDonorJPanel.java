@@ -26,7 +26,6 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageDonorJPanel
      */
-    
     ManageDonorJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -34,7 +33,7 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         populateDonorComboBox();
         //populateTable();
     }
-    
+
     public void populateDonorComboBox() {
         donorComboBox.removeAllItems();
         for (Organization organization : organizationDirectory.getOrganizationList()) {
@@ -43,17 +42,57 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void populateTable(Organization organization) {
         DefaultTableModel model = (DefaultTableModel) manageDonorTable.getModel();
         model.setRowCount(0);
-        
+
         for (Donor donor : organization.getDonorDirectory().getDonorList()) {
             Object[] row = new Object[2];
             row[0] = donor.getDonorId();
             row[1] = donor.getFirstName();
             model.addRow(row);
         }
+    }
+
+    public boolean validation() {
+        if (firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || emailTextField.getText().equals("") || ageTextField.getText().equals("")
+                || contactNumberTextField.getText().equals("") || addressTextArea.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return false;
+        } else {
+            String namePattern = "[a-zA-Z]+\\.?";
+            String name = firstNameTextField.getText();
+
+            if (!(name.matches(namePattern))) {
+
+                JOptionPane.showMessageDialog(null, "Please enter a valid first name");
+                return false;
+            }
+
+            String namePattern2 = "[a-zA-Z]+\\.?";
+            String lastName = lastNameTextField.getText();
+
+            if (!(lastName.matches(namePattern2))) {
+
+                JOptionPane.showMessageDialog(null, "Please enter a valid last name");
+                return false;
+            }
+
+            String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            String email = emailTextField.getText();
+
+            if (!(email.matches(emailPattern))) {
+
+                JOptionPane.showMessageDialog(null, "Please enter a valid email ID ");
+                return false;
+            }
+
+        }
+
+        return true;
+
     }
 
     /**
@@ -86,23 +125,20 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
         BtnAddDonor = new javax.swing.JButton();
         BtnRemoveDonor = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
-        BtnUpdate = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         genderComboBox = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Donor");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 61, -1, 41));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 41));
 
         manageDonorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Name"
@@ -114,46 +150,46 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
             manageDonorTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 120, -1, 91));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 770, 91));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Organization :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 244, 100, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 150, -1));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel3.setText("First Name :");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 270, 100, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 150, -1));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setText("Last Name :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 296, 100, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 150, -1));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("Email Id :");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 322, 100, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 150, -1));
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setText("Age :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 348, 100, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 150, -1));
 
-        jLabel7.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel7.setText("Contact Number :");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 405, 100, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, 150, -1));
 
-        jLabel9.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel9.setText("Address :");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 433, 100, -1));
-        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 267, 257, -1));
-        add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 293, 257, -1));
-        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 319, 257, -1));
-        add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 345, 257, -1));
-        add(contactNumberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 402, 257, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 150, -1));
+        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 257, -1));
+        add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 257, -1));
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 257, -1));
+        add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 257, -1));
+        add(contactNumberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 257, -1));
 
         addressTextArea.setColumns(20);
         addressTextArea.setRows(5);
         jScrollPane2.setViewportView(addressTextArea);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 433, 257, 37));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 550, 260, 70));
 
         donorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         donorComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -161,45 +197,41 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
                 donorComboBoxActionPerformed(evt);
             }
         });
-        add(donorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 241, 100, -1));
+        add(donorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 100, -1));
 
-        BtnAddDonor.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        BtnAddDonor.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnAddDonor.setText("Add Donor");
         BtnAddDonor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddDonorActionPerformed(evt);
             }
         });
-        add(BtnAddDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 481, 107, -1));
+        add(BtnAddDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 670, 170, -1));
 
-        BtnRemoveDonor.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        BtnRemoveDonor.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnRemoveDonor.setText("Remove Donor");
         BtnRemoveDonor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRemoveDonorActionPerformed(evt);
             }
         });
-        add(BtnRemoveDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 512, -1, -1));
+        add(BtnRemoveDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 720, 170, -1));
 
-        BtnBack.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        BtnBack.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnBack.setText("<< Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
             }
         });
-        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 548, 102, -1));
+        add(BtnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, 120, -1));
 
-        BtnUpdate.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        BtnUpdate.setText("Update Details");
-        add(BtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 548, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel11.setText("Gender :");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 374, 100, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 150, -1));
 
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
-        add(genderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 371, 100, -1));
+        add(genderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRemoveDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveDonorActionPerformed
@@ -221,25 +253,36 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
 
     private void BtnAddDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddDonorActionPerformed
         // TODO add your handling code here:
-        Organization organization = (Organization) donorComboBox.getSelectedItem();
-        Donor donor = organization.getDonorDirectory().addDonor();
-        donor.setFirstName(firstNameTextField.getText());
-        donor.setLastName(lastNameTextField.getText());
-        donor.setEmailId(emailTextField.getText());
-        donor.setAge(Integer.parseInt(ageTextField.getText()));
-        donor.setPhoneNumber(contactNumberTextField.getText());
-        donor.setAddress(addressTextArea.getText());
-        donor.setGender((String) genderComboBox.getSelectedItem());
-        JOptionPane.showMessageDialog(null, "Donor is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
-        
-        populateTable(organization);
-        
-        firstNameTextField.setText("");
-        lastNameTextField.setText("");
-        emailTextField.setText("");
-        ageTextField.setText("");
-        contactNumberTextField.setText("");
-        addressTextArea.setText("");
+        if (validation()) {
+            int a = (Integer.parseInt(ageTextField.getText()));
+            if (a < 17) {
+                JOptionPane.showMessageDialog(this, "You must be atleast 17 years old for donation !", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    Organization organization = (Organization) donorComboBox.getSelectedItem();
+                    Donor donor = organization.getDonorDirectory().addDonor();
+                    donor.setFirstName(firstNameTextField.getText());
+                    donor.setLastName(lastNameTextField.getText());
+                    donor.setEmailId(emailTextField.getText());
+                    donor.setAge(Integer.parseInt(ageTextField.getText()));
+                    donor.setPhoneNumber(contactNumberTextField.getText());
+                    donor.setAddress(addressTextArea.getText());
+                    donor.setGender((String) genderComboBox.getSelectedItem());
+                    JOptionPane.showMessageDialog(null, "Donor is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                    populateTable(organization);
+
+                    firstNameTextField.setText("");
+                    lastNameTextField.setText("");
+                    emailTextField.setText("");
+                    ageTextField.setText("");
+                    contactNumberTextField.setText("");
+                    addressTextArea.setText("");
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Please select appropriate values in age field");
+                }
+            }
+        }
     }//GEN-LAST:event_BtnAddDonorActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
@@ -262,7 +305,6 @@ public class ManageDonorJPanel extends javax.swing.JPanel {
     private javax.swing.JButton BtnAddDonor;
     private javax.swing.JButton BtnBack;
     private javax.swing.JButton BtnRemoveDonor;
-    private javax.swing.JButton BtnUpdate;
     private javax.swing.JTextArea addressTextArea;
     private javax.swing.JTextField ageTextField;
     private javax.swing.JTextField contactNumberTextField;
