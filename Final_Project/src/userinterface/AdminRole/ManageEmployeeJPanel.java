@@ -30,7 +30,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageEmployeeJPanel
      */
-
     ManageEmployeeJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -189,6 +188,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 257, 315, -1));
         add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 283, 315, -1));
         add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 309, 315, -1));
+
+        ageTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ageTextFieldActionPerformed(evt);
+            }
+        });
         add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 335, 315, -1));
         add(contactTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 387, 315, -1));
 
@@ -265,10 +270,13 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete employee detail", "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
-                Employee employee = (Employee) manageEmployeeTable.getValueAt(selectedRow, 0);
-                Organization organization = (Organization) employeeTypeComboBox1.getSelectedItem();
-                organization.getEmployeeDirectory().removeEmployee(employee);
-                populateTable(organization);
+                //Employee employee = (Employee) manageEmployeeTable.getValueAt(selectedRow, 0);
+                for (Organization organization : organizationDirectory.getOrganizationList()) {
+                    for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                        organization.getEmployeeDirectory().removeEmployee(employee);
+                        populateTable(organization);
+                    }
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -289,6 +297,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             populateTable(organization);
         }
     }//GEN-LAST:event_organizationTypeComboBoxActionPerformed
+
+    private void ageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageTextFieldActionPerformed
+        // TODO add your handling code here:
+ 
+    }//GEN-LAST:event_ageTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -150,10 +150,13 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeComboBox.getSelectedItem();
 
         if (network == null || type == null) {
-            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            JOptionPane.showMessageDialog(this, "Invalid Input!");
             return;
         }
-
+        if(nameTextField.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Name field can not be empty", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
         String name = nameTextField.getText();
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         populateTable();
