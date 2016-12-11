@@ -119,12 +119,12 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 165, 679, 105));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 110, 679, 160));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Donor Work Area");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 31, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 320, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void datePickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datePickerActionPerformed

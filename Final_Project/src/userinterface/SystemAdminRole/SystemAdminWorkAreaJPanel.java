@@ -122,11 +122,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jSplitPane1.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setText("Selected node:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 78, 160, 43));
 
         selectedNodeJLabel.setText("<view_selected_node>");
+        jPanel2.add(selectedNodeJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 80, 208, 38));
 
         manageNetworkButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageNetworkButton.setText("Manage network");
@@ -135,6 +138,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageNetworkButtonActionPerformed(evt);
             }
         });
+        jPanel2.add(manageNetworkButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 210, 269, 37));
 
         manageEnterpriseButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageEnterpriseButton.setText("Manage enterprise");
@@ -143,6 +147,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageEnterpriseButtonActionPerformed(evt);
             }
         });
+        jPanel2.add(manageEnterpriseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 313, 269, 37));
 
         manageEnterpriseAdminButton.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         manageEnterpriseAdminButton.setText("Manage enterprise admin");
@@ -151,39 +156,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageEnterpriseAdminButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(selectedNodeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(manageNetworkButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manageEnterpriseButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manageEnterpriseAdminButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(328, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectedNodeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89)
-                .addComponent(manageNetworkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(manageEnterpriseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(manageEnterpriseAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(346, Short.MAX_VALUE))
-        );
+        jPanel2.add(manageEnterpriseAdminButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 415, -1, 37));
 
         jSplitPane1.setRightComponent(jPanel2);
 

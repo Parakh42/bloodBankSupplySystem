@@ -204,6 +204,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 517, 126, -1));
         add(lastNameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 359, 136, -1));
         add(emailJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 388, 136, -1));
+
+        ageJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ageJTextFieldActionPerformed(evt);
+            }
+        });
         add(ageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 456, 136, -1));
         add(contactJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 486, 136, -1));
 
@@ -242,10 +248,65 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    
+    public boolean validation(){
+        if(usernameJTextField.getText().equals("") || passwordJTextField.getText().equals("")|| firstNameJTextField.getText().equals("")||
+                lastNameJTextField.getText().equals("")||emailJTextField.getText().equals("")|| ageJTextField.getText().equals("")||
+                contactJTextField.getText().equals("")||addressTextArea.getText().equals("")){
+        
+            
+            JOptionPane.showMessageDialog(null,"All fields are mandatory");
+            return false;
+        }   
+        else{
+            String namePattern = "[a-zA-Z]+\\.?";
+            String name = firstNameJTextField.getText();
+             
+        if(!(name.matches(namePattern)))
+        {
+                    
+        JOptionPane.showMessageDialog(null, "Please enter a valid first name");
+        return false;
+        }
+            
+            
+             String namePattern2 = "[a-zA-Z]+\\.?";
+             String lastName = lastNameJTextField.getText();
+             
+             if(!(lastName.matches(namePattern2)))
+                {
+                   
+                    JOptionPane.showMessageDialog(null, "Please enter a valid last name");
+                    return false;
+                }
+             
+             
+             String emailPattern= "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+             String email=emailJTextField.getText();
+             
+             if(!(email.matches(emailPattern)))
+             {
+                 
+                 JOptionPane.showMessageDialog(null, "Please enter a valid email ID ");
+                 return  false;
+             } 
+             
+        }
+        
+        
+        return true;
+        
+    }
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
+        if(validation()){
+            int a=(Integer.parseInt(ageJTextField.getText()));
+             if(a<17){
+                 JOptionPane.showMessageDialog(this, "You must be atleast 17 years old for donation !","Warning",JOptionPane.WARNING_MESSAGE);
+             }
+             else{
+        try{
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-
         Employee employee = enterprise.getEmployeeDirectory().addEmployee();
         String userName = usernameJTextField.getText();
         String password = passwordJTextField.getText();
@@ -275,7 +336,20 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         ageJTextField.setText("");
         contactJTextField.setText("");
         addressTextArea.setText("");
+        }
+        catch(NumberFormatException nfe)
+        {
+            JOptionPane.showMessageDialog(null, "Please select appropriate values in Price Fields");
+        }
+        
+        }
+        }
+        
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void ageJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ageJTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
