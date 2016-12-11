@@ -54,79 +54,48 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         BtnManageUser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        enterpriseJLabel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        enterpriseJLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         enterpriseJLabel.setText("Enterprise :");
+        add(enterpriseJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 100, 120, 30));
 
-        valueJLabel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        valueJLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         valueJLabel.setText("<Value>");
+        add(valueJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 100, 120, 30));
 
-        BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageOrganization.setText("Manage Organization");
         BtnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnManageOrganizationActionPerformed(evt);
             }
         });
+        add(BtnManageOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 205, -1));
 
-        BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageEmployee.setText("Manage Employee");
         BtnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnManageEmployeeActionPerformed(evt);
             }
         });
+        add(BtnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 205, -1));
 
-        BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageUser.setText("Manage User");
         BtnManageUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnManageUserActionPerformed(evt);
             }
         });
+        add(BtnManageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 205, -1));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Hospital Admin Work Area");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(365, 365, 365)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(129, 129, 129)
-                                .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(238, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addComponent(BtnManageOrganization)
-                .addGap(39, 39, 39)
-                .addComponent(BtnManageEmployee)
-                .addGap(40, 40, 40)
-                .addComponent(BtnManageUser)
-                .addContainerGap(202, Short.MAX_VALUE))
-        );
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 16, 412, 31));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageOrganizationActionPerformed

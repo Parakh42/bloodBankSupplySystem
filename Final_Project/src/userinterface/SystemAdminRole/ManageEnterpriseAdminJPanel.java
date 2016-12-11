@@ -116,9 +116,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setText("Manage Enterprise Admin");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 274, 40));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 440, 40));
 
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

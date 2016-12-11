@@ -186,7 +186,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Organization :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 100, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setText("First Name :");
@@ -210,7 +210,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel9.setText("Address :");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 110, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 550, 110, -1));
 
         organizationTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +238,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         addressTextArea.setRows(5);
         jScrollPane2.setViewportView(addressTextArea);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, 330, 46));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 550, 330, 46));
 
         BtnAddEmployee.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnAddEmployee.setText("Add Employee");

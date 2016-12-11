@@ -26,13 +26,13 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="24" style="1"/>
+          <Font name="Calibri" size="36" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Manage Enterprise Admin"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="10" width="274" height="40"/>
+          <AbsoluteConstraints x="60" y="10" width="440" height="40"/>
         </Constraint>
       </Constraints>
     </Component>

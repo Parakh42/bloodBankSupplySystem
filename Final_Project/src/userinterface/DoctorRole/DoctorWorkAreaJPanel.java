@@ -15,6 +15,7 @@ import business.Organization.ReceptionOrganization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DoctorWorkRequest;
 import business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,6 +65,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         }
     }
 
+    public boolean validation(){
+        if(quantityTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return false;
+        }
+            
+        return true;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,6 +87,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         quantityTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         submitBtn = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         workReqJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,7 +108,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workReqJTable);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setText("Doctor Work Area");
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -182,6 +193,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
+        if(validation()){
+         try{   
+        
         docRequest = new DoctorWorkRequest();
         docRequest.setBloodGroup((String) bloodGrpComboBx.getSelectedItem());
         docRequest.setQuantity(Integer.parseInt(quantityTextField.getText()));
@@ -200,6 +214,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getWorkRequestList().add(docRequest);
         }
         populateRequestTable();
+        }
+         catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(this, "Please enter appropriate values in age field");
+            }
+        }
     }//GEN-LAST:event_submitBtnActionPerformed
 
 

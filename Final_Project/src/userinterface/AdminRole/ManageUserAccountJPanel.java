@@ -112,6 +112,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         BtnCreate = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N

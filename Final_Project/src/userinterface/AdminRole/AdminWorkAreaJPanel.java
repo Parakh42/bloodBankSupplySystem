@@ -55,16 +55,20 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         BtnManageUser = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Admin Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 33, 284, 31));
 
         enterpriseJLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         enterpriseJLabel.setText("Enterprise :");
+        add(enterpriseJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 109, 120, 30));
 
         valueJLabel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         valueJLabel.setText("<Value>");
+        add(valueJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 109, 120, 30));
 
         BtnManageOrganization.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageOrganization.setText("Manage Organization");
@@ -73,6 +77,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 BtnManageOrganizationActionPerformed(evt);
             }
         });
+        add(BtnManageOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 204, -1, -1));
 
         BtnManageEmployee.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageEmployee.setText("Manage Employee");
@@ -81,6 +86,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 BtnManageEmployeeActionPerformed(evt);
             }
         });
+        add(BtnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 283, 195, -1));
 
         BtnManageDonor.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageDonor.setText("Manage Donor");
@@ -89,6 +95,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 BtnManageDonorActionPerformed(evt);
             }
         });
+        add(BtnManageDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 364, 195, -1));
 
         BtnManageUser.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         BtnManageUser.setText("Manage User");
@@ -97,49 +104,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 BtnManageUserActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnManageDonor, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnManageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(557, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addComponent(BtnManageOrganization)
-                .addGap(48, 48, 48)
-                .addComponent(BtnManageEmployee)
-                .addGap(50, 50, 50)
-                .addComponent(BtnManageDonor)
-                .addGap(48, 48, 48)
-                .addComponent(BtnManageUser)
-                .addContainerGap(126, Short.MAX_VALUE))
-        );
+        add(BtnManageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 443, 195, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageOrganizationActionPerformed
