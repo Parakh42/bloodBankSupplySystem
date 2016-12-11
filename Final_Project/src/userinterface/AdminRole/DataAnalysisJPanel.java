@@ -24,8 +24,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -67,18 +69,24 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         donorHealthBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         donorGenderButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        donorGenderButton.setText("Donor(gender)");
+        donorGenderButton.setText("View Chart");
         donorGenderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 donorGenderButtonActionPerformed(evt);
             }
         });
-        add(donorGenderButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 126, -1, -1));
+        add(donorGenderButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 140, -1));
 
         backButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         backButton.setText("<<Back");
@@ -90,35 +98,64 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         networkBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        networkBtn.setText("Network");
+        networkBtn.setText("View Chart");
         networkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 networkBtnActionPerformed(evt);
             }
         });
-        add(networkBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 200, 145, -1));
+        add(networkBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 145, -1));
 
         donorHealthBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        donorHealthBtn.setText("Donor Health");
+        donorHealthBtn.setText("View Chart");
         donorHealthBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 donorHealthBtnActionPerformed(evt);
             }
         });
-        add(donorHealthBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 275, 145, -1));
+        add(donorHealthBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 145, -1));
 
         jButton4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jButton4.setText("Vital Signs");
+        jButton4.setText("View Chart");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 349, 145, -1));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 145, -1));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setText("Data analysis");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 16, 331, 46));
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel2.setText("Age Group :");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 240, 30));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel3.setText("Donor Gender Ratio:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 30));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel4.setText("Network Level:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 240, 30));
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel5.setText("Donor Health :");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 240, 30));
+
+        jButton5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jButton5.setText("View Chart");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 145, -1));
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel6.setText("Donor Vital Signs :");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 240, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void donorGenderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorGenderButtonActionPerformed
@@ -282,17 +319,17 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
             }
             }
         }
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(haemo, "Number", "haemoglobin");
-        dataset.setValue(bp, "Number", "bloodpressure");
-        dataset.setValue(weight, "Number", "weight");
-        dataset.setValue(temp, "Number", "temperature");
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        dataset.setValue("haemoglobin", haemo);
+        dataset.setValue("bloodpressure", bp);
+        dataset.setValue("weight", weight);
+        dataset.setValue("temperature", temp);
         
         
-        JFreeChart chart = ChartFactory.createBarChart("VitalSigns", "VitalSigns", "Quantity", dataset,PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.black);
-        
+        JFreeChart chart = ChartFactory.createPieChart("DonorInformation", dataset, true, true, true);
+//        CategoryPlot p = chart.getCategoryPlot();
+//        p.setRangeGridlinePaint(Color.black);
+        PiePlot p = (PiePlot)chart.getPlot();
         ChartFrame frame = new ChartFrame("Donor Information", chart);
         
         frame.setVisible(true);
@@ -300,13 +337,58 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int m=0, f=0, g=0;
+        
+        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
+            if(org instanceof DonorOrganization){
+            for(Donor donor : org.getDonorDirectory().getDonorList())
+            {
+                int age = donor.getAge();
+                
+            if(age >= 17 && age<= 35){
+               m++;
+            }
+            if(age >= 36 && age<= 50){
+                f++;
+            }
+            if(age >=51 && age<= 65){
+                g++;
+            }
+            
+        }
+            }
+        }
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(m, "Number", "Group1(17 - 35");
+        dataset.setValue(f, "Number", "Group2(36 - 50");
+        dataset.setValue(g, "Number", "Group3(51 - 65");
+        
+        JFreeChart chart = ChartFactory.createBarChart("Age Chart", "Age Group", "Number", dataset,PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.black);
+        
+        ChartFrame frame = new ChartFrame("Age Bar Chart", chart);
+        
+        frame.setVisible(true);
+        frame.setSize(450,500);
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton donorGenderButton;
     private javax.swing.JButton donorHealthBtn;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton networkBtn;
     // End of variables declaration//GEN-END:variables
 }
