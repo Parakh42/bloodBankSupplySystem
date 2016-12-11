@@ -53,6 +53,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         BtnManageEmployee = new javax.swing.JButton();
         BtnManageDonor = new javax.swing.JButton();
         BtnManageUser = new javax.swing.JButton();
+        dataButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,6 +106,15 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(BtnManageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 443, 195, -1));
+
+        dataButton.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        dataButton.setText("Data analysis");
+        dataButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataButtonActionPerformed(evt);
+            }
+        });
+        add(dataButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 200, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageOrganizationActionPerformed
@@ -139,12 +149,21 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_BtnManageUserActionPerformed
 
+    private void dataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataButtonActionPerformed
+        // TODO add your handling code here:
+        DataAnalysisJPanel dataAnalysisJPanel = new DataAnalysisJPanel(userProcessContainer, enterprise, organization, business);
+        userProcessContainer.add("DataAnalysisJPanel", dataAnalysisJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_dataButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnManageDonor;
     private javax.swing.JButton BtnManageEmployee;
     private javax.swing.JButton BtnManageOrganization;
     private javax.swing.JButton BtnManageUser;
+    private javax.swing.JButton dataButton;
     private javax.swing.JLabel enterpriseJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel valueJLabel;
