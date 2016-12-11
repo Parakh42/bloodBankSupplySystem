@@ -23,7 +23,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
-    private HospitalEnterprise enterprise;
+    private Enterprise enterprise;
     /**
      * Creates new form HospitalAdminWorkAreaJPanel
      */
@@ -34,7 +34,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.organization = organization;
         this.business = business;
-        this.enterprise =  (HospitalEnterprise) enterprise;
+        this.enterprise =   enterprise;
         valueJLabel.setText(enterprise.getName());
     }
 

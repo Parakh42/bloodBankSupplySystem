@@ -55,6 +55,20 @@ public class OrganizationDirectory {
             organizationList.add(organization);
         }
         
+        else if(type.getValue().equals(Type.HospitalAdmin.getValue())){
+            organization = new HospitalAdminOrganization();
+            organizationList.add(organization);
+        }
+        
+        else if(type.getValue().equals(Type.Doctor.getValue())){
+            organization = new DoctorOrganization();
+            organizationList.add(organization);
+        }
+        
+        else if(type.getValue().equals(Type.Pharmacist.getValue())){
+            organization = new PharmacistOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
     

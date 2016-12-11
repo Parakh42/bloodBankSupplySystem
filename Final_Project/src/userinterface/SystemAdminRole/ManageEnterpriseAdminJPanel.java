@@ -11,6 +11,8 @@ import business.Network.Network;
 import business.Person.Employee;
 import business.Person.Person;
 import business.Role.AdminRole;
+import business.Role.HospitalAdminRole;
+import business.Role.Role;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -254,7 +256,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         employee.setPhoneNumber(contactJTextField.getText());
         employee.setAddress(addressTextArea.getText());
         employee.setGender((String) genderComboBox.getSelectedItem());
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(userName, password, (Person) employee, new AdminRole());
+        Role role=null;
+        if(enterprise.getEnterpriseType() == Enterprise.EnterpriseType.BloodBank){
+            role=new AdminRole();
+        }
+        else {
+            role=new HospitalAdminRole();
+        }
+        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(userName, password, (Person) employee, role);
         populateTable();
         JOptionPane.showMessageDialog(this, "Enterprise Admin is added successfully", "Information", JOptionPane.INFORMATION_MESSAGE);
 

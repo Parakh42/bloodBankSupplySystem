@@ -48,6 +48,7 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = (BloodBankEnterprise) enterprise;
         populateMap();
+        populateTable();
     }
 
     public void populateMap() {
@@ -61,55 +62,54 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         enterprise.getHash().put("O-", 0);
 
         for (WorkRequest req : organization.getWorkQueue().getWorkRequestList()) {
-
             for (BloodSample bs : req.getBloodSampleCatalog().getBloodCatalog()) {
                 if (bs.getBloodGroup().equalsIgnoreCase("A+")) {
                     a = enterprise.getHash().get("A+");
                     a++;
                     enterprise.getHash().put("A+", a);
-                    jTextField1.setText((String.valueOf(a)));
+                    aPosTextField.setText((String.valueOf(a)));
 
                 } else if (bs.getBloodGroup().equalsIgnoreCase("A-")) {
                     b = enterprise.getHash().get("A-");
                     b++;
                     enterprise.getHash().put("A-", b);
-                    jTextField2.setText((String.valueOf(b)));
+                    aNeTextField.setText((String.valueOf(b)));
 
                 } else if (bs.getBloodGroup().equalsIgnoreCase("B+")) {
                     c = enterprise.getHash().get("B+");
                     c++;
                     enterprise.getHash().put("B+", c);
-                    jTextField3.setText((String.valueOf(c)));
+                    bPosTextField.setText((String.valueOf(c)));
 
                 } else if (bs.getBloodGroup().equalsIgnoreCase("B-")) {
                     d = enterprise.getHash().get("B-");
                     d++;
                     enterprise.getHash().put("B-", d);
-                    jTextField4.setText((String.valueOf(d)));
+                    bNeTextField.setText((String.valueOf(d)));
 
                 } else if (bs.getBloodGroup().equalsIgnoreCase("AB+")) {
                     e = enterprise.getHash().get("AB+");
                     e++;
                     enterprise.getHash().put("AB+", e);
-                    jTextField5.setText((String.valueOf(e)));
+                    abPosTextField.setText((String.valueOf(e)));
 
                 } else if (bs.getBloodGroup().equalsIgnoreCase("AB-")) {
                     f = enterprise.getHash().get("AB-");
                     f++;
                     enterprise.getHash().put("AB-", f);
-                    jTextField6.setText((String.valueOf(f)));
+                    abNeTextField.setText((String.valueOf(f)));
 
                 } else if (bs.getBloodGroup().equalsIgnoreCase("O+")) {
                     g = enterprise.getHash().get("O+");
                     g++;
                     enterprise.getHash().put("O+", g);
-                    jTextField7.setText((String.valueOf(g)));
+                    oPosTextField.setText((String.valueOf(g)));
 
                 } else {
                     h = enterprise.getHash().get("O-");
                     h++;
                     enterprise.getHash().put("O-", h);
-                    jTextField8.setText((String.valueOf(h)));
+                    oNeTextField.setText((String.valueOf(h)));
 
                 }
             }
@@ -117,9 +117,13 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+        try{
+            DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+        
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
+            if(request instanceof DoctorWorkRequest){
+//DoctorWorkRequest req= (DoctorWorkRequest) request;
             Object[] row = new Object[4];
 
             row[0] = request.getSender();
@@ -130,6 +134,10 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
 
+    }}
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     /**
@@ -150,14 +158,14 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        aPosTextField = new javax.swing.JTextField();
+        aNeTextField = new javax.swing.JTextField();
+        bPosTextField = new javax.swing.JTextField();
+        bNeTextField = new javax.swing.JTextField();
+        oPosTextField = new javax.swing.JTextField();
+        oNeTextField = new javax.swing.JTextField();
+        abPosTextField = new javax.swing.JTextField();
+        abNeTextField = new javax.swing.JTextField();
         chartButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
@@ -192,21 +200,21 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel9.setText("AB-");
 
-        jTextField1.setEnabled(false);
+        aPosTextField.setEnabled(false);
 
-        jTextField2.setEnabled(false);
+        aNeTextField.setEnabled(false);
 
-        jTextField3.setEnabled(false);
+        bPosTextField.setEnabled(false);
 
-        jTextField4.setEnabled(false);
+        bNeTextField.setEnabled(false);
 
-        jTextField5.setEnabled(false);
+        oPosTextField.setEnabled(false);
 
-        jTextField6.setEnabled(false);
+        oNeTextField.setEnabled(false);
 
-        jTextField7.setEnabled(false);
+        abPosTextField.setEnabled(false);
 
-        jTextField8.setEnabled(false);
+        abNeTextField.setEnabled(false);
 
         chartButton.setText("Chart");
         chartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -260,15 +268,15 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                .addComponent(abPosTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                .addComponent(oNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(oPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(bNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(bPosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(aNeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(aPosTextField, javax.swing.GroupLayout.Alignment.TRAILING))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(chartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -292,36 +300,36 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(aPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(aNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(bNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(oPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(oNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(abPosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(abNeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chartButton)
@@ -364,16 +372,77 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = inventoryTable.getSelectedRow();
 
-            if (selectedRow < 0) {
-                JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
-                return;
-            } else {
-                
-            }
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "please select a row!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            DoctorWorkRequest request = (DoctorWorkRequest) inventoryTable.getValueAt(selectedRow, 2);
+            int quantity= request.getQuantity();
+            String bGroup= request.getBloodGroup();
+            int a = enterprise.getHash().get("A+");
+            int b = enterprise.getHash().get("A-");
+            int c = enterprise.getHash().get("B+");
+            int d = enterprise.getHash().get("B-");
+            int e = enterprise.getHash().get("AB+");
+            int f = enterprise.getHash().get("AB-");
+            int g = enterprise.getHash().get("O+");
+            int h = enterprise.getHash().get("O-");
+        
+            if (bGroup.equalsIgnoreCase("A+")) {
+                int a1=a-quantity;
+                enterprise.getHash().put("A+", a1);
+                    aPosTextField.setText((String.valueOf(a1)));
+
+                } else if (bGroup.equalsIgnoreCase("A-")) {
+                    int b1=b-quantity;
+                    enterprise.getHash().put("A-", b1);
+                    aNeTextField.setText((String.valueOf(b1)));
+
+                } else if (bGroup.equalsIgnoreCase("B+")) {
+                    int c1=c-quantity;
+                    enterprise.getHash().put("B+", c1);
+                    bPosTextField.setText((String.valueOf(c1)));
+
+                } else if (bGroup.equalsIgnoreCase("B-")) {
+                    int d1=d-quantity;
+                    enterprise.getHash().put("B-", d1);
+                    bNeTextField.setText((String.valueOf(d1)));
+
+                } else if (bGroup.equalsIgnoreCase("AB+")) {
+                    int e1=e-quantity;
+                    enterprise.getHash().put("AB+", e1);
+                    abPosTextField.setText((String.valueOf(e1)));
+
+                } else if (bGroup.equalsIgnoreCase("AB-")) {
+                    int f1=f-quantity;
+                    enterprise.getHash().put("AB-", f1);
+                    abNeTextField.setText((String.valueOf(f1)));
+
+                } else if (bGroup.equalsIgnoreCase("O+")) {
+                    int g1=g-quantity;
+                    enterprise.getHash().put("O+", g1);
+                    oPosTextField.setText((String.valueOf(g1)));
+
+                } else if(bGroup.equalsIgnoreCase("O-")){
+                    int h1=h-quantity;
+                    enterprise.getHash().put("O-", h1);
+                    oNeTextField.setText((String.valueOf(h1)));
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Required quantity is currently unavailable !","Warning",JOptionPane.WARNING_MESSAGE);
+                }
+        }
     }//GEN-LAST:event_processReqBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField aNeTextField;
+    private javax.swing.JTextField aPosTextField;
+    private javax.swing.JTextField abNeTextField;
+    private javax.swing.JTextField abPosTextField;
+    private javax.swing.JTextField bNeTextField;
+    private javax.swing.JTextField bPosTextField;
     private javax.swing.JButton chartButton;
     private javax.swing.JTable inventoryTable;
     private javax.swing.JLabel jLabel1;
@@ -386,14 +455,8 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField oNeTextField;
+    private javax.swing.JTextField oPosTextField;
     private javax.swing.JButton processReqBtn;
     // End of variables declaration//GEN-END:variables
 }

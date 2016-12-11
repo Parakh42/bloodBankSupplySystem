@@ -22,7 +22,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
-    private BloodBankEnterprise enterprise;
+    private Enterprise enterprise;
     /**
      * Creates new form AdminWorkAreaJPanel
      */
@@ -33,7 +33,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.organization = organization;
         this.business = business;
-        this.enterprise = (BloodBankEnterprise) enterprise;
+        this.enterprise =  enterprise;
         valueJLabel.setText(enterprise.getName());
     }
 

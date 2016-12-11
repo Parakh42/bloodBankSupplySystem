@@ -159,8 +159,6 @@ public class MainJFrame extends javax.swing.JFrame {
                             if (userAccount != null) {
                                 inEnterprise = enterprise;
                                 inOrganization = organization;
-                                System.out.println("enterprise"+inEnterprise);
-                                System.out.println("organization:"+inOrganization);
                                 break;
                             }
                         }
@@ -184,7 +182,6 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         } else {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            System.out.println("user account"+userAccount.getUserName()+userAccount.getPassword()+userAccount.getRole().toString());
             userProcessContainer.add(userAccount.getRole().toString() + "workArea", userAccount.getRole().createWorkArea(userProcessContainer, userAccount, inOrganization, inEnterprise, system));
             layout.next(userProcessContainer);
         }

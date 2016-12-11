@@ -37,7 +37,7 @@ public class ManageOrganization1JPanel extends javax.swing.JPanel {
     private void populateComboBox() {
         organizationTypeComboBox.removeAllItems();
         for (Type type : Organization.Type.values()) {
-            if ((type.getValue().equals(Type.Doctor.getValue())) && (type.getValue().equals(Type.Pharmacist.getValue()))) {
+            if ((type.getValue().equals(Type.Doctor.getValue())) || (type.getValue().equals(Type.Pharmacist.getValue()))) {
                 organizationTypeComboBox.addItem(type);
             }
         }

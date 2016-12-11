@@ -28,8 +28,7 @@ public class EnterpriseDirectory {
             enterprise = new BloodBankEnterprise(name);
             enterpriseList.add(enterprise);
         }
-        else
-        {
+        if (type == Enterprise.EnterpriseType.Hospital){
             enterprise = new HospitalEnterprise(name);
             enterpriseList.add(enterprise);
         }
