@@ -72,6 +72,7 @@ public class ManageOrganization1JPanel extends javax.swing.JPanel {
         BtnAddOrganization = new javax.swing.JButton();
         BtnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N

@@ -302,20 +302,24 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void BtnRemoveEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveEmployeeActionPerformed
         // TODO add your handling code here:
         int selectedRow = manageEmployeeTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete employee detail", "Warning", dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                //Employee employee = (Employee) manageEmployeeTable.getValueAt(selectedRow, 0);
-                for (Organization organization : organizationDirectory.getOrganizationList()) {
-                    for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
-                        organization.getEmployeeDirectory().removeEmployee(employee);
-                        populateTable(organization);
+        try {
+            if (selectedRow >= 0) {
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete employee detail", "Warning", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    //Employee employee = (Employee) manageEmployeeTable.getValueAt(selectedRow, 0);
+                    for (Organization organization : organizationDirectory.getOrganizationList()) {
+                        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                            organization.getEmployeeDirectory().removeEmployee(employee);
+                            populateTable(organization);
+                        }
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }//GEN-LAST:event_BtnRemoveEmployeeActionPerformed
 

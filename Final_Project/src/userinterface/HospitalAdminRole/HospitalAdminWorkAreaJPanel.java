@@ -6,12 +6,23 @@
 package userinterface.HospitalAdminRole;
 
 import business.EcoSystem;
+import business.Enterprise.BloodBankEnterprise;
 import business.Enterprise.Enterprise;
 import business.Enterprise.HospitalEnterprise;
+import business.Network.Network;
 import business.Organization.Organization;
+import business.Person.Donor;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -53,6 +64,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         BtnManageEmployee = new javax.swing.JButton();
         BtnManageUser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BtnManageUser1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,6 +108,15 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Hospital Admin Work Area");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 16, 412, 31));
+
+        BtnManageUser1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        BtnManageUser1.setText("DataAnalysis");
+        BtnManageUser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnManageUser1ActionPerformed(evt);
+            }
+        });
+        add(BtnManageUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, 205, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageOrganizationActionPerformed
@@ -122,11 +143,23 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_BtnManageUserActionPerformed
 
+    private void BtnManageUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageUser1ActionPerformed
+        // TODO add your handling code here:
+        
+        DataAnalysisHospitalJPanel dataAnalysisHospitalJPanel = new DataAnalysisHospitalJPanel(userProcessContainer, enterprise, business);
+        userProcessContainer.add("DataAnalysisHospitalJPanel", dataAnalysisHospitalJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+        
+    }//GEN-LAST:event_BtnManageUser1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnManageEmployee;
     private javax.swing.JButton BtnManageOrganization;
     private javax.swing.JButton BtnManageUser;
+    private javax.swing.JButton BtnManageUser1;
     private javax.swing.JLabel enterpriseJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel valueJLabel;

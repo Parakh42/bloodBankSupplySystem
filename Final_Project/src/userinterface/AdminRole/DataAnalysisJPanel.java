@@ -9,14 +9,11 @@ import business.Enterprise.Enterprise;
 import business.Organization.DonorOrganization;
 import business.Organization.Organization;
 import business.EcoSystem;
-import business.Network.Network;
 import business.Organization.LabOrganization;
 import business.Organization.NutritionistOrganization;
-import static business.Organization.Organization.Type.Donor;
 import business.Person.Donor;
 import business.Person.VitalSigns;
 import business.WorkQueue.WorkRequest;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -42,7 +39,6 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
     public Enterprise enterprise;
     public Organization organization;
     public EcoSystem ecosystem;
-    
 
     public DataAnalysisJPanel(JPanel userProcessContainer, Enterprise enterprise, Organization organization, EcoSystem ecosystem) {
         initComponents();
@@ -51,8 +47,6 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.ecosystem = ecosystem;
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,13 +59,11 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
 
         donorGenderButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        networkBtn = new javax.swing.JButton();
         donorHealthBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -97,15 +89,6 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
-        networkBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        networkBtn.setText("View Chart");
-        networkBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                networkBtnActionPerformed(evt);
-            }
-        });
-        add(networkBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 145, -1));
-
         donorHealthBtn.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         donorHealthBtn.setText("View Chart");
         donorHealthBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +96,7 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
                 donorHealthBtnActionPerformed(evt);
             }
         });
-        add(donorHealthBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 145, -1));
+        add(donorHealthBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 145, -1));
 
         jButton4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton4.setText("View Chart");
@@ -122,7 +105,7 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 145, -1));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 145, -1));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setText("Data analysis");
@@ -130,19 +113,15 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Age Group :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 240, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 240, 30));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel3.setText("Donor Gender Ratio:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 30));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel4.setText("Network Level:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 240, 30));
-
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("Donor Health :");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 240, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 240, 30));
 
         jButton5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton5.setText("View Chart");
@@ -151,44 +130,43 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 145, -1));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 145, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setText("Donor Vital Signs :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 240, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 240, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void donorGenderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorGenderButtonActionPerformed
         // TODO add your handling code here:
-        int m=0, f=0;
-        
-        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
-            if(org instanceof DonorOrganization){
-            for(Donor donor : org.getDonorDirectory().getDonorList())
-            {
-                
-            if(donor.getGender().equalsIgnoreCase("male")){
-               m++;
-            }
-            if(donor.getGender().equalsIgnoreCase("female")){
-                f++;
-            }
-        }
+        int m = 0, f = 0;
+
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (org instanceof DonorOrganization) {
+                for (Donor donor : org.getDonorDirectory().getDonorList()) {
+
+                    if (donor.getGender().equalsIgnoreCase("male")) {
+                        m++;
+                    }
+                    if (donor.getGender().equalsIgnoreCase("female")) {
+                        f++;
+                    }
+                }
             }
         }
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(m, "Number", "Male");
         dataset.setValue(f, "Number", "Female");
-        
-        JFreeChart chart = ChartFactory.createBarChart("Donors", "Gender", "Number", dataset,PlotOrientation.VERTICAL, false, true, false);
+
+        JFreeChart chart = ChartFactory.createBarChart("Donors", "Gender", "Number", dataset, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.black);
-        
+
         ChartFrame frame = new ChartFrame("Availability Bar Chart", chart);
-        
+
         frame.setVisible(true);
-        frame.setSize(450,500);
-        
+        frame.setSize(450, 500);
+
 //       panel.removeAll();
 //        panel.add(frame, BorderLayout.CENTER);
 //        panel.validate();
@@ -201,122 +179,63 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void networkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkBtnActionPerformed
-        // TODO add your handling code here:
-       int count1 =0, count2 =0, count3 =0;
-        
-        for(Network network: ecosystem.getNetworkList()){
-          String name = network.getName();
-          if(name.equalsIgnoreCase("boston")){
-          for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-              
-              for(Donor donor : enterprise.getDonorDirectory().getDonorList()){
-                  
-                 count1 = count1 + 1;
-              }
-          } 
-          }
-        
-          if(name.equalsIgnoreCase("newyork")){
-          for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-              
-              for(Donor donor : enterprise.getDonorDirectory().getDonorList()){
-                  
-                 count2 = count2 + 1;
-              }
-          } 
-          }
-        
-          if(name.equalsIgnoreCase("chicago")){
-          for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-              
-              for(Donor donor : enterprise.getDonorDirectory().getDonorList()){
-                  
-                 count3 = count3 + 1;
-              }
-          } 
-          }
-        
-        }
-        
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(count1, "Number", "boston");
-        dataset.setValue(count2, "Number", "newyork");
-        dataset.setValue(count3, "Number", "chicago");
-        
-        
-        JFreeChart chart = ChartFactory.createBarChart("Networks", "Networks", "Donors", dataset,PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.black);
-        
-        ChartFrame frame = new ChartFrame("Network Information", chart);
-        
-        frame.setVisible(true);
-        frame.setSize(450,500);
-        
-        
-    }//GEN-LAST:event_networkBtnActionPerformed
-
     private void donorHealthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorHealthBtnActionPerformed
         // TODO add your handling code here:
-        int count =0;
-        int count1 =0;
-        
-        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
-            
-        if (org instanceof NutritionistOrganization) {
-            for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-              count = count+1;   
+        int count = 0;
+        int count1 = 0;
+
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+
+            if (org instanceof NutritionistOrganization) {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+                    count = count + 1;
+                }
             }
+            if (org instanceof LabOrganization) {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+                    count1++;
+                }
+            }
+
         }
-          if(org instanceof LabOrganization){
-              for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-                  count1++;
-              }
-          }
-        
-         }
-        
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(count, "Number", "unfit");
         dataset.setValue(count1, "Number", "fit");
-        
-        
-        JFreeChart chart = ChartFactory.createBarChart("Donors", "Donor", "Number", dataset,PlotOrientation.VERTICAL, false, true, false);
+
+        JFreeChart chart = ChartFactory.createBarChart("Donors", "Donor", "Number", dataset, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.black);
-        
+
         ChartFrame frame = new ChartFrame("Donor Information", chart);
-        
+
         frame.setVisible(true);
-        frame.setSize(450,500);
-        
+        frame.setSize(450, 500);
+
     }//GEN-LAST:event_donorHealthBtnActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int haemo = 0, bp=0, weight=0, temp=0;
-        
-        
-        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
-            if(org instanceof DonorOrganization){
-            for(Donor donor : org.getDonorDirectory().getDonorList())
-            {
-               for(VitalSigns vs: donor.getVsh().getVitalSignHistory()){
-                   if(vs.getHaemoglobinLevel()<13 ){
-                   haemo++;
-                   }
-                   if(vs.getBloodPressure()<80 || vs.getBloodPressure()>120 ){
-                   bp++;
-                   }
-                   if(vs.getWeight()<110 || vs.getWeight()>400 ){
-                   weight++;
-                   }
-                   if(vs.getTemperature()<90 ||vs.getTemperature()>99){
-                   temp++;
-                   }
-        }
-            }
+        int haemo = 0, bp = 0, weight = 0, temp = 0;
+
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (org instanceof DonorOrganization) {
+                for (Donor donor : org.getDonorDirectory().getDonorList()) {
+                    for (VitalSigns vs : donor.getVsh().getVitalSignHistory()) {
+                        if (vs.getHaemoglobinLevel() < 13) {
+                            haemo++;
+                        }
+                        if (vs.getBloodPressure() < 80 || vs.getBloodPressure() > 120) {
+                            bp++;
+                        }
+                        if (vs.getWeight() < 110 || vs.getWeight() > 400) {
+                            weight++;
+                        }
+                        if (vs.getTemperature() < 90 || vs.getTemperature() > 99) {
+                            temp++;
+                        }
+                    }
+                }
             }
         }
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -324,56 +243,54 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
         dataset.setValue("bloodpressure", bp);
         dataset.setValue("weight", weight);
         dataset.setValue("temperature", temp);
-        
-        
+
         JFreeChart chart = ChartFactory.createPieChart("DonorInformation", dataset, true, true, true);
 //        CategoryPlot p = chart.getCategoryPlot();
 //        p.setRangeGridlinePaint(Color.black);
-        PiePlot p = (PiePlot)chart.getPlot();
+        PiePlot p = (PiePlot) chart.getPlot();
         ChartFrame frame = new ChartFrame("Donor Information", chart);
-        
+
         frame.setVisible(true);
-        frame.setSize(450,500);
-        
+        frame.setSize(450, 500);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        int m=0, f=0, g=0;
-        
-        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
-            if(org instanceof DonorOrganization){
-            for(Donor donor : org.getDonorDirectory().getDonorList())
-            {
-                int age = donor.getAge();
-                
-            if(age >= 17 && age<= 35){
-               m++;
-            }
-            if(age >= 36 && age<= 50){
-                f++;
-            }
-            if(age >=51 && age<= 65){
-                g++;
-            }
-            
-        }
+        int m = 0, f = 0, g = 0;
+
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (org instanceof DonorOrganization) {
+                for (Donor donor : org.getDonorDirectory().getDonorList()) {
+                    int age = donor.getAge();
+
+                    if (age >= 17 && age <= 35) {
+                        m++;
+                    }
+                    if (age >= 36 && age <= 50) {
+                        f++;
+                    }
+                    if (age >= 51 && age <= 65) {
+                        g++;
+                    }
+
+                }
             }
         }
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(m, "Number", "Group1(17 - 35");
         dataset.setValue(f, "Number", "Group2(36 - 50");
         dataset.setValue(g, "Number", "Group3(51 - 65");
-        
-        JFreeChart chart = ChartFactory.createBarChart("Age Chart", "Age Group", "Number", dataset,PlotOrientation.VERTICAL, false, true, false);
+
+        JFreeChart chart = ChartFactory.createBarChart("Age Chart", "Age Group", "Number", dataset, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.black);
-        
+
         ChartFrame frame = new ChartFrame("Age Bar Chart", chart);
-        
+
         frame.setVisible(true);
-        frame.setSize(450,500);
-        
+        frame.setSize(450, 500);
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -386,9 +303,7 @@ public class DataAnalysisJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JButton networkBtn;
     // End of variables declaration//GEN-END:variables
 }

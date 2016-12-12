@@ -159,7 +159,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             } else {
                 DonorWorkRequest request = (DonorWorkRequest) workRequestJTable.getValueAt(selectedRow, 2);
 
-                if (request.getStatus().equalsIgnoreCase("Completed")) {
+                if (request.getStatus().equalsIgnoreCase("Completed") && request.getMessage().equalsIgnoreCase("Approved")) {
                     request.setReceiver(account);
                     request.getBloodGroup();
                     request.setStatus("Approved & Stored");

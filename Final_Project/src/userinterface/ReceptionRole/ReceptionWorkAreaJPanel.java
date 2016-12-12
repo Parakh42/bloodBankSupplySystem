@@ -137,7 +137,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 request.setReceiver(userAccount);
                 request.setStatus("assigned");
                 populateRequestTable();
-                JOptionPane.showMessageDialog(this, "Selected donor request is successfully assigned to nurse", "Information", JOptionPane.INFORMATION_MESSAGE);
+                
                 Organization org = null;
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                     if (organization instanceof NurseOrganization) {

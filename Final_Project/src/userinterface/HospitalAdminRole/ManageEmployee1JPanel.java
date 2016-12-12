@@ -147,6 +147,7 @@ public class ManageEmployee1JPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         genderComboBox = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N

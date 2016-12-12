@@ -12,8 +12,14 @@ import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DoctorWorkRequest;
+import business.WorkQueue.DonorWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.Color;
+import static java.lang.String.format;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -117,7 +123,6 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populateTable() {
-        try {
             DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
 
             model.setRowCount(0);
@@ -134,10 +139,23 @@ public class InventoryWorkAreaJPanel extends javax.swing.JPanel {
                 }
 
             }
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
     }
+    
+    
+    
+//    public  Date dateDiff(){
+//        DateFormat df=new SimpleDateFormat("MM/dd/yy");
+//        Date d1= new Date();
+//        df.format(d1);
+//        String a= df.format(d1);
+//        for(WorkRequest request: enterprise.getWorkQueue().getWorkRequestList()){
+//           if(request instanceof DonorWorkRequest){
+//               Date d2=request.getRequestDate();
+//               
+//           }
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

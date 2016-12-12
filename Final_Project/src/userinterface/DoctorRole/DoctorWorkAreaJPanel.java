@@ -8,10 +8,8 @@ package userinterface.DoctorRole;
 import business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Organization.DoctorOrganization;
-import business.Organization.DonorOrganization;
 import business.Organization.Organization;
 import business.Organization.PharmacistOrganization;
-import business.Organization.ReceptionOrganization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.DoctorWorkRequest;
 import business.WorkQueue.WorkRequest;
@@ -214,9 +212,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getWorkRequestList().add(docRequest);
         }
         populateRequestTable();
+        JOptionPane.showMessageDialog(this, "Request sent successfully !");
         }
          catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(this, "Please enter appropriate values in age field");
+                JOptionPane.showMessageDialog(this, "Please enter appropriate values in quantity field");
             }
         }
     }//GEN-LAST:event_submitBtnActionPerformed
